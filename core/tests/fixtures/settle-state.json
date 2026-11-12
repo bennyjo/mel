@@ -1,0 +1,69 @@
+{
+ "_comment": "Recorded on-chain state from chain 4663 at two blocks, for core/tests/test_settle.py.",
+ "captured_utc": "2026-09-08T23:55:38Z",
+ "entry_block": 58093251,
+ "entry_ts": 1788911145,
+ "exit_block": 58099049,
+ "exit_ts": 1788911731,
+ "gas": {
+  "block": 58099049,
+  "eth_usdg": 2483.895260571332,
+  "gas_price_gwei": 0.233752,
+  "usdg_per_gas": 5.806154849490701e-07
+ },
+ "morpho": {
+  "advertised_apy": 0.6340982668615648,
+  "depth_usdg": "360065.492892",
+  "entry_state": {
+   "borrow_rate_wad": "15835006943",
+   "last_update": "1788910452",
+   "market_fee": "0",
+   "total_borrow_assets": "352347449856",
+   "total_borrow_shares": "347186493320223227",
+   "total_supply_assets": "360065492892",
+   "total_supply_shares": "355050669831541663"
+  },
+  "exit_state": {
+   "borrow_rate_wad": "15840789105",
+   "last_update": "1788910452",
+   "market_fee": "0",
+   "total_borrow_assets": "352347449856",
+   "total_borrow_shares": "347186493320223227",
+   "total_supply_assets": "360065492892",
+   "total_supply_shares": "355050669831541663"
+  },
+  "market_id": "0xaa586d26a6fe62d9c0f0948fede6e2130500ac7a655587447e2d4a37e6330589",
+  "venue": "0x9d53d5e3bd5e8d4cbfa6db1ca238aea02e651010"
+ },
+ "v3": {
+  "depth_usdg": "33369859.491705",
+  "entry_state": {
+   "eth_usdg": "2483.895260571332",
+   "fee_growth_0": "45064425329884208263752418856180048477877",
+   "fee_growth_1": "83034105321237271631390603665799",
+   "liquidity": "11021256136996372515",
+   "other_decimals": "18",
+   "other_raw": "6300321696917774430690",
+   "other_token": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+   "sqrt_price_x96": "3949694454244687390029519",
+   "tick": "-198139",
+   "usdg_is_token0": "False",
+   "usdg_raw": "17794396090508"
+  },
+  "exit_state": {
+   "eth_usdg": "2483.895260571332",
+   "fee_growth_0": "45065261474325378910050138838368032861282",
+   "fee_growth_1": "83035839631769185616359435758448",
+   "liquidity": "10859522050824348827",
+   "other_decimals": "18",
+   "other_raw": "6353062908541407772842",
+   "other_token": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+   "sqrt_price_x96": "3948628021307028534033344",
+   "tick": "-198145",
+   "usdg_is_token0": "False",
+   "usdg_raw": "17589516643067"
+  },
+  "fee_ppm": 100,
+  "venue": "0x52e65b17fb6e5ba00ed806f37afcd2daa50271ca"
+ }
+}

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <clipPath id="circle"><circle cx="256" cy="256" r="256"/></clipPath>
+    <clipPath id="body"><ellipse cx="256" cy="300" rx="104" ry="80"/></clipPath>
+  </defs>
+  <g clip-path="url(#circle)">
+    <!-- background -->
+    <rect width="512" height="512" fill="#12333f"/>
+    <!-- honeycomb: the hive the forager reports back to -->
+    <g transform="translate(0 -22)" fill="#0b2530" stroke="#1d4a59" stroke-width="6">
+      <polygon points="-4,452 26,435 56,452 56,486 26,503 -4,486"/>
+      <polygon points="56,452 86,435 116,452 116,486 86,503 56,486"/>
+      <polygon points="396,452 426,435 456,452 456,486 426,503 396,486"/>
+      <polygon points="456,452 486,435 516,452 516,486 486,503 456,486"/>
+      <polygon points="26,503 56,486 86,503 86,537 56,554 26,537"/>
+      <polygon points="426,503 456,486 486,503 486,537 456,554 426,537"/>
+    </g>
+    <g transform="translate(0 -22)" fill="#f4c95d" stroke="#1d4a59" stroke-width="6">
+      <polygon points="116,452 146,435 176,452 176,486 146,503 116,486"/>
+      <polygon points="336,452 366,435 396,452 396,486 366,503 336,486"/>
+      <polygon points="86,503 116,486 146,503 146,537 116,554 86,537"/>
+      <polygon points="366,503 396,486 426,503 426,537 396,554 366,537"/>
+    </g>
+    <!-- waggle dance: the straight run reports where the net return is, tilted upward -->
+    <g transform="translate(256 74) rotate(-20) scale(0.8)" fill="none" stroke="#4ade80" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M 50 0 C 50 -58, -50 -58, -50 0 M 50 0 C 50 58, -50 58, -50 0" stroke-width="8" stroke-dasharray="1 17"/>
+      <polyline points="-50,0 -37,-9 -25,9 -12,-9 0,9 12,-9 25,9 37,-9 50,0" stroke-width="8"/>
+    </g>
+    <!-- wings -->
+    <ellipse cx="204" cy="214" rx="58" ry="84" transform="rotate(-28 204 214)" fill="#cfe9f2" fill-opacity="0.85" stroke="#8fc3d4" stroke-width="4"/>
+    <ellipse cx="308" cy="214" rx="58" ry="84" transform="rotate(28 308 214)" fill="#cfe9f2" fill-opacity="0.85" stroke="#8fc3d4" stroke-width="4"/>
+    <!-- body with stripes -->
+    <ellipse cx="256" cy="300" rx="104" ry="80" fill="#f4c95d"/>
+    <g clip-path="url(#body)" fill="#241a12">
+      <rect x="226" y="210" width="34" height="180"/>
+      <rect x="290" y="210" width="34" height="180"/>
+      <rect x="348" y="210" width="40" height="180"/>
+    </g>
+    <ellipse cx="256" cy="300" rx="104" ry="80" fill="none" stroke="#241a12" stroke-width="6"/>
+    <!-- stinger -->
+    <path d="M 356 292 L 388 300 L 356 310 Z" fill="#241a12"/>
+    <!-- head -->
+    <circle cx="164" cy="292" r="52" fill="#f4c95d" stroke="#241a12" stroke-width="6"/>
+    <circle cx="146" cy="282" r="12" fill="#241a12"/>
+    <circle cx="150" cy="277" r="4" fill="#ffffff"/>
+    <path d="M 132 312 Q 146 324 162 314" fill="none" stroke="#241a12" stroke-width="5" stroke-linecap="round"/>
+    <!-- antennae -->
+    <path d="M 150 244 Q 132 208 104 204" fill="none" stroke="#241a12" stroke-width="6" stroke-linecap="round"/>
+    <path d="M 176 242 Q 182 204 160 182" fill="none" stroke="#241a12" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="104" cy="204" r="8" fill="#241a12"/>
+    <circle cx="160" cy="182" r="8" fill="#241a12"/>
+  </g>
+</svg>

@@ -1,0 +1,39 @@
+{
+  "_comment": "Which of the 329 rows in journal/venues.jsonl the agent will consider. core/venues.py ranks nothing and filters nothing; that judgment is here. Widen or tighten this file as the score teaches, and say why in the retro.",
+  "version": 1,
+  "updated": "2026-10-28",
+
+  "allowed_kinds": ["morpho_market", "erc4626_usdg_vault", "uniswap_v3_pool", "idle"],
+  "_allowed_kinds_comment": "Every kind core/ledger.py can open and core/settle.py can settle. uniswap_v2_pool is quotable but has one dust pool on this chain, and uniswap_v4 pools are not settleable yet.",
+
+  "min_depth_usdg": 25000.0,
+  "_min_depth_comment": "100 times a full allocation. Of 186 USDG Morpho markets, 95 hold less than one allocation and two advertise over 1000% APY on 1 and 8 USDG of supply. A depth floor has to run before any yield ranking or the agent chases arithmetic on dust.",
+
+  "max_plausible_apy": 2.0,
+  "_max_plausible_apy_comment": "A rate above 200% is more likely a measurement artefact than yield: vault share prices carry six decimals, so over a short window the smallest observable move reads as 7.7% APY, and an LP fee rate read over 400 seconds has swung between 6% and 36% run to run. A venue above this is not banned, but it needs a second reading in a later cycle before it can be allocated to.",
+
+  "min_rate_window_seconds": 3600,
+  "_min_rate_window_comment": "A trailing rate measured over less than an hour is quantization noise on this chain. Morpho rates come from the IRM and have no window, so this applies to vaults and pools only.",
+
+  "require_advertised_rate": true,
+  "_require_rate_comment": "A venue with no readable rate is not a zero-yield venue, it is an unknown one. Steakhouse Turbo USDG holds 8.08M USDG and has emitted two events in six million blocks. Unknown is not allocatable; it is a research item for journal/proposals.md.",
+
+  "min_free_liquidity_multiple": 4.0,
+  "_min_free_liquidity_comment": "For a Morpho market, total_supply_assets minus total_borrow_assets must be at least this many times the allocation. Added 2026-09-09 in cycle 1, after both allocatable markets turned out to sit at 99.95% and 99.99999% utilization - which is not bad luck, because supply APY is the borrow rate times utilization, so the best-paying market always has the thinnest exit. At 100% utilization a withdraw reverts and a realized number taken from the share price describes an exit that could not have happened. Applied honestly this rule would have refused both of cycle 1's allocations and will make most cycles idle until the board changes. That is the finding, not a bug in the rule.",
+
+  "blocked_venues": [
+    {
+      "venue": "0xf37c0c5996503fdd2b5ccce36e659cd30393ae59",
+      "kind": "erc4626_usdg_vault",
+      "cycle": 51,
+      "reason": "ArcadiaV2 Global Dollar Debt is the Arcadia lending pool's debt token, not a lender vault. On 2026-09-17 an eth_call of deposit(250 USDG) and of withdraw(250 USDG) both reverted with custom error 0xced4f633 before any token transfer, while the same call on the Senior tranche (0xa5e1e1f9) got as far as the USDG transferFrom. Its share price tracks the borrow rate, so a realized number from it describes a position that could not be entered or exited. Lending to Arcadia goes through the tranches. a00006 sits here and is in journal/proposals.md."
+    },
+    {
+      "venue": "0xd42174d3db28b0fa2bd25381c3521b18ae9db490",
+      "kind": "erc4626_usdg_vault",
+      "cycle": 1013,
+      "reason": "Flock Credit Vault has no withdrawal queue and its idle USDG has gone to 0 twice in three weeks (2026-10-07 to 09, stranding a00036 for 111 h past its horizon; and again under a00065). a00065 entered on 2026-10-22 with 10,520 USDG idle, 42 times the size, at a 3-day horizon, and still could not exit: it was loss-marked at -100% net in cycle 1012. An idle multiple read at entry does not protect a 250 USDG position here, and the rate (forecast 45% gross, share price realized about 38%) does not pay for a total loss on two of its eleven entries. Unblock only on evidence that the vault holds idle cash through a full week."
+    }
+  ],
+  "_blocked_comment": "Addresses or market ids the agent will not touch again, each with the cycle and the reason."
+}

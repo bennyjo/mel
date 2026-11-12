@@ -1,0 +1,82 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  # The loop pushes a cycle commit about once an hour. Checking each one on
+  # its own push cost about 3,300 Actions minutes a month, more than the
+  # account's quota, so cycle pushes skip the job (see `if:` below) and this
+  # daily run checks every commit since the last check in one batch.
+  schedule:
+    - cron: "17 5 * * *"
+  workflow_dispatch:
+    inputs:
+      base:
+        description: >-
+          Check the boundary from this commit instead of the last checked one
+          (only needed if main was rewritten)
+        required: false
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  # Cancel superseded pull request runs. Runs on main never cancel each
+  # other: a skipped cycle push must not cancel an operator push's run.
+  group: ci-${{ github.event_name == 'pull_request' && github.ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    # One job, not two: GitHub bills each job at least one minute.
+    name: Integrity tripwires and agent/operator boundary
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # A push runs at once unless it is the loop's own: its newest commit is a
+    # cycle commit and no commit in it is an operator commit or a
+    # GitHub web-flow commit (a human in the UI, such as a PR merge).
+    if: >-
+      github.event_name != 'push'
+      || !startsWith(github.event.head_commit.message, 'cycle ')
+      || contains(toJSON(github.event.commits.*.message), '"operator:')
+      || contains(github.event.commits.*.committer.email, 'noreply@github.com')
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Config, caps, ledger and Python sources are sane
+        run: python3 core/validate.py
+      - name: Score report parses the ledger (offline)
+        if: ${{ !cancelled() }}
+        run: python3 core/score.py --json --offline > /dev/null
+      - name: Engine tests, incl. two runners racing for the lease on a local bare remote (offline)
+        if: ${{ !cancelled() }}
+        run: python3 -m unittest discover -s core/tests -t . -v
+      - name: Lint, bug-class rules only (syntax errors, undefined names)
+        if: ${{ !cancelled() }}
+        run: |
+          pip install --quiet ruff
+          ruff check --select E9,F core strategy
+
+      # Main only. A pull request's commits are checked when they reach main.
+      - name: Find the last commit an earlier run checked
+        id: base
+        if: ${{ !cancelled() && github.event_name != 'pull_request' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BASE: ${{ inputs.base }}
+        run: |
+          sha="${BASE:-$(bash .github/scripts/checked-base.sh 'No agent commit touches operator-owned files')}"
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+      # checked-base.sh finds the last run by this step's name. Renaming it
+      # makes every run look unchecked.
+      - name: No agent commit touches operator-owned files
+        if: ${{ !cancelled() && steps.base.outcome == 'success' }}
+        env:
+          BEFORE: ${{ steps.base.outputs.sha }}
+        run: bash .github/scripts/boundary.sh "$BEFORE" "$(git rev-parse HEAD)"

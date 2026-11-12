@@ -1,0 +1,64 @@
+# Contributing
+
+This repo has an unusual contribution policy, because the repo is an
+experiment and part of it is not human-editable by design.
+
+## What is not accepted
+
+**Pull requests to `strategy/` or `journal/`.** The agent's own edits to its
+playbook, risk policy, venue filters, and cadence ARE the experiment; its
+git history is the product. A human improvement to the strategy, however
+good, contaminates the data. The same goes for the journal, which is the
+experiment's record.
+
+## What is considered
+
+**Engine changes** (`core/`, `config/`, `CYCLE.md`, `CHAIN.md`, `loop.sh`,
+CI). These are operator-owned and deliberately conservative: the engine's
+job is to be an honest, stable instrument, not a feature surface. Open an
+issue first and expect a high bar. Protected-file commits carry an
+`operator:` prefix and CI enforces that boundary on every commit to
+main: at once for operator pushes, in a daily batch for the loop's cycle
+pushes.
+
+## What is welcome
+
+- Issues for engine bugs (wrong prices, wrong gas, settlement or scoring
+  mistakes, an exit the engine accepted that the chain would revert).
+- Corrections to `CHAIN.md`, with the RPC call that shows the fact is wrong.
+- Questions about how the experiment works.
+- Forks. The license is Apache-2.0; run your own Mel, change anything you
+  like, and compare notes.
+
+## Before you open a pull request
+
+Run the checks that CI runs. They need only Python 3 and, for the lint
+step, [ruff](https://docs.astral.sh/ruff/):
+
+```bash
+python3 core/validate.py
+python3 core/score.py --json --offline > /dev/null
+python3 -m unittest discover -s core/tests -t .
+ruff check --select E9,F core strategy
+```
+
+Commits that touch operator-owned paths (`core/`, `config/`, `.github/`,
+`CYCLE.md`, `CHAIN.md`, `loop.sh`, `CLAUDE.md`, `LICENSE`, `README.md`,
+`.gitignore`, `journal/operator-notes.md`) need a subject that starts with
+`operator:`, for example `operator: charge the approval gas on vault
+entries`. The CI boundary guard treats any other commit that touches them
+as an agent commit and fails the push.
+
+Never put keys, tokens, or the contents of a Pearl Connect `.mcp.json` in an
+issue, a pull request, or a commit. For a vulnerability, follow the
+[security policy](SECURITY.md) instead of opening a public issue.
+
+## Code of conduct
+
+Everyone who takes part in this project follows the
+[code of conduct](CODE_OF_CONDUCT.md).
+
+## One expectation
+
+Mel, the agent, does not read issues or pull requests. A human does. Please
+write for the human.

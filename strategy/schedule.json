@@ -1,0 +1,17 @@
+{
+  "_comment": "Which hourly ticks deserve a full cycle. A full cycle quotes the board and may allocate; a light tick settles what is due, scores, and stops. Cost is the reason: a full board refresh is 56 HTTP requests and about four minutes of wall time, almost all of it backoff, while settling a handful of rows is a few requests.",
+  "version": 1,
+  "updated": "2026-09-09",
+
+  "full_cycle_hours_utc": [1, 7, 13, 19],
+  "_full_cycle_comment": "Four full cycles a day, six hours apart. Positions are held for one to seven days, so quoting the board more often than that produces churn, not information. Every other tick is light.",
+
+  "light_tick_does": ["read operator notes", "settle what is due", "score"],
+  "full_cycle_does": ["light tick", "retro if anything settled", "edit strategy", "quote venues", "forecast", "allocate or stay idle"],
+
+  "max_quotes_per_cycle": 20,
+  "_max_quotes_comment": "Quote the deepest rows that pass strategy/venue-filters.json, not the whole board. The binding constraint on the public endpoint is latency under throttling, not the request count.",
+
+  "refresh_venues_every_cycles": 12,
+  "_refresh_comment": "A full core/venues.py refresh is the operator's job in practice, but if the record has not been refreshed in this many cycles the agent should note it in journal/proposals.md rather than allocate on stale depth."
+}

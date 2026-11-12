@@ -1,0 +1,147 @@
+{
+ "_comment": "Recorded from chain 4663 for core/tests/test_forecast.py. morpho_trailing: the Supply/Withdraw events core/forecast.py chose as trailing anchors for the Morpho market in settle-state.json, at that fixture's entry block 58,093,251. vault_ok: a live quote of Steakhouse USDG with a withdraw simulation that executed, and its trailing anchors. vault_stuck: a live quote of ArcadiaV2 Global Dollar Debt, whose simulated withdraw of 500 USDG reverted with 0xced4f633 for all three of its largest recent depositors. vault_priced: a live quote of Arcus HOOD (3x Long), a vault whose share price is leveraged HOOD, with the trailing rates core/forecast.py read for it on 2026-09-24 at block 71,369,309.",
+ "captured_utc": "2026-09-24T12:55:00Z",
+ "morpho_trailing": {
+  "trailing_24h": {
+   "anchor": {
+    "assets": 90000000000,
+    "block": 57270133,
+    "price": 1.0135699166904535e-06,
+    "ts": 1788828101
+   },
+   "rate": 0.2357891186039518
+  },
+  "trailing_7d": {
+   "anchor": {
+    "assets": 1000342437,
+    "block": 52144561,
+    "price": 1.008352376008624e-06,
+    "ts": 1788308685
+   },
+   "rate": 0.34896276296593887
+  }
+ },
+ "vault_ok": {
+  "quote": {
+   "advertised_apy": null,
+   "block": 71359131,
+   "depth_usdg": "497699530.094424",
+   "kind": "erc4626_usdg_vault",
+   "name": "Steakhouse USDG",
+   "rate_error": "vault rate scan throttled: gave up after 9 attempts: throttled on attempt 9; pacing now 6.00s",
+   "rate_source": null,
+   "settle_state": {
+    "exit_simulation": {
+     "assets": "500000000",
+     "holder": "0xd12514b63ddd0d10de684f5afe7997c41bf58010",
+     "ok": true
+    },
+    "idle_assets": "0",
+    "share_price": "1007939",
+    "share_unit": "1000000000000000000",
+    "total_assets": "497699530094424",
+    "total_shares": "493779324689353184937330198"
+   },
+   "ts": 1790251847,
+   "venue": "0xbeeff033f34c046626b8d0a041844c5d1a5409dd"
+  },
+  "trailing": {
+   "trailing_24h": {
+    "anchor": {
+     "assets": 6000000000,
+     "block": 70502662,
+     "price": 1.0078329948777637e-12,
+     "ts": 1790165449
+    },
+    "rate": 0.03913643961949309
+   },
+   "trailing_7d": {
+    "anchor": {
+     "assets": 2004951268,
+     "block": 65364410,
+     "price": 1.0072018675315083e-12,
+     "ts": 1789647864
+    },
+    "rate": 0.038937964941544
+   }
+  }
+ },
+ "vault_stuck": {
+  "quote": {
+   "advertised_apy": 0.1803968075745166,
+   "block": 71362105,
+   "depth_usdg": "89606.782885",
+   "kind": "erc4626_usdg_vault",
+   "name": "ArcadiaV2 Global Dollar Debt",
+   "rate_error": null,
+   "rate_source": "assets/shares from 15 Deposit and Withdraw events over 6.2 days, blocks 65904108..71214047",
+   "settle_state": {
+    "exit_simulation": {
+     "assets": "500000000",
+     "errors": [
+      "0x480979f8: {'code': 3, 'message': 'execution reverted', 'data': '0xced4f633'}",
+      "0x1947cef7: {'code': 3, 'message': 'execution reverted', 'data': '0xced4f633'}",
+      "0xa40107ed: {'code': 3, 'message': 'execution reverted', 'data': '0xced4f633'}"
+     ],
+     "holder": null,
+     "note": "no recent depositor could withdraw this amount",
+     "ok": false
+    },
+    "idle_assets": "12704343623",
+    "share_price": "1010450",
+    "share_unit": "1000000",
+    "total_assets": "89606782885",
+    "total_shares": "88680105042"
+   },
+   "ts": 1790252145,
+   "venue": "0xf37c0c5996503fdd2b5ccce36e659cd30393ae59"
+  },
+  "trailing": {
+   "trailing_24h": {
+    "anchor": {
+     "assets": 7198471017,
+     "block": 70343012,
+     "price": 1.00977746961265,
+     "ts": 1790149327
+    },
+    "rate": 0.2265569151936735
+   },
+   "trailing_7d": {
+    "anchor": {
+     "assets": 3558116208,
+     "block": 65904108,
+     "price": 1.0072670543131597,
+     "ts": 1789702159
+    },
+    "rate": 0.19830319262463125
+   }
+  }
+ },
+ "vault_priced": {
+  "quote": {
+   "advertised_apy": 13.648569329358764,
+   "block": 71369309,
+   "depth_usdg": "258351.239727",
+   "kind": "erc4626_usdg_vault",
+   "name": "Arcus HOOD (3x Long)",
+   "rate_samples": 91,
+   "rate_source": "assets/shares from 91 Deposit and Withdraw events over 6.9 days, blocks 65387423..71338346",
+   "rate_window_seconds": 599571,
+   "settle_state": {
+    "idle_assets": "27580043",
+    "share_price": "173571826",
+    "share_unit": "1000000000000000000",
+    "total_assets": "258351239727",
+    "total_shares": "1488439942340965468191"
+   },
+   "state_window_apy": 0.0,
+   "state_window_resolution_apy": 0.0004519613753100106,
+   "ts": 1790252869,
+   "venue": "0xe24cabdf76dd1c2576049167eb1755c84b985c36"
+  },
+  "trailing": {
+   "trailing_24h": -0.9999999317475697,
+   "trailing_7d": 153522.7413188348
+  }
+ }
+}

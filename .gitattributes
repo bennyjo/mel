@@ -1,0 +1,10 @@
+# Append-only journals: a union merge keeps both runners' lines instead of
+# conflicting, so an unattended `git pull --rebase` can resolve a prose
+# divergence on its own (proposals, cycle 135).
+journal/cycles.md      merge=union
+journal/proposals.md   merge=union
+journal/rpc-usage.jsonl merge=union
+
+# NOT journal/allocations.jsonl. The ledger is the experiment's record and a
+# union merge would silently keep two settlements of the same row. A ledger
+# divergence is the operator's to resolve, by hand, deliberately.

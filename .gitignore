@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.DS_Store
+reports/
+
+# Per-cycle scratch: put working files under work/
+work/
+
+# gnhf run state: local build prompts and run logs, not project files.
+.gnhf/
+
+# loop.sh's one-loop-per-checkout guard
+.loop.pid

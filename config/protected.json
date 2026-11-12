@@ -1,0 +1,35 @@
+{
+  "_comment": "PROTECTED. The allocating agent may not edit this file or anything in core/. Only the human operator changes these. Hard ceilings live in core/validate.py, so raising a cap is a protected-core edit by design.",
+
+  "chain_id": 4663,
+  "rpc_url": "https://rpc.mainnet.chain.robinhood.com",
+  "_rpc_comment": "The default endpoint: the public Robinhood Chain RPC, so a fork never reads the chain through someone else's gateway. The env var MEL_RPC_URL overrides it. The operator's runs set MEL_RPC_URL to the Olas RPC gateway for Robinhood Chain (the endpoint Pearl configures for Connect services on chain 4663), used since 2026-10-06; the cloud routines get it from their 'Mel' environment. The public endpoint throttled and refused eth_getLogs often enough to void a third of the forecast ledger, so a reliable run needs its own endpoint.",
+  "quote_asset": "USDG",
+  "quote_asset_address": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+  "quote_asset_decimals": 6,
+
+  "sim_bankroll_usdg": 1000.0,
+  "max_allocation_usdg": 250.0,
+  "max_open_allocations": 12,
+  "max_venue_share": 0.5,
+  "_max_venue_share_comment": "No single venue may hold more than this fraction of the bankroll.",
+  "max_new_allocations_per_cycle": 4,
+  "min_hold_minutes": 60,
+  "_min_hold_comment": "An allocation held for less than this is not scored. Shorter holds are dominated by entry cost and teach nothing.",
+  "min_expected_net_bps": 5.0,
+  "_min_expected_net_comment": "An allocation must forecast a net gain above round-trip cost of at least this many basis points, or the agent must leave the capital idle. Doing nothing is always a legal move.",
+  "min_free_liquidity_multiple": 2.0,
+  "_min_free_liquidity_comment": "A Morpho market must hold free liquidity (total supply minus total borrow) of at least this many times the allocation, at entry and at exit. At 100% utilization a withdraw reverts, so a share-price settlement would describe an exit that could not happen. The agent may tighten this in strategy/venue-filters.json, never loosen it.",
+  "loss_mark_after_horizon_minutes": 1440,
+  "_loss_mark_comment": "A position the venue still cannot pay back this long past its forecast horizon is loss-marked by core/settle.py: booked at what the venue could pay a withdrawer then, usually zero, and scored. Every run re-checks a marked row and settles it over its real hold when the venue pays it back. A day of hourly retries first, four times the forecast ledger's six-hour grace, because a drained vault refills from repayments over days (a00036, a00065).",
+
+  "real_execution_enabled": false,
+  "real": {
+    "_comment": "Dormant until the operator enables it. Pearl Connect runs on chain 4663 since 2026-10-06: service #12, service safe below. Enabling real allocation is an operator act.",
+    "service_safe": "0xb1d34E2884Fdc4813339e0BD0d123Ea92b5EF3AB",
+    "max_allocation_usdg": 5.0,
+    "daily_deploy_cap_usdg": 20.0,
+    "max_open_allocations": 3,
+    "allowed_venues": []
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "_comment": "The agent's own sizing rules, inside the operator's caps in config/protected.json. Every cap restated here is tighter than the operator's; core/validate.py fails the build if one is ever looser. The engine does not enforce this file - core/ledger.py enforces the operator's caps only - so these are the numbers the agent holds itself to, and the cycle log should say when it broke one and why.",
+  "version": 1,
+  "updated": "2026-11-07",
+
+  "max_allocation_usdg": 250.0,
+  "_max_allocation_comment": "Full size or idle. Round-trip cost is fixed in USDG, so a 50 USDG allocation pays 33 bps against 6.6 bps at 250. Allocating small is the most expensive thing this agent can do.",
+
+  "max_open_allocations": 6,
+  "max_venue_share": 0.5,
+  "_max_venue_share_comment": "Was 0.25 at seed, on the belief that it meant one open position per market. It does not: core/ledger.py groups by the venue address, and all 186 USDG Morpho markets share one Morpho Blue contract, so 0.25 meant one Morpho market ever. The engine's venue axis is contract risk - one Morpho bug takes every market at once - and half the bankroll is the right cap for that. Market concentration is a different axis and is max_market_share_usdg below. Changed 2026-09-09 in cycle 1, before anything was opened.",
+
+  "max_market_share_usdg": 250.0,
+  "_max_market_share_comment": "One full-size position per Morpho market or per pool. The engine cannot see this axis - to it, two markets on the same contract are one venue - so it is the agent's to hold, and a cycle that breaks it must say so in journal/cycles.md.",
+  "max_new_allocations_per_cycle": 2,
+
+  "min_hold_minutes": 1440,
+  "_min_hold_comment": "The operator's floor is 60 minutes and an hour-long hold loses money at every rate on this chain: the best market earns 0.0181 USDG in an hour against a 0.1651 USDG round trip. A day is the shortest hold that can pay for itself, and only at a high rate.",
+
+  "min_expected_net_bps": 5.0,
+  "_min_expected_net_comment": "The operator's floor is 5 bps. Was 10 (double the floor, room for a 5 bps forecast miss) until cycle 1253 (2026-11-07), lowered to 5 at the operator's ask in operator-notes 2026-11-07: 7 of 11 allocations in the prior week were idle, and retro-2026-11-07-0730 found Morpho 1efd13a2 (8.8 bps) and Purinta (9.4 bps) at 7 d just under 10. Idle rows teach no forecasting; on paper a 5 bps miss costs nothing real.",
+
+  "default_horizon_min": 4320,
+  "horizon_choices_min": [1440, 4320, 10080],
+  "_horizon_comment": "One, three, and seven days. The horizon, not min_hold_minutes, is what decides whether a position pays: it is the only input the agent controls that moves the break-even.",
+
+  "max_round_trip_bps": 25.0,
+  "_max_round_trip_comment": "Above this the recon memo's go verdict is in question - at ten times the gas price of 2026-09-08 only the most volatile market clears. Stay idle for the cycle and write it in journal/cycles.md.",
+
+  "forecast_haircut": {
+    "morpho_market": 0.90,
+    "erc4626_usdg_vault": 0.85,
+    "uniswap_v3_pool": 0.40
+  },
+  "_haircut_comment": "The fraction of the advertised rate the agent forecasts as gross, before costs. Morpho's rate is read from the venue's own IRM and decays as utilization falls. Morpho was 0.85 at seed; a00004 (cycle 6 to 51, 2026-09-17) realized 10.28% gross on 17.95% advertised, a ratio of 0.573, because both utilization and the AdaptiveCurveIRM's rate fell over the week after an entry at the 90% target. One row, so 0.60 is the prior moved to the evidence, not a law. A vault rate is inferred from Deposit and Withdraw events and is noisier. An LP rate is fee income only and ignores impermanent loss, which on a 250 USDG position cost 0.0675 USDG over a 0.054% ETH move while fees earned 0.000028 - so an LP forecast is mostly a bet on price stability. These are priors to be scored and moved, not truths. Cycle 297 (2026-09-27): Morpho 0.60 to 0.75 after a00015 realized about 0.99 of advertised (ratios now 0.57, 3.1, 0.99); vault 0.75 to 0.85 after a00016 realized about 1.68 (ratios 0.80, 1.68). Both still under the median ratio. Cycle 362 (2026-09-30): Morpho 0.75 to 0.90 after a00020 realized about 1.74 of advertised (ratios 0.57, 3.1, 0.99, 1.74, median about 1.37); kept under the median because all four rows are one market."
+}
