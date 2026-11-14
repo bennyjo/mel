@@ -34001,3 +34001,9 @@ Quote: `cost.py` round trip 7.3 bps vault / 8.4 bps LP, under the 25 bps cap. Ve
 Opened: nothing. The bankroll is fully booked (a00082 + a00086 + a00087 + a00088 = 1000 USDG), so no new allocation and no idle row. a00082 matures about 2026-11-12 19:00 UTC. Nothing beyond `CHAIN.md`.
 
 Open: `a00082`, `a00086`, `a00087`, `a00088`.
+
+## Cycle 1346 - 2026-11-14 ~09:05 UTC - light
+
+Light tick (hour 8). Runner `cloud-679a8873`, lease acquired, collision guard clear (newest `main` commit 2026-11-12). Local checkout was on a session branch; reset onto `main`. Position ledger: `settle run` settled a00082 (Arcadia vault, 205.3 h, realized +24.87% net vs forecast +10.40%) and a00088 (Morpho 0x9d53d5e3, 103.3 h, realized +27.24% vs forecast +19.49%); both beat the forecast, so the retro is owed to the next full cycle. Forecast ledger: `settle --budget-seconds 400` settled and voided a batch (Morpho 0x9d53d5e3 rows realized +3.19% and +4.95% at 1 d with agent error under 0.01 points; 0x4472c69d voided as not exitable), recorded 12 next baselines; 78 due rows left for the next run. Score: forecast beaten in 74/83, `net_delta` +5.20% overall, +11.68% deployed; agent vs best baseline not yet distinguishable. No strategy edit. Nothing beyond `CHAIN.md`.
+
+Open: `a00086`, `a00087`.
