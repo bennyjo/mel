@@ -34013,3 +34013,9 @@ Open: `a00086`, `a00087`.
 Light tick (hour 10). Runner `cloud-3649b0bb`, lease acquired, collision guard clear (cycle 1346 ~1 h old). Position ledger: nothing due. Forecast ledger: `settle --budget-seconds 400` did not finish inside the 600 s tool limit and was stopped mid-run (the harness had moved it to the background); the rows it had already written are intact (forecasts.jsonl parses, validate 0 failures): about 19 settled, 3 voided; 56 of 97 open rows still due for the next run. Score: agent vs best baseline still indistinguishable overall; lending 14-28 d ago is the only slice where the agent's error is smaller. No position settled since retro owed from cycle 1346 (a00082, a00088), which the next full cycle (hour 13) writes; no strategy edit. Nothing beyond `CHAIN.md`.
 
 Open: `a00086`, `a00087`.
+
+## Cycle 1348 - 2026-11-14 ~11:05 UTC - light
+
+Light tick (hour 11). Runner `cloud-c91f503d`, lease acquired, collision guard clear (cycle 1347 ~1 h old). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: two `settle --budget-seconds 300` runs (each finished inside the tool limit) settled and voided a batch (e.g. Arcadia 0xa5e1e1f9 rows realized +17.9% to +25.7%, Morpho 0xbeeff033 rows +4.0%, agent error under 0.6 points; f002374 voided as not exitable), recorded 12 next baselines; 39 due rows left for the next run. Score: agent vs best baseline still indistinguishable at every horizon; lending 14-28 d ago remains the only slice where the agent's error is smaller. No position settled, so no retro (a00082 and a00088 retro still owed to the hour-13 cycle); no strategy edit. Nothing beyond `CHAIN.md`.
+
+Open: `a00086`, `a00087`.
