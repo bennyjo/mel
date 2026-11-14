@@ -34049,3 +34049,15 @@ Open: `a00086`, `a00087`, `a00089`, `a00090`.
 Light tick (hour 15). Runner `cloud-80de7c6c`, lease acquired, collision guard clear (cycle 1351 ~53 min old). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: two `settle` runs (456 s and a short second pass) settled and voided a batch (several 0xe24cabdf and 0x65dc90cd rows voided, 500 USDG simulated withdraw reverted), recorded 2 baselines. Score: agent vs best baseline still indistinguishable at every horizon; no strategy change.
 
 Open: `a00086`, `a00087`, `a00089`, `a00090`.
+
+## Cycle 1353 - 2026-11-14 ~19:03 UTC - full
+
+Full cycle (hour 19). Runner `cloud-8d4d094c`, lease acquired, collision guard clear (cycle 1352 ~3 h 50 min old). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: 0 of 104 open rows due, nothing settled or voided. Score: agent vs best baseline still indistinguishable at every kind and horizon; no strategy edit. No position settled since retro-2026-11-14-1310, so no retro.
+
+Quote: `cost.py` round trip 2.1 bps Morpho / 6.5 bps vault at 250 USDG, under the 25 bps cap. Venue record was exactly three days old (2026-11-11T19:03), so `venues.py refresh` ran first (329 rows, 156 s). `venues.py quote --rank-by depth --top 20 --min-depth 25000`: 0 new baselines, 55 already live, 2 skipped (uniswap_v2 0x8803c117; price-driven Arcus 0xe24cabdf). Agent forecasts, 4 rows, all rule numbers: Purinta 0x37788ff0 5.71% at 1 and 3 d (no t24h window, so t7d); Grove x Steakhouse 0xbeeff039 0.00% at 1 and 3 d (t7d ~0, share price flat, all 100k assets sit idle in the vault). Every other quoted lending venue already has live agent rows at every horizon. Skipped 0xf37c0c59 at 1 d: its exit simulation still reverts at 500 USDG, so a row would only void.
+
+Opened: nothing. The bankroll is fully booked (a00086, a00087, a00089, a00090 = 1000 USDG of 1000), so no idle row either. A Purinta 7 d dry run was refused for the bankroll and also because a 500 USDG simulated withdraw reverted for every recent depositor ("arithmetic underflow or overflow").
+
+Chain: Morpho aa586d26's supply APY fell from ~126% (cycle 1350) to 62.6%, utilization 0.964 to 0.926, so supply is coming back as a00089's shaded forecast assumed. Purinta's exit passed a 500 USDG withdraw simulation in the 13:43 baseline quote but reverted for every recent depositor in the 19:xx dry run: which depositor gets simulated decides whether this vault looks exitable. `CHAIN.md` does not mention either.
+
+Open: `a00086`, `a00087`, `a00089`, `a00090`.
