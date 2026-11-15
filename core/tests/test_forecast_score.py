@@ -81,6 +81,14 @@ class TestClusteredMean(unittest.TestCase):
         self.assertEqual(got["clusters"], 1)
         self.assertEqual(score.clustered_mean([], [])["n"], 0)
 
+    def test_an_astronomical_value_gives_inf_instead_of_raising(self):
+        """`x ** 2` raises OverflowError on a float past about 1.3e154, where
+        `x * x` gives inf. A settled row can carry such a realized APY, and
+        the score must still run."""
+        got = score.clustered_mean([0.1, 1.4e236, 0.2], ["a", "b", "c"])
+        self.assertEqual(got["n"], 3)
+        self.assertEqual(got["mean"], statistics.fmean([0.1, 1.4e236, 0.2]))
+
     def test_the_t_table_rounds_toward_the_wider_interval(self):
         self.assertEqual(score.t975(35), score.T975[30])
         self.assertEqual(score.t975(10_000), 1.980)

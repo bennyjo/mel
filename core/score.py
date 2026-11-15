@@ -235,7 +235,7 @@ def clustered_mean(values: list[float], clusters: list[str]) -> dict:
     for value, cluster in zip(values, clusters):
         sums[cluster] = sums.get(cluster, 0.0) + value - mean
     between = sum(s * s for s in sums.values())
-    within = sum((v - mean) ** 2 for v in values)
+    within = sum((v - mean) * (v - mean) for v in values)
     g = len(sums)
     out["mean"] = mean
     out["n_eff"] = float(n) if between <= 0 else min(float(n), n * within / between)
