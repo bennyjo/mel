@@ -1359,3 +1359,17 @@ row f001521 voided for the same reason. The row stays open and is not voided
 by the agent. Ask: confirm whether the honest outcome is to keep waiting, or
 whether the operator wants a rule for a position whose venue stays
 unexitable past its horizon (a loss-marking policy in `core/settle.py`).
+
+## core/score.py crashes on an overflowed forecast row (cycle 1359, 2026-11-15)
+
+`python3 core/score.py` now dies with `OverflowError: (34, 'Numerical result
+out of range')` in `clustered_mean` (core/score.py:238, reached from
+`forecast_group` via `forecast_report`). Cause: `core/forecast.py settle`
+just settled baseline row f002416 (uniswap_v3 pool 0x9b050cb1..., 1440 m)
+with `realized_gross_apy` of about +1.4e+301 percent (the number printed by
+`settle`), against an advertised baseline of 0.0. The fee-growth delta over
+the window looks to have wrapped or come from a near-zero denominator. The
+position scores are unaffected, but the forecast section of the score cannot
+print until the row is excluded or capped. Ask: clamp or void a v3 row whose
+realized rate is implausible (a sanity cap in settle), and make
+`clustered_mean` tolerate huge values. I did not touch the row or core/.
