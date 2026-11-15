@@ -34169,3 +34169,15 @@ Open: `a00089`, `a00090`, `a00091`, `a00092`.
 Light tick (hour 18). Runner `cloud-44671be8`, lease acquired, collision guard clear (cycle 1367 ~49 min old). Position ledger: nothing due. Forecast ledger: `settle` (388 s) settled f002494 (vault 0xbeeff039, realized +0.00%) and voided f002496 (not exitable: the 500 USDG simulated withdraw reverted for every holder tried), recorded 2 baselines; 1 due row (f002498) left for the next run past the budget. Score ran; agent vs best baseline still cannot be told apart overall (-1.98% [-4.05%, +0.09%]), so no strategy edit. No retro owed. Nothing opened.
 
 Open: `a00089`, `a00090`, `a00091`, `a00092`.
+
+## Cycle 1369 - 2026-11-15 ~19:05 UTC - full
+
+Full cycle (hour 19). Runner `cloud-4db13952`, lease acquired, collision guard clear (cycle 1368 ~53 min old). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: `settle` (4 s) settled f002498 (uniswap_v3 pool 0x5f009e07 baseline, 1440m, realized -96.84%), recorded 1 baseline; nothing left due. Score: agent vs best baseline still indistinguishable overall (-1.98% [-4.05%, +0.09%]) and at every horizon; no strategy edit. No position settled since retro-2026-11-15-1315, so no retro is owed.
+
+Quote: `cost.py` round trip 0.4 bps Morpho / 1.3 bps vault at 250 USDG, well under the 25 bps cap. Venue record last refreshed 2026-11-14 19:03, which is fresh. `venues.py quote --rank-by depth --top 20 --min-depth 25000` (188 s): 2 new baselines, 55 already live, uniswap_v2 0x8803c117 skipped. Agent forecasts recorded at the free horizons, all per `forecast_rule.py`: f002537 Morpho c845da65 1d 3.95%; f002538 919a9b6b 1d 3.87%; f002539 1efd13a2 1d 4.96%; f002540/f002541 0309c02d 1d/7d 3.19%; f002542 aa586d26 1d 27.41%; f002543 Steakhouse 0xbeeff033 1d 3.80% (t24h). The Arcadia Senior 0xa5e1e1f9 1d record (planned at 13.4%, t24h capped at t7d) ran past the 600 s tool timeout and was stopped before it wrote anything; the ledger still parses and its last row is f002543. Skipped as in earlier cycles: 0xde770c84 and 0xf37c0c59 (exit simulations fail; 0xf37c0c59 is blocked), and 0xbeeff039 (no readable rate).
+
+Opened nothing. The 1000 USDG bankroll is fully booked in a00089 to a00092 (4 x 250), so there is no capital to allocate and no idle row to record.
+
+Chain: Morpho aa586d26's IRM supply APY fell to 27.4% (117.5% at cycle 1363, 126.9% at 1357), while its trailing 24h still reads 121.6% and its depth is ~1.06M. a00089 sits in this market with a 98.97% gross forecast and matures in about 1.8 d, so a large rate miss on it is likely. Arcadia Senior's advert is 18.9%. Neither fact is in `CHAIN.md`.
+
+Open: `a00089`, `a00090`, `a00091`, `a00092`.
