@@ -34139,3 +34139,9 @@ Opened: `a00091` Morpho 1efd13a2, 250 USDG, 7 d, gross 4.96% (advert), forecast 
 Chain: Morpho aa586d26's supply APY has dropped to 117.5% (126.9% in cycle 1357), depth ~0.91M. Arcadia Senior's advert is 18.9%. Neither is in `CHAIN.md`.
 
 Open: `a00089`, `a00090`, `a00091`, `a00092`.
+
+## Cycle 1364 - 2026-11-15 ~14:10 UTC - light
+
+Light tick (hour 14). Runner `cloud-03d8d095`, lease acquired, collision guard clear (cycle 1363 ~40 min old, but the lease and tip guard did not block). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: two `settle` runs settled baseline rows (the first included f002252 and f002473 on Morpho 0x9d53d5e3; the second settled 5 more) and voided 2 (f002256 Steakhouse-class vault 0xbeeff039 and f002446 vault 0x0053333f: the 500 USDG simulated withdraw reverted, no recent depositor), recording baselines from the exit quotes; 17 rows left for the next run past the 240 s budget. Score ran: agent vs best baseline still cannot be told apart overall (-2.01% [-4.11%, +0.08%]). No strategy edit on a light tick.
+
+Open: `a00089`, `a00090`, `a00091`, `a00092`.
