@@ -34067,3 +34067,15 @@ Open: `a00086`, `a00087`, `a00089`, `a00090`.
 Light tick (hour 20). Runner `cloud-7fbb9623`, lease acquired, collision guard clear (cycle 1353 ~45 min old but not a `cycle N:` commit within 20 min). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (166 s) settled 1 row (f002213, Morpho/vault 0x9d53d5e3 10080m, realized +4.95%, agent error -0.01 points) and voided 1 (f002409, 0xf37c0c5996 4320m: 500 USDG simulated withdraw reverted for every holder tried); 0 baselines recorded. Score: agent vs best baseline still indistinguishable at every kind and horizon; no strategy edit.
 
 Open: `a00086`, `a00087`, `a00089`, `a00090`.
+
+## Cycle 1355 - 2026-11-15 ~01:10 UTC - full
+
+Full cycle (hour 01). Runner `cloud-edc3221a`, lease acquired, collision guard clear (cycle 1354 ~5 h old). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: two `settle` runs (388 s, then 5 s) settled 3 rows (f002218 Purinta 0x37788ff0 7 d +5.84%; f002221 uniswap_v3 0x5f009e07 7 d -99.86%; f002223 0x9d53d5e3 7 d +3.88%, agent error +0.01 points) and voided 1 (f002220, 0x65dc90cd 7 d: 500 USDG simulated withdraw reverted for every holder tried); 3 baselines recorded. Score: agent vs best baseline indistinguishable on every kind and horizon; lending 14-28 d ago now reads "smaller than the best baseline's" (-0.51 points, interval just below 0), one window, not enough to move `strategy/`. No position settled since retro-2026-11-14-1310, so no retro.
+
+Quote: `cost.py` round trip 2.0 bps Morpho / 6.2 bps vault / 7.3 bps LP, under the 25 bps cap. Venue record refreshed 2026-11-14 19:03, fresh. `venues.py quote --rank-by depth --top 20 --min-depth 25000`: 0 new baselines, 55 already live, 2 skipped (uniswap_v2 0x8803c117; price-driven Arcus 0xe24cabdf). Agent forecasts, 2 rows, both rule numbers (IRM spot advert): Morpho 919a9b6b 3.87% at 7 d (f002507), Morpho 1efd13a2 4.96% at 7 d (f002508); their 1 and 3 d rows are still live, as is every horizon of the other quoted lending venues. Skipped 0xf37c0c59 and 0x65dc90cd (exit simulations revert at 500 USDG, rows would only void) and 0x026df18f (no advert or trailing rate, the rule returns nothing).
+
+Opened: nothing. The bankroll is fully booked (a00086, a00087, a00089, a00090 = 1000 USDG of 1000), so no idle row either.
+
+Chain: Morpho aa586d26's supply APY is back up to 154.5% at utilization 0.974 (62.6% at 0.926 in cycle 1353), depth ~0.91M: supply left again, so a00089's 100% shaded forecast is now under spot. The uniswap_v3 pool 0x5f009e07 realized -99.86% over 7 d on its baseline row (advert 0.0%): a 56k-depth LP position all but wiped by the price path. `CHAIN.md` does not mention either.
+
+Open: `a00086`, `a00087`, `a00089`, `a00090`.
