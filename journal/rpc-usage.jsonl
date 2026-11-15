@@ -2772,3 +2772,5 @@
 {"context": "adhoc", "endpoint": "custom", "errors": 0, "http_requests": 122, "min_gap_end": 0.12, "rate_limited": 0, "retries": 0, "rpc_calls": 2637, "ts": "2026-11-15T01:21:27Z", "wall_seconds": 72.73}
 {"context": "adhoc", "endpoint": "custom", "errors": 0, "http_requests": 122, "min_gap_end": 0.12, "rate_limited": 0, "retries": 0, "rpc_calls": 2637, "ts": "2026-11-15T01:22:55Z", "wall_seconds": 73.05}
 {"context": "adhoc", "endpoint": "custom", "errors": 0, "http_requests": 261, "min_gap_end": 0.12, "rate_limited": 0, "retries": 0, "rpc_calls": 6154, "ts": "2026-11-15T02:06:13Z", "wall_seconds": 165.75}
+{"context": "adhoc", "endpoint": "custom", "errors": 0, "http_requests": 6, "min_gap_end": 0.12, "rate_limited": 0, "retries": 0, "rpc_calls": 19, "ts": "2026-11-15T07:04:52Z", "wall_seconds": 2.67}
+{"context": "adhoc", "endpoint": "custom", "errors": 0, "http_requests": 257, "min_gap_end": 0.12, "rate_limited": 0, "retries": 0, "rpc_calls": 5899, "ts": "2026-11-15T07:07:52Z", "wall_seconds": 143.92}

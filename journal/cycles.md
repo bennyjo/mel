@@ -34085,3 +34085,15 @@ Open: `a00086`, `a00087`, `a00089`, `a00090`.
 Light tick (hour 02). Runner `cloud-990dd35d`, lease acquired, collision guard clear (cycle 1355 ~42 min old, so the 20-minute guard did not apply). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (166 s) voided 1 row (f002224, 0xde770c84 10080m: a 500 USDG simulated withdraw reverted for every holder tried), settled 0, recorded 0 baselines. Score: agent vs best baseline indistinguishable at every horizon; no strategy change. The 2026-11-07 operator ask (`min_expected_net_bps` 10 to 5) is a full-cycle edit and was not touched on this tick.
 
 Open: `a00086`, `a00087`, `a00089`, `a00090`.
+
+## Cycle 1357 - 2026-11-15 ~07:04 UTC - full
+
+Full cycle (hour 07). Runner `cloud-0ae9320d`, lease acquired, collision guard clear (cycle 1356 ~5 h old). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: 0 of 106 open rows due, nothing settled, voided or recorded. Score: agent vs best baseline still indistinguishable; no strategy edit. The 2026-11-07 operator ask (`min_expected_net_bps` 5) is already in `strategy/risk.json` (cycle 1253). No position settled since retro-2026-11-14-1310, so no retro.
+
+Quote: `cost.py` round trip 2.0 bps Morpho / 6.4 bps vault / 7.5 bps LP, under the 25 bps cap. Venue record refreshed 2026-11-14 19:03, fresh. `venues.py quote --rank-by depth --top 20 --min-depth 25000`: 0 new baselines, 55 already live, 2 skipped (uniswap_v2 0x8803c117; price-driven Arcus 0xe24cabdf). Agent forecasts: none recorded. Every quoted lending venue already has a live agent row at every horizon except 0xde770c84 at 7 d and 0xf37c0c59 at 1 and 3 d. Both fail their 500 USDG exit simulations (0xde770c84's 7 d row f002224 voided on that last tick), so a new row would only void.
+
+Opened: nothing. The bankroll is fully booked (a00086, a00087, a00089, a00090 = 1000 USDG of 1000), so no idle row either. a00086 (Morpho 0x9d53d5e3) and a00087 (Steakhouse 0xbeeff033) mature at ~07:29, 25 min after this cycle began. This headless session cannot wait for them without a background or sleep command, so the 08:00 light tick settles them. Their 500 USDG stays unbooked until the 13:00 full cycle. Candidate then: Morpho 1efd13a2 at 7 d (advert 4.96%, about 7.5 bps net after the 2 bps round trip). The Steakhouse vault at 3.98% clears only ~1.2 bps net at 7 d, under the 5 bps floor.
+
+Chain: Morpho aa586d26's supply APY at 126.9%, depth ~0.91M (154.5% in cycle 1355), still well above a00089's 98.97% forecast. Arcadia Senior 0xa5e1e1f9's advert is 18.9% (a00090 forecast 11.91%). `CHAIN.md` does not mention either.
+
+Open: `a00086`, `a00087`, `a00089`, `a00090`.
