@@ -34127,3 +34127,15 @@ Open: `a00089`, `a00090`.
 Light tick (hour 12). Runner `cloud-657c2687`, lease acquired, collision guard clear (cycle 1361 ~1 h old). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: `settle` (325 s) settled 2 baseline rows (f002437 Arcadia Senior 0xa5e1e1f9 1440m, realized +13.40%; f002440 Steakhouse 0xbeeff033 1440m, +3.80%), voided 0, recorded 2 baselines; f002443 and f002446 left for the next run past the 240 s budget. Score ran; agent vs best baseline still indistinguishable overall and at every horizon, so no strategy edit. No retro owed. Nothing opened.
 
 Open: `a00089`, `a00090`.
+
+## Cycle 1363 - 2026-11-15 ~13:05 UTC - full
+
+Full cycle (hour 13). Runner `cloud-55e07b39`, lease acquired, collision guard clear (cycle 1362 ~55 min old). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: `settle` (258 s) voided 1 baseline row (f002443, Flock 0xd42174d3 1440m: the 500 USDG simulated withdraw reverted, no recent depositor), settled 0, recorded 1 baseline; f002446, f002449, f002452, f002455, f002458 and f002461 left for the next run past the 240 s budget. Score: agent vs best baseline still indistinguishable overall and at every horizon (all-rows mean -2.02% [-4.12%, +0.08%]); no strategy edit. Retro owed since light tick 1358: `journal/retro-2026-11-15-1315.md` covers a00086 and a00087 (both on rate, costs a little under forecast; no rule change).
+
+Quote: `cost.py` round trip ~2 bps Morpho / ~6.6 bps vault, under the 25 bps cap. Venue record refreshed 2026-11-14 19:03, fresh. `venues.py quote --rank-by depth --top 20 --min-depth 25000` (181 s): 0 new baselines, 55 already live, 2 skipped (uniswap_v2 0x8803c117; price-driven Arcus 0xe24cabdf). Agent forecast recorded: f002520, Morpho c845da65 at 7 d, 3.71% (rule = advert); its 1 and 3 d rows are still live. Every other quoted lending venue already has live agent rows, apart from 0xde770c84 at 7 d and 0xf37c0c59 at 1/3 d, which fail their exit simulations and are skipped as in cycle 1357.
+
+Opened: `a00091` Morpho 1efd13a2, 250 USDG, 7 d, gross 4.96% (advert), forecast ~8.9 bps net; `a00092` Steakhouse 0xbeeff033, 250 USDG, 7 d, gross 3.80% (trailing 24h), forecast ~5.8 bps net. With a00089 and a00090 that books the full 1000 USDG, so no idle row. Refused/skipped: Purinta 0x37788ff0 (5.66% advert) was refused at dry run by the engine, as it has been on its 500 USDG exit simulation in earlier cycles; Morpho aa586d26 (advert 117.5%) already holds a00089, at the 250 USDG market cap, and Morpho is at its 0.5 venue share with a00091.
+
+Chain: Morpho aa586d26's supply APY has dropped to 117.5% (126.9% in cycle 1357), depth ~0.91M. Arcadia Senior's advert is 18.9%. Neither is in `CHAIN.md`.
+
+Open: `a00089`, `a00090`, `a00091`, `a00092`.
