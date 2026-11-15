@@ -34115,3 +34115,9 @@ Open: `a00089`, `a00090`.
 Light tick (hour 10). Runner `cloud-be5f2534`, lease acquired, collision guard clear (cycle 1359 ~1 h old). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: `settle` (73 s) settled 1 baseline row (f002425, Morpho 0x9d53d5e3 1440m, realized +0.15%), voided 0, recorded 1 baseline. Score: `core/score.py` still raises OverflowError (f002416, see `journal/proposals.md`), so no score this tick. No strategy edit on a light tick. Retro for a00086 and a00087 and 500 USDG of unbooked capital are still owed to the 13:00 full cycle.
 
 Open: `a00089`, `a00090`.
+
+## Cycle 1361 - 2026-11-15 ~11:06 UTC - light
+
+Light tick (hour 11). Runner `cloud-6372391b`, lease acquired, collision guard clear (cycle 1360 ~1 h old). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: `settle` (201 s) settled 3 baseline rows (f002428, f002431, f002434, all Morpho 0x9d53d5e3 1440m; f002431 realized +136.06%, the others about +3.9%), voided 0, recorded 3 baselines; f002437 left for the next run past the 240 s budget. Score: `core/score.py` ran without OverflowError (operator fix #1 landed); agent vs best baseline still indistinguishable at every horizon, so no strategy edit. No retro owed. Nothing opened.
+
+Open: `a00089`, `a00090`.
