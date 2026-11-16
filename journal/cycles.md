@@ -34247,3 +34247,15 @@ Open: `a00089`, `a00090`, `a00091`, `a00092`.
 Light tick (hour 12). Runner `cloud-4dcb7a55`, lease acquired, collision guard clear. Position ledger: nothing due. Forecast ledger: `settle` (318 s) settled 3 baseline rows (f002515 +42.13% and f002516 +3.88% on 0x9d53d5e3, f002517 +13.75% on 0xa5e1e1f9; all 1440m, no agent rows), 0 voided, 3 recorded. Nothing opened.
 
 Open: `a00089`, `a00090`, `a00091`, `a00092`.
+
+## Cycle 1379 - 2026-11-16 ~13:05 UTC - full
+
+Full cycle (hour 13). Runner `cloud-375a9cfe`, lease acquired, collision guard clear (cycle 1378 ~55 min old). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: `settle` (429 s) settled 1 baseline row (f002518, Steakhouse 0xbeeff033, 1440m, realized +3.81%; no agent rows), voided 1 (f002519, 0xd42174d3, 1440m: not exitable at the horizon, a simulated withdraw of 500 USDG reverted for every holder tried, no recent depositor found), recorded 2 baselines. Score: agent vs best baseline -1.71% [-3.62%, +0.20%] overall, still indistinguishable; only the lending 14-28 d slice shows the agent closer (-0.61% [-1.09%, -0.12%]), not enough to move `strategy/`. No position settled since retro-2026-11-15-1315, so no retro owed; no strategy edit.
+
+Quote: `cost.py` round trip 2.0 bps Morpho / 6.4 bps vault / 7.5 bps Uniswap v3 at 50 USDG, under the 25 bps cap. Venue record last refreshed 2026-11-14 19:03 (~42 h), still fresh. `venues.py quote --rank-by depth --top 20 --min-depth 25000`: 0 new baselines, 57 already live, uniswap_v2 0x8803c117 skipped. No agent forecasts recorded: every researched Morpho market and vault with a readable rate (c845da65, 919a9b6b, 1efd13a2, 0309c02d, aa586d26, Steakhouse 0xbeeff033, Arcadia Senior 0xa5e1e1f9, Purinta 0x37788ff0) already has a live agent row at all three horizons. Free horizons remain only on venues skipped as before: Spark 0xde770c84 (exit simulations fail), Arcadia 0xf37c0c59 (not exitable), 0xbeeff039 / 0x026df18f / 0x65dc90cd (no readable rate), and the Uniswap pools and Arcus 0xe24cabdf (no rule for the kind / price-driven).
+
+Opened nothing. The 1000 USDG bankroll is fully booked in a00089 to a00092 (4 x 250), so there is no capital to allocate and no idle row to record.
+
+Chain: Morpho aa586d26 advert 26.2% (26.3% at cycle 1374). Vault 0xd42174d3 (not in the top-20 depth board) had no recent depositor to simulate a withdraw from, so its baseline voided.
+
+Open: `a00089`, `a00090`, `a00091`, `a00092`.
