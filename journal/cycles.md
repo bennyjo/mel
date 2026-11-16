@@ -34307,3 +34307,9 @@ Open: `a00089`, `a00090`, `a00091`, `a00092`.
 Light tick (hour 21). Runner `cloud-fe69d67c`, lease acquired, collision guard clear (cycle 1385 ~48 min old). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: two `settle` passes (313 s and 281 s) settled 1 baseline row (f002534, 0x5f009e07, 1440m, realized +99.39%; no agent rows), voided 2 (f002533 and f002535: not exitable at the horizon, a simulated withdraw of 500 USDG reverted for every holder tried), recorded 3 baselines; 6 due rows left for the next run (f002537 to f002543, mostly agent rows on 0x9d53d5e3). Score run; no strategy change, no retro owed.
 
 Open: `a00089`, `a00090`, `a00091`, `a00092`.
+
+## Cycle 1387 - 2026-11-16 ~22:05 UTC - light
+
+Light tick (hour 22). Runner `cloud-52f93f29`, lease acquired, collision guard clear (cycle 1386 ~50 min old). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: `settle` (239 s) settled 6 rows (f002537 to f002540, f002542 on 0x9d53d5e3, f002543 on 0xbeeff033; all 1440m agent rows, realized +3.2% to +4.95% except f002542 at +53.81%, agent error +26.40% on the utilization spike noted in cycle 1384), voided 0, recorded 0 baselines; nothing left due. Score run; the f002542 miss is a single spike-driven row on a squeezed market, not enough to move `strategy/`. No position settled, no retro owed. Nothing opened.
+
+Open: `a00089`, `a00090`, `a00091`, `a00092`.
