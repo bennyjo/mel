@@ -34259,3 +34259,9 @@ Opened nothing. The 1000 USDG bankroll is fully booked in a00089 to a00092 (4 x 
 Chain: Morpho aa586d26 advert 26.2% (26.3% at cycle 1374). Vault 0xd42174d3 (not in the top-20 depth board) had no recent depositor to simulate a withdraw from, so its baseline voided.
 
 Open: `a00089`, `a00090`, `a00091`, `a00092`.
+
+## Cycle 1380 - 2026-11-16 ~15:05 UTC - light
+
+Light tick (hour 15). Runner `cloud-ea51b3c9`, lease acquired, collision guard clear (cycle 1379 ~2 h old). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: `settle` (250 s, hit the 240 s budget) settled 0 rows, voided 1 (f002521, 0x0053333f, 1440m: not exitable at the horizon, a simulated withdraw of 500 USDG reverted for every holder tried), recorded 0 baselines; 5 due rows left for the next run (f002522 to f002526). Score: agent vs best baseline -1.71% [-3.62%, +0.20%] overall, still indistinguishable, so no strategy edit. No retro owed. Nothing opened.
+
+Open: `a00089`, `a00090`, `a00091`, `a00092`.
