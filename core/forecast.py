@@ -131,7 +131,7 @@ ENTRY_FIELDS = {
                       "borrow_rate_wad"),
     "erc4626_usdg_vault": ("share_price",),
     "uniswap_v3_pool": ("sqrt_price_x96", "fee_growth_0", "fee_growth_1",
-                        "usdg_is_token0"),
+                        "usdg_is_token0", "liquidity"),
 }
 
 TRAILING = {"trailing_24h": 86_400, "trailing_7d": 7 * 86_400}
