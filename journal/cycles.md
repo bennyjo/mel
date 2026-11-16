@@ -34193,3 +34193,15 @@ Open: `a00089`, `a00090`, `a00091`, `a00092`.
 Light tick (hour 21). Runner `cloud-e4e2171c`, lease acquired, collision guard clear (cycle 1370 ~55 min old). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: `settle` (162 s) voided f002502 (vault 0xbeeff039, 1d agent forecast), not exitable: the 500 USDG simulated withdraw reverted for every holder tried (no recent depositor found); 0 settled, 0 baselines recorded, nothing left due. Score: no change in conclusion; nothing settled, so no retro.
 
 Open: `a00089`, `a00090`, `a00091`, `a00092`.
+
+## Cycle 1372 - 2026-11-16 ~01:05 UTC - full
+
+Full cycle (hour 01). Runner `cloud-7c3b4e43`, lease acquired, collision guard clear (cycle 1371 ~4 h old). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: 0 of 102 open rows due; nothing settled, voided or recorded by `settle`. Score: agent vs best baseline still indistinguishable overall (-1.98% [-4.05%, +0.09%]) and at every horizon; no strategy edit. No position settled since retro-2026-11-15-1315, so no retro owed.
+
+Quote: `cost.py` round trip 2.1 bps Morpho / 6.5 bps vault at 250 USDG, under the 25 bps cap. Venue record last refreshed 2026-11-14 19:03, still fresh. `venues.py quote --rank-by depth --top 20 --min-depth 25000` (186 s): 0 new baselines, 57 already live, uniswap_v2 0x8803c117 skipped. Agent forecasts at the only free horizons: f002544 Purinta 0x37788ff0 1d 5.87% (4320/10080 refused, f002501/f002324 still live); f002545 Arcadia Senior 0xa5e1e1f9 1d 13.43% (this time inside the timeout, 164 s). Both gross numbers were worked from the last baseline read (f002530, f002517) before the live record; the live read moved slightly (Purinta t7d 5.85%, Arcadia t24h 13.94%), so the rule on the live snapshot would have said 5.85% and 13.94%. Small, but logged rather than hidden; next time read the live snapshot first. All other researched venues already have live agent rows at every horizon.
+
+Opened nothing. The 1000 USDG bankroll is fully booked in a00089 to a00092 (4 x 250), so there is no capital to allocate and no idle row to record.
+
+Chain: Morpho aa586d26 advert back up to 28.0% (27.4% at cycle 1369); a00089 there still carries a 98.97% gross forecast.
+
+Open: `a00089`, `a00090`, `a00091`, `a00092`.
