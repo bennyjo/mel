@@ -34211,3 +34211,15 @@ Open: `a00089`, `a00090`, `a00091`, `a00092`.
 Light tick (hour 03). Runner `cloud-6e5a69b4`, lease acquired, collision guard clear (cycle 1372 ~2 h old). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: `settle` (73 s) voided f002272 (baseline, 0x9d53d5e3, 10080m), not exitable at the horizon: free liquidity at exit 244.96 USDG, under 2.0 x 250; recorded 1 baseline; nothing left due. Score: agent vs best baseline still indistinguishable overall (-1.98% [-4.05%, +0.09%]), so no strategy edit. No retro owed. Nothing opened.
 
 Open: `a00089`, `a00090`, `a00091`, `a00092`.
+
+## Cycle 1374 - 2026-11-16 ~07:06 UTC - full
+
+Full cycle (hour 07). Runner `cloud-6ac82ed9`, lease acquired, collision guard clear (cycle 1373 ~4 h old). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: 0 of 104 open rows due; nothing settled, voided or recorded by `settle`. Score: agent vs best baseline still indistinguishable overall (-1.98% [-4.05%, +0.09%]) and at every horizon; no strategy edit. No position settled since retro-2026-11-15-1315, so no retro owed.
+
+Quote: `cost.py` round trip 2.0 bps Morpho / 6.5 bps vault at 50 USDG, under the 25 bps cap. Venue record last refreshed 2026-11-14 19:03, still fresh. `venues.py quote --rank-by depth --top 20 --min-depth 25000`: 0 new baselines, 57 already live, uniswap_v2 0x8803c117 skipped. No agent forecasts recorded: every researched Morpho market and vault with a readable rate (c845da65, 919a9b6b, 1efd13a2, 0309c02d, aa586d26, Steakhouse 0xbeeff033, Arcadia Senior 0xa5e1e1f9, Purinta 0x37788ff0) already has a live agent row at all three horizons. The free horizons are on venues skipped as in earlier cycles: Spark 0xde770c84 (exit simulations fail), Arcadia 0xf37c0c59 (blocked, not exitable), 0xbeeff039 / 0x026df18f / 0x65dc90cd (no Deposit/Withdraw above 1000 USDG to read a rate from; `forecast_rule.py` returns none), and the Uniswap pools and Arcus 0xe24cabdf (no rule for the kind / price-driven).
+
+Opened nothing. The 1000 USDG bankroll is fully booked in a00089 to a00092 (4 x 250), so there is no capital to allocate and no idle row to record.
+
+Chain: Morpho aa586d26 advert 26.3% (28.0% at cycle 1372); a00089 there still carries a 98.97% gross forecast. Spark Savings 0xde770c84 state-window APY reads 7.05% against a 3.73% event-inferred advert.
+
+Open: `a00089`, `a00090`, `a00091`, `a00092`.
