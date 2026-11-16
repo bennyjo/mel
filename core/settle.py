@@ -48,7 +48,14 @@ How each kind realizes:
       Liquidity is fixed at entry so that the position is worth `size_usdg`
       there; at exit it is revalued at the exit `sqrtPriceX96`, so impermanent
       loss falls straight out of the arithmetic, and fees are the position's
-      share of the pool's `feeGrowthGlobal` over the hold. Fees are credited
+      share of the pool's `feeGrowthGlobal` over the hold. `feeGrowthGlobal`
+      is fees per unit of the pool's in-range liquidity, so had the position
+      existed the same fees would have been split over the pool's liquidity
+      plus the position's: the credit is diluted by
+      `L_pool / (L_pool + L_position)`, with `L_pool` read at entry. On a deep
+      pool that factor is about 1; on a pool thinner than the position it is
+      what stops the position being paid more fees than the pool earned.
+      Fees are credited
       at the global rate, which a full-range position only earns while the
       price is in whatever range the fees were generated over; on a pool whose
       liquidity is concentrated this reads high, so the LP number is the least
@@ -266,8 +273,15 @@ def realized_v3(size_raw: int, entry: dict, exit_: dict) -> dict:
     # 2**256 the way the pool's own accounting does.
     d0 = (_int(exit_, "fee_growth_0") - _int(entry, "fee_growth_0")) % UINT256
     d1 = (_int(exit_, "fee_growth_1") - _int(entry, "fee_growth_1")) % UINT256
-    fees_raw0 = d0 / Q128 * liq
-    fees_raw1 = d1 / Q128 * liq
+    # The growth is per unit of the pool's in-range liquidity. Adding the
+    # position would have spread the same fees over both, so the position
+    # earns only its share of the pool's fees, never more than all of them.
+    pool_liq = _int(entry, "liquidity")
+    if pool_liq < 0:
+        raise SettleError("the pool recorded negative liquidity at entry")
+    dilution = pool_liq / (pool_liq + liq)
+    fees_raw0 = d0 / Q128 * liq * dilution
+    fees_raw1 = d1 / Q128 * liq * dilution
     price = (s1 / Q96) ** 2                      # token1 raw per token0 raw
     if is0:
         fees_usdg_raw = fees_raw0 + (fees_raw1 / price if price else 0.0)
@@ -277,8 +291,9 @@ def realized_v3(size_raw: int, entry: dict, exit_: dict) -> dict:
     gross_raw = round(value_raw + fees_usdg_raw - size_raw)
     return {"gross_usdg": _usdg(gross_raw),
             "method": "full-range v3 position revalued at the exit price, plus its "
-                      "share of feeGrowthGlobal",
-            "detail": {"liquidity": repr(liq),
+                      "share of feeGrowthGlobal diluted by its own liquidity",
+            "detail": {"liquidity": repr(liq), "pool_liquidity": str(pool_liq),
+                       "fee_dilution": repr(dilution),
                        "entry_sqrt_price_x96": str(s0), "exit_sqrt_price_x96": str(s1),
                        "price_move_pct": repr(((s1 / s0) ** 2 - 1) * 100),
                        "value_at_exit_usdg": _usdg(round(value_raw)),

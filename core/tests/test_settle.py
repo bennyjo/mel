@@ -302,6 +302,66 @@ class TestV3ImpermanentLoss(unittest.TestCase):
                                float(small["gross_usdg"]), places=6)
 
 
+class TestV3FeeDilution(unittest.TestCase):
+    """Forecast row f002416, 250 USDG on pool 0x9b050cb1 for a day, recorded
+    from chain 4663 at blocks 114,043,132 and 114,847,770. The pool held only
+    621,495,628 of in-range liquidity; the simulated position would have held
+    about 2.87e12, some 4,600 times more. `feeGrowthGlobal` is fees per unit of
+    the pool's liquidity, so crediting it on the position's undiluted
+    liquidity paid the position 875.38 USDG of fees, 4,600 times what the
+    whole pool earned, and settled the row at an APY of 1.4e236."""
+
+    ENTRY = {"eth_usdg": "1893.2639429355058",
+             "fee_growth_0": "39497439944703466140270712112646460392121",
+             "fee_growth_1": "178518531783662231402728035681583",
+             "liquidity": "621495628", "other_decimals": "18",
+             "other_raw": "1170255852764900242106",
+             "other_token": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+             "sqrt_price_x96": "3453092286105783430240814", "tick": "-200827",
+             "usdg_is_token0": "False", "usdg_raw": "6755026829"}
+    EXIT = {"eth_usdg": "1816.906260068923",
+            "fee_growth_0": "58484342439227708350458552213926531728896718",
+            "fee_growth_1": "185089074958263445078637434487748",
+            "liquidity": "621495628", "other_decimals": "18",
+            "other_raw": "1170256071151413998077",
+            "other_token": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+            "sqrt_price_x96": "3339795854365348113402462", "tick": "-201494",
+            "usdg_is_token0": "False", "usdg_raw": "6755177206"}
+
+    def row(self, entry=None):
+        return {"id": "f002416", "kind": "uniswap_v3_pool", "size_usdg": "250.000000",
+                "entry_ts": 1794646550, "entry_state": entry or self.ENTRY}
+
+    def pool_fees_usdg(self) -> float:
+        """Everything the pool's in-range liquidity earned over the hold."""
+        pool = int(self.ENTRY["liquidity"])
+        d0 = (int(self.EXIT["fee_growth_0"]) - int(self.ENTRY["fee_growth_0"])) % settle.UINT256
+        d1 = (int(self.EXIT["fee_growth_1"]) - int(self.ENTRY["fee_growth_1"])) % settle.UINT256
+        price = (int(self.EXIT["sqrt_price_x96"]) / settle.Q96) ** 2
+        return (d1 / settle.Q128 * pool + d0 / settle.Q128 * pool * price) / 1e6
+
+    def test_a_position_far_larger_than_the_pool_earns_its_share_of_the_pools_fees(self):
+        """Price fell 6.45%, so the position lost 8.20 USDG to impermanent
+        loss. Holding 99.98% of the liquidity it would have taken 99.98% of
+        the pool's 0.1897 USDG of fees, not 875.38 USDG."""
+        out = settle.realized_gross(self.row(), self.EXIT, 1794733381)
+        self.assertEqual(out["detail"]["pool_liquidity"], "621495628")
+        self.assertAlmostEqual(float(out["detail"]["fee_dilution"]), 0.000216652, places=9)
+        self.assertEqual(out["detail"]["impermanent_loss_usdg"], "-8.202534")
+        self.assertEqual(out["detail"]["fees_usdg"], "0.189653")
+        self.assertEqual(out["gross_usdg"], "-8.012882")
+
+    def test_the_fee_credit_never_exceeds_what_the_whole_pool_earned(self):
+        out = settle.realized_gross(self.row(), self.EXIT, 1794733381)
+        self.assertLessEqual(float(out["detail"]["fees_usdg"]), self.pool_fees_usdg())
+
+    def test_a_row_without_the_pools_liquidity_cannot_be_settled(self):
+        entry = {k: v for k, v in self.ENTRY.items() if k != "liquidity"}
+        with self.assertRaises(settle.SettleError) as err:
+            settle.realized_gross(self.row(entry), self.EXIT, 1794733381)
+        self.assertIn("liquidity", str(err.exception))
+
+
 class TestV3Settles(ReplayCase):
     def test_an_lp_position_settles_a_loss_against_a_positive_forecast(self):
         """Forecast +28.41 bps on a 30% gross rate over seven days; realized

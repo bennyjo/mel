@@ -398,6 +398,14 @@ class TestVoid(Case):
             forecast.record_from_quote(blind, [DAY], [0.04], "x", path=self.path,
                                        trailing={}, now_ts=int(VAULT_OK["ts"]) + 30)
 
+    def test_a_v3_pool_with_no_liquidity_is_never_recorded(self):
+        # Settlement dilutes the fee credit by the pool's liquidity at entry,
+        # so a row without it could never settle.
+        state = {k: v for k, v in V3_QUOTE["settle_state"].items() if k != "liquidity"}
+        out = self.baselines(dict(V3_QUOTE, settle_state=state))
+        self.assertEqual(out["recorded"], [])
+        self.assertIn("entry state has no liquidity", out["skipped"][0]["reason"])
+
     def test_a_kind_without_settlement_maths_is_skipped(self):
         pair = {"venue": "0x8803", "kind": "uniswap_v2_pool", "block": 1, "ts": 1,
                 "settle_state": {"reserve0": "1"}}
