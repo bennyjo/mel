@@ -34283,3 +34283,15 @@ Open: `a00089`, `a00090`, `a00091`, `a00092`.
 Light tick (hour 18). Runner `cloud-6e9bdf57`, lease acquired, collision guard clear (cycle 1382 ~55 min old). Position ledger: nothing due. Forecast ledger: `settle` (308 s, past the 240 s budget) settled 0 rows, voided 1 (f002527, 0x026df18f, 1440m: not exitable at the horizon, a simulated withdraw of 500 USDG reverted for every holder tried), recorded 1 baseline; 5 due rows left for the next run (f002528 to f002532). Score: agent vs best baseline still indistinguishable, so no strategy edit. No retro owed. Nothing opened.
 
 Open: `a00089`, `a00090`, `a00091`, `a00092`.
+
+## Cycle 1384 - 2026-11-16 ~19:05 UTC - full
+
+Full cycle (hour 19). Runner `cloud-c4d91055`, lease acquired, collision guard clear (cycle 1383 ~55 min old). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: `settle` (368 s, past the 240 s budget) settled 1 baseline row (f002530, Purinta 0x37788ff0, 1440m, realized +5.58%; no agent rows), voided 2 (f002528 and f002529, Morpho 0x9d53d5e3, 1440m: not exitable at the horizon, free liquidity at exit 10.00 and 244.96 USDG, under 2.0 x 250), recorded 3 baselines; 3 due rows left for the next run (f002531 to f002533). Score: agent vs best baseline -1.71% [-3.62%, +0.20%] overall, still indistinguishable; only lending 14-28 d shows the agent closer (-0.50% [-0.98%, -0.03%]), not enough to move `strategy/`. No position settled since retro-2026-11-15-1315, so no retro owed; no strategy edit.
+
+Quote: `cost.py` round trip 2.0 bps Morpho / 6.5 bps vault / 7.6 bps Uniswap v3, under the 25 bps cap. Venue record refreshed 2026-11-14 19:03 (~48 h), still fresh. `venues.py quote --rank-by depth --top 20 --min-depth 25000`: 0 new baselines, 57 already live, uniswap_v2 0x8803c117 skipped. No agent forecasts recorded: every researched Morpho market and vault with a readable rate already has a live agent row at all three horizons; the free horizons are on the same venues skipped before (Spark 0xde770c84 exit simulations fail, Arcadia 0xf37c0c59 not exitable, 0xbeeff039 / 0x026df18f / 0x65dc90cd no readable rate, Arcus 0xe24cabdf price-driven, Uniswap pools no rule).
+
+Opened nothing. The 1000 USDG bankroll is fully booked in a00089 to a00092 (4 x 250), so there is no capital to allocate and no idle row to record.
+
+Chain: Morpho aa586d26 (0x9d53d5e3) advertises 199.2% on 0.86M depth, up from 26.2% at cycle 1379: a utilization spike, not a rate to forecast on; its agent rows are live, so nothing revised. The 0x9d53d5e3 Morpho baselines voiding on free liquidity (10 USDG, 245 USDG at exit) fit the same squeeze.
+
+Open: `a00089`, `a00090`, `a00091`, `a00092`.
