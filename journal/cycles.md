@@ -34439,3 +34439,9 @@ Open: `a00090`, `a00091`, `a00092`, `a00093`.
 Light tick (hour 20). Runner `cloud-e48bc0ff`, lease acquired, collision guard clear (cycle 1401 ~32 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (317 s) voided baseline f002364 (0xe24cabdf, 10080m: not exitable at the horizon, simulated 500 USDG withdraw reverted for every holder tried), settled 0, recorded 0 baselines. 10 due rows (f002501 f002503 f002559 to f002566, two of them agent 4320m rows) left past the time budget. No agent rows settled. Score: agent vs best baseline -1.67% [-3.54%, +0.19%] overall, indistinguishable; no strategy edit.
 
 Open: `a00090`, `a00091`, `a00092`, `a00093`.
+
+## Cycle 1403 - 2026-11-17 ~21:10 UTC - light
+
+Light tick (hour 21). Runner `cloud-4f7659de`, lease acquired, collision guard clear (cycle 1402 ~60 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (393 s) settled 4 rows: f002501 (agent 4320m, 0x37788ff0, realized +5.54%, err -0.17%), f002566 (baseline), f002503 (agent 4320m, 0xbeeff039, realized 0.00%, err 0.00%) and f002568 (baseline); voided 0, recorded 2 baselines. 8 due baseline rows (f002559 to f002565, f002567) left past the budget. Score: agent vs best baseline indistinguishable at every horizon; no strategy edit. Two agent rows settled, but a light tick never retros; the next full cycle owes it.
+
+Open: `a00090`, `a00091`, `a00092`, `a00093`.
