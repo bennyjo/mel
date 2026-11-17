@@ -34387,3 +34387,9 @@ Opened `a00093`: Morpho c845da65 (358M deep, util 0.882), 250 USDG, 7 d, forecas
 Chain: aa586d26 squeeze still deepening: util 0.9985, advert 289% (cycle 1390: 0.988, 231%).
 
 Open: `a00090`, `a00091`, `a00092`, `a00093`.
+
+## Cycle 1396 - 2026-11-17 ~14:05 UTC - light
+
+Light tick (hour 14). Runner `cloud-42931ca2`, lease acquired, collision guard clear (newest `origin/main` commit is an operator commit, cycle 1395 ~1 h old). Shallow clone unshallowed; local checkout was on a session branch, reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (346 s) settled 2 rows (agent f002484 4320m on 0xa5e1e1f9, realized +14.25%, agent error +1.55%; baseline f002555 1440m on 0xa5e1e1f9, realized +15.41%), voided 1 (agent f002482 4320m on Spark 0xde770c84: not exitable at the horizon, simulated 500 USDG withdraw reverted for every holder tried), recorded 1 baseline. 6 due baseline rows (f002487 f002489 f002491 f002493 f002551 f002557) left past the time budget. Score: agent vs best baseline -1.69% overall, still indistinguishable; no strategy edit.
+
+Open: `a00090`, `a00091`, `a00092`, `a00093`.
