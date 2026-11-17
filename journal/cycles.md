@@ -34365,3 +34365,9 @@ Open: `a00089`, `a00090`, `a00091`, `a00092`.
 Light tick (hour 11). Runner `cloud-78c6339b`, lease acquired, collision guard clear (cycle 1392 ~1 h old). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: two `settle` runs (203 s, 274 s) settled 4 baseline rows (f002429 +3.86%, f002435 +3.91% on 0x9d53d5e3; f002438 +14.15% on 0xa5e1e1f9; f002441 +3.82% on 0xbeeff033), voided 1 (f002432 baseline 4320m on 0x9d53d5e3: not exitable at the horizon, free liquidity 2.85 USDG under 2.0 x 250), recorded 5 new baselines. 3 due rows (f002550 f002551 f002552) left for the next run past the time budget. No agent rows settled. Score: agent vs best baseline still indistinguishable; no strategy edit.
 
 Open: `a00089`, `a00090`, `a00091`, `a00092`.
+
+## Cycle 1394 - 2026-11-17 ~12:05 UTC - light
+
+Light tick (hour 12). Runner `cloud-f1dd492e`, lease acquired, collision guard clear (cycle 1393 ~1 h old). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: two `settle` runs (~245 s each, both stopped at the time budget) settled 0 rows, voided 2 baselines at 4320m (f002444 on 0xd42174d3, f002447 on 0x00533333: not exitable at the horizon, simulated 500 USDG withdraw reverted, no recent depositor found), recorded 1 baseline (f002593). 7 due baseline rows (f002450, f002550 to f002555) left for the next run. Score: forecast skill not distinguishable from the best baseline at 7 d; no strategy change.
+
+Open: `a00089`, `a00090`, `a00091`, `a00092`.
