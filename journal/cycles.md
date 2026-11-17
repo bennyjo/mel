@@ -34347,3 +34347,9 @@ Opened nothing. The 1000 USDG bankroll is fully booked in a00089 to a00092 (4 x 
 Chain: Morpho aa586d26 squeeze has deepened, 98.8% utilization, advert 231% (cycle 1388: 97.7%, 186.5%). Arcadia Senior holds 0 idle USDG, yet the 500 USDG withdraw simulation passed at the last settle.
 
 Open: `a00089`, `a00090`, `a00091`, `a00092`.
+
+## Cycle 1391 - 2026-11-17 ~09:05 UTC - light
+
+Light tick (hour 9). Runner `cloud-73bca82f`, lease acquired, collision guard clear (cycle 1390 ~2 h old). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: `settle` (150 s) settled 4 baseline rows at 4320m (f002414 -90.10%, f002417 -87.91% on venues whose rate collapsed; f002420 +3.18%, f002423 +4.95% on 0x9d53d5e3), voided 0, recorded 4 new baselines. No agent rows settled. Score: agent vs best baseline -1.69% [-3.58%, +0.20%] overall, still indistinguishable; no strategy edit.
+
+Open: `a00089`, `a00090`, `a00091`, `a00092`.
