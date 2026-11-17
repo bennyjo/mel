@@ -34417,3 +34417,19 @@ Open: `a00090`, `a00091`, `a00092`, `a00093`.
 Light tick (hour 18). Runner `cloud-175379e6`, lease acquired, collision guard clear (cycle 1399 ~50 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (454 s) settled baseline f002499 (0x5f009e07, 4320m, realized -90.71%, equal to the advertised and haircut baselines), voided f002551 (free liquidity at exit 4.35 USDG under 2.0 x 250) and f002557 (simulated 500 USDG withdraw reverted, no recent depositor), recorded 3 baselines. 5 due baseline rows (f002558 to f002562) left past the time budget. No agent rows settled. Score: no change in verdict; no strategy edit.
 
 Open: `a00090`, `a00091`, `a00092`, `a00093`.
+
+## Cycle 1401 - 2026-11-17 ~19:05 UTC - full
+
+Full cycle (hour 19). Runner `cloud-ed6acb43`, lease acquired, collision guard clear (cycle 1400 ~52 min old). Shallow clone unshallowed; local checkout was on a session branch, reset onto `main`.
+
+Settle: position ledger nothing due. Forecast ledger: one `settle` run (212 s) settled baseline f002558 (Spark 0xde770c84, 1440m, realized +3.78%), voided 0, recorded 1 baseline; 6 due baseline rows (f002559 to f002564) left past the budget. No allocation and no agent row settled since retro-2026-11-17-1340, so no retro. Score: agent vs best baseline -1.67% [-3.54%, +0.19%] overall, still indistinguishable; no strategy edit. No experiments open.
+
+Quote: `cost.py` round trip 2.0 bps Morpho / 6.4 bps vault / 7.5 bps Uniswap v3 at 250 USDG, under the 25 bps cap. Venue record refreshed in cycle 1395 (~6 h), no refresh. `venues.py quote --rank-by depth --top 20 --min-depth 25000`: first attempt died on `http.client.IncompleteRead` (a chunked RPC response cut off mid-transfer); the retry ran clean: 0 new baselines, 57 already live, uniswap_v2 0x8803c117 skipped.
+
+Forecasts: 7 agent rows recorded, all 4320m (the 1d and 7d horizons were still live): f002616 c845da65 3.92%, f002617 919a9b6b 3.86%, f002618 1efd13a2 4.96%, f002619 0309c02d 3.19% (rule: Morpho advert), f002621 Steakhouse 0xbeeff033 3.84% (rule: vault t24h). Two off-rule: f002620 aa586d26 220% (advert 306% at util 0.9992; forecast near the trailing 24h, since a 3 d squeeze either holds or breaks), f002622 Arcadia Senior 14% (rule's t7d 18.6% carries the older rate; advert 13.6%, last 1d realized 14.4%). Vault `record` calls are slow: the two took ~10 min together, past the tool timeout.
+
+Opened nothing. The 1000 USDG bankroll is fully booked in a00090 to a00093, so no new row and no idle row.
+
+Chain: aa586d26 squeeze still deepening: util 0.9992, advert 306% (cycle 1395: 0.9985, 289%).
+
+Open: `a00090`, `a00091`, `a00092`, `a00093`.
