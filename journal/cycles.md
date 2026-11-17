@@ -34313,3 +34313,17 @@ Open: `a00089`, `a00090`, `a00091`, `a00092`.
 Light tick (hour 22). Runner `cloud-52f93f29`, lease acquired, collision guard clear (cycle 1386 ~50 min old). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: `settle` (239 s) settled 6 rows (f002537 to f002540, f002542 on 0x9d53d5e3, f002543 on 0xbeeff033; all 1440m agent rows, realized +3.2% to +4.95% except f002542 at +53.81%, agent error +26.40% on the utilization spike noted in cycle 1384), voided 0, recorded 0 baselines; nothing left due. Score run; the f002542 miss is a single spike-driven row on a squeezed market, not enough to move `strategy/`. No position settled, no retro owed. Nothing opened.
 
 Open: `a00089`, `a00090`, `a00091`, `a00092`.
+
+## Cycle 1388 - 2026-11-17 ~01:05 UTC - full
+
+Full cycle (hour 1). Runner `cloud-aa9195ea`, lease acquired, collision guard clear (cycle 1387 ~3 h old). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: 0 of 97 open rows due; nothing settled, voided or recorded by `settle`. Score: agent vs best baseline -1.69% [-3.58%, +0.20%] overall, still indistinguishable; no strategy edit. No position settled since retro-2026-11-15-1315, so no retro owed.
+
+Quote: `cost.py` round trip 0.4 bps Morpho / 1.3 bps vault / 2.4 bps Uniswap v3 at 250 USDG, under the 25 bps cap. Venue record refreshed 2026-11-14 19:03 (~54 h), still fresh. `venues.py quote --rank-by depth --top 20 --min-depth 25000`: 0 new baselines, 57 already live, uniswap_v2 0x8803c117 skipped.
+
+Forecasts: 6 agent rows recorded at 1440m, the horizons freed when cycle 1387 settled the 1d rows. f002572 to f002575 on Morpho c845da65 / 919a9b6b / 1efd13a2 / 0309c02d at the rule's advert (3.97%, 3.86%, 4.96%, 3.19%); f002577 on Steakhouse 0xbeeff033 at its trailing 24h, 3.80%. f002576 on Morpho aa586d26 is off-rule: 60% against a 186.5% advert at 97.7% utilization, because the squeeze noted since cycle 1384 makes the spot rate a poor guide to a day's average (the last 1d row, f002542, realized 53.8% under a ~199% advert; trailing 24h now reads 60.9%). Skipped as before: Spark 0xde770c84 (exit simulations fail), Arcadia Debt 0xf37c0c59 (blocked), 0xbeeff039 / 0x026df18f / 0x65dc90cd (no readable rate), Arcus 0xe24cabdf (price-driven), Uniswap pools (no rule). One `forecast.py record` batch overran the 600 s tool limit and finished in the background; all six rows landed.
+
+Opened nothing. The 1000 USDG bankroll is fully booked in a00089 to a00092 (4 x 250); no capital to allocate and no idle row to record. a00089 matures in ~12 h.
+
+Chain: Morpho aa586d26 still squeezed (97.7% utilization, borrow rate ~190%), its 24 h realized supply rate ~61%.
+
+Open: `a00089`, `a00090`, `a00091`, `a00092`.
