@@ -34393,3 +34393,9 @@ Open: `a00090`, `a00091`, `a00092`, `a00093`.
 Light tick (hour 14). Runner `cloud-42931ca2`, lease acquired, collision guard clear (newest `origin/main` commit is an operator commit, cycle 1395 ~1 h old). Shallow clone unshallowed; local checkout was on a session branch, reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (346 s) settled 2 rows (agent f002484 4320m on 0xa5e1e1f9, realized +14.25%, agent error +1.55%; baseline f002555 1440m on 0xa5e1e1f9, realized +15.41%), voided 1 (agent f002482 4320m on Spark 0xde770c84: not exitable at the horizon, simulated 500 USDG withdraw reverted for every holder tried), recorded 1 baseline. 6 due baseline rows (f002487 f002489 f002491 f002493 f002551 f002557) left past the time budget. Score: agent vs best baseline -1.69% overall, still indistinguishable; no strategy edit.
 
 Open: `a00090`, `a00091`, `a00092`, `a00093`.
+
+## Cycle 1397 - 2026-11-17 ~15:05 UTC - light
+
+Light tick (hour 15). Runner `cloud-38d078b9`, lease acquired, collision guard clear (cycle 1396 ~1 h old). Shallow clone unshallowed; local checkout was on a session branch, reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (332 s) settled 1 baseline row (f002491 4320m on 0x37788ff0, realized +5.55%), voided 2 (f002487, f002489 baseline 4320m on 0x9d53d5e3: not exitable at the horizon, free liquidity 10.0 and 244.96 USDG under 2.0 x 250), recorded 3 baselines. 4 due baseline rows (f002493 f002495 f002551 f002557) left past the time budget. No agent rows settled. Score: agent vs best baseline still indistinguishable; no strategy edit.
+
+Open: `a00090`, `a00091`, `a00092`, `a00093`.
