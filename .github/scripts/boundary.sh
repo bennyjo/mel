@@ -16,6 +16,10 @@ AFTER="${2:?usage: boundary.sh <before-sha> <after-sha>}"
 # it and never writes it, or the operator's record of what it was told becomes
 # the agent's record of what it wishes it had been told.
 PROTECTED='^(core/|config/|\.github/|CYCLE\.md|CHAIN\.md|loop\.sh|CLAUDE\.md|LICENSE|README\.md|\.gitignore|journal/operator-notes\.md)'
+# The experiment ledger is the agent's, but an experiment's record is only
+# worth something if it cannot be rewritten after the verdict: an agent commit
+# may only append to it (core/experiments.py).
+APPEND_ONLY='^strategy/experiments\.jsonl$'
 
 if [[ "$BEFORE" =~ ^0+$ ]]; then
   # Branch creation: no meaningful range; check only the head commit.
@@ -36,6 +40,13 @@ for sha in $COMMITS; do
   if [[ -n "$touched" ]]; then
     echo "::error::agent commit $sha ('$subject') touches operator-owned paths:"
     echo "$touched" | sed 's/^/    /'
+    fail=1
+  fi
+  rewritten=$(git diff-tree --no-commit-id --numstat -r "$sha" \
+    | awk -v re="$APPEND_ONLY" '$3 ~ re && $2 != "0" {print $3}')
+  if [[ -n "$rewritten" ]]; then
+    echo "::error::agent commit $sha ('$subject') changes or deletes lines in append-only files:"
+    echo "$rewritten" | sed 's/^/    /'
     fail=1
   fi
 done

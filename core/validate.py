@@ -31,6 +31,11 @@ It checks:
     written while an earlier one on its key was still open;
   - `journal/venues.jsonl` is coherent, and every Morpho market id still
     reproduces from the keccak of its five stored parameter words;
+  - `strategy/experiments.jsonl`, the agent's experiment ledger, parses and
+    folds (`core/experiments.py`): at most three experiments open, every open
+    experiment's commit an ancestor of HEAD touching only one or two
+    `strategy/` files, no lever outside `strategy/`, and no experiment commit
+    loosening a cap in `strategy/risk.json`;
   - the ABI selector table recomputes from its own signatures;
   - every Python file under `core/` and `strategy/` compiles.
 
@@ -53,7 +58,7 @@ ROOT = Path(__file__).resolve().parent.parent
 if __package__ in (None, ""):
     sys.path.insert(0, str(ROOT))
 
-from core import abi, forecast, ledger, rpc
+from core import abi, experiments, forecast, ledger, rpc
 from core import real as real_leg
 
 # Ceilings on what the config may say. A cap in `config/protected.json` may be
@@ -411,6 +416,31 @@ def check_forecasts(rep: Report, path: Path | None = None) -> list[dict]:
 
 
 # --------------------------------------------------------------------------
+# The experiment ledger
+# --------------------------------------------------------------------------
+
+def check_experiments(rep: Report, root: Path = ROOT) -> None:
+    """The ledger's own rules, from the grader that reads it. A broken open
+    row fails until the agent appends its `withdrawn` close row; the grader's
+    baseline check is `core/experiments.py grade`'s, since it needs the
+    journals and not just the ledger."""
+    path = root / experiments.LEDGER_REL
+    if not path.exists():
+        rep.note(f"{experiments.LEDGER_REL} does not exist yet; no experiment has been opened")
+        return
+    try:
+        failures, notes = experiments.ledger_problems(root, path)
+    except experiments.ExperimentError as err:
+        rep.check(False, f"{experiments.LEDGER_REL}: {err}")
+        return
+    for failure in failures:
+        rep.check(False, f"{experiments.LEDGER_REL}: {failure}")
+    rep.check(True, f"{experiments.LEDGER_REL} folds")
+    for note in notes:
+        rep.note(note)
+
+
+# --------------------------------------------------------------------------
 # The venue record and the code
 # --------------------------------------------------------------------------
 
@@ -500,6 +530,7 @@ def run() -> Report:
         check_ledger(rep, cfg)
         check_forecasts(rep)
         check_venues(rep, cfg)
+    check_experiments(rep)
     check_abi(rep)
     check_python(rep)
     return rep
