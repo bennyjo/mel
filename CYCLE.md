@@ -9,7 +9,8 @@ Read `CLAUDE.md` first if you have not this session. It is the contract.
 ## What you own and what you must not touch
 
 Yours: `strategy/`, and in `journal/` the retros, `journal/cycles.md`, and
-`journal/proposals.md`.
+`journal/proposals.md`. `strategy/experiments.jsonl` is yours but
+append-only: CI fails an agent commit that changes or deletes a line of it.
 
 Not yours: `core/`, `config/`, `.github/`, `CYCLE.md`, `loop.sh`, `CHAIN.md`,
 `README.md`, `LICENSE`, `.gitignore`, and `journal/operator-notes.md`. The
@@ -175,14 +176,31 @@ Short. For each settled row, one question: was the forecast wrong about the
 different fixes. Say which, and what you would do differently with the same
 quote in front of you.
 
-If nothing settled, skip this step. A retro with nothing to retro on is
-filler. Settled forecast rows are not retro'd one by one; the forecast section
-of the score is their retro.
+On a full cycle the retro also carries one paragraph on the agent forecast
+rows that settled since the newest retro: which missed the realized rate
+most, and whether the miss was the rule or an input the rule could not see.
+They are not retro'd one by one; the forecast section of the score is their
+row-by-row record. If no allocation and no agent forecast row settled, skip
+this step: a retro with nothing to retro on is filler.
+
+Two rules hold on every cycle while experiments are open (see "Experiments"
+in step 4):
+
+- Before you edit `strategy/`, run `python3 core/experiments.py status`.
+  Do not edit a lever an open experiment names (a file, or a file's
+  `#section`): a change there confounds its verdict. Put the evidence in the
+  retro for the deep retro instead.
+- Never revert an experiment's commit and never write its verdict or close
+  row. That is the deep retro's job, after `core/experiments.py grade`
+  speaks. The one exception: if `core/validate.py` fails on an experiment
+  row, append a `withdrawn` close row for it (rule 5 below) and say why in
+  the cycle log.
 
 ## 4. Edit strategy and commit
 
-Change `strategy/` only where a settled row justifies it. Name the row id in
-the commit message. Three rules:
+Change `strategy/` only where a settled row justifies it, or as an
+experiment the deep retro opens (below). Name the row id in the commit
+message. Three rules:
 
 - You may tighten a cap in `strategy/risk.json`, never loosen one past
   `config/protected.json`. `core/validate.py` fails the build if you do.
@@ -194,7 +212,9 @@ the commit message. Three rules:
   ships only if `python3 core/replay.py` exits 0, which means it doesn't lose
   to the current rule or the trailing-24h baseline in either half of the
   ledger. Paste the `replay` line in the commit message; it stands in for the
-  row id.
+  row id. An experiment on that file still needs `replay PASS` before its
+  open row: the replay gate is the pre-gate, the experiment is the forward
+  test.
 
 Then commit, with a subject that says what changed and why - never prefixed
 `operator:`, which is the operator's alone:
@@ -202,6 +222,51 @@ Then commit, with a subject that says what changed and why - never prefixed
 ```
 git add -A && git commit -m "cycle N: <what changed and the row that showed it>"
 ```
+
+### Experiments
+
+The daily deep retro, a separate routine and not this cycle, is where a
+strategy change is tried on purpose: a hypothesis, one change, a metric
+pre-registered before the outcome, and a verdict from
+`core/experiments.py`, never from a hand tally. The ledger is
+`strategy/experiments.jsonl`; the row schema, the metric catalog and the
+verdict rules are in `core/experiments.py`'s header.
+
+1. At most one new experiment per deep retro, and at most three open. One
+   lever per experiment. Its commit touches one or two files under
+   `strategy/`, never the ledger, so `git revert` undoes exactly it.
+2. An experiment may tighten a gate, never loosen one: `strategy/risk.json`
+   only tightens. A looser gate is tried as a `core/replay.py` run and the
+   result attached to a proposal; adopting it is an operator act.
+3. Order. Commit the change as `experiment: <id> <hypothesis>` and push it
+   (on rejection, `git pull --rebase origin main` and push again; a rebase
+   rewrites the sha, so the row comes after the push). Then
+   `python3 core/experiments.py propose --metric <m> --window days=<n>|rows=<n> --commit <sha>`
+   and append the open row with the `baseline` it printed, the window,
+   `keep_if`, `rollback_if`, `lever`, `hypothesis` and `prior`. Run
+   `python3 core/validate.py`, commit `experiment: <id> open`, and push.
+4. A lever rolled back in the last 30 days needs `prior` to cite that id and
+   the hypothesis to say what is different this time.
+5. Act on `python3 core/experiments.py grade` and append the `row` that
+   `grade --json` prints as the verdict row:
+   - `ROLL BACK`: `git revert` the experiment commit, append a close row
+     with `outcome: rolled_back`, and write one playbook line naming the id
+     and why.
+   - `KEEP`: append a close row with `outcome: kept` and move its lesson
+     into the playbook section the lever names.
+   - `DOUBLE DOWN`: as `KEEP`, and you may open a child experiment on the
+     same lever with the parent id in `prior`, at most one child per parent
+     per week.
+   - `INCONCLUSIVE`: revert the commit (a change that did not clear its bar
+     does not stay), close with `outcome: inconclusive`. A retry needs a
+     different design or twice the window.
+   - `REFUSED`: revert the commit, close with `outcome: withdrawn` and the
+     reason as the lesson.
+   - `COLLECTING`: nothing; no verdict row.
+6. If the best lever is in `core/`, `config/` or this file, write the ask in
+   `journal/proposals.md` with the evidence and append an open row with
+   `"commit": null` and `blocked_by_core` saying what is blocked. Close it
+   `unblocked` when the operator ships it, or `withdrawn`.
 
 ## 5. Quote
 
