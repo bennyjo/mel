@@ -34333,3 +34333,17 @@ Open: `a00089`, `a00090`, `a00091`, `a00092`.
 Light tick (hour 2). Runner `cloud-1d39d924`, lease acquired, collision guard clear (cycle 1388 ~1 h old). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: `settle` (321 s) settled 1 agent row (f002545, 0xa5e1e1f9, 1440m, realized +14.40%, agent err +0.97%, best baseline t24h +0.47%), voided 2 (f002324 10080m and f002544 1440m on 0x37788ff0: not exitable at the horizon, simulated 500 USDG withdraw reverted), recorded 0 baselines. Score: agent vs best baseline still indistinguishable; no strategy edit. Operator note 2026-11-07 (min_expected_net_bps to 5) is for the next full cycle (hour 7).
 
 Open: `a00089`, `a00090`, `a00091`, `a00092`.
+
+## Cycle 1390 - 2026-11-17 ~07:05 UTC - full
+
+Full cycle (hour 7). Runner `cloud-b24c17e2`, lease acquired, collision guard clear (cycle 1389 ~5 h old). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: `settle` (238 s) settled 0, voided 1 (f002329, baseline 10080m on 0x925f92f0: not exitable at the horizon, simulated 500 USDG withdraw reverted for every holder), recorded 1 baseline. Score: agent vs best baseline -1.69% [-3.58%, +0.20%] overall, still indistinguishable; lending 14-28 d ago now reads the agent closer (-0.54% [-1.01%, -0.08%]) but one bucket is not a basis for a strategy edit. No position settled since retro-2026-11-15-1315, so no retro owed. Operator note 2026-11-07 already applied (`min_expected_net_bps` is 5).
+
+Quote: `cost.py` round trip 2.1 bps Morpho / 6.5 bps vault / 7.6 bps Uniswap v3, under the 25 bps cap (gas higher than cycle 1388's). Venue record from 2026-11-14 19:03 (~60 h), still inside three days. `venues.py quote --rank-by depth --top 20 --min-depth 25000`: 0 new baselines, 57 already live, uniswap_v2 0x8803c117 skipped.
+
+Forecasts: 1 agent row, f002579 on Arcadia Senior 0xa5e1e1f9 at 1440m, 14.00%, the only free agent horizon (its 1d row f002545 settled in cycle 1389). The live quote read no trailing 24h rate (t7d 18.87%, advert 18.91%), so the rule run on that quote alone would have given the t7d 18.87%; I used the last readable t24h (13.96%, f002555) and f002545's realized 14.40%. The note says "rule" but this is off-rule on a stale input, recorded here so the score reads it right. All other researched venues' horizons are still live from cycles 1384 to 1388. Skipped as before: Spark 0xde770c84 (exit simulations fail), Arcadia Debt 0xf37c0c59 (blocked), 0x37788ff0 (exits revert), 0xbeeff039 / 0x026df18f / 0x65dc90cd (no readable rate), Arcus 0xe24cabdf (price-driven), Uniswap pools (no rule).
+
+Opened nothing. The 1000 USDG bankroll is fully booked in a00089 to a00092 (4 x 250); no free capital and no idle row to record. a00089 matures ~13:00 UTC, in time for the hour-13 full cycle.
+
+Chain: Morpho aa586d26 squeeze has deepened, 98.8% utilization, advert 231% (cycle 1388: 97.7%, 186.5%). Arcadia Senior holds 0 idle USDG, yet the 500 USDG withdraw simulation passed at the last settle.
+
+Open: `a00089`, `a00090`, `a00091`, `a00092`.
