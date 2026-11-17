@@ -34371,3 +34371,19 @@ Open: `a00089`, `a00090`, `a00091`, `a00092`.
 Light tick (hour 12). Runner `cloud-f1dd492e`, lease acquired, collision guard clear (cycle 1393 ~1 h old). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: two `settle` runs (~245 s each, both stopped at the time budget) settled 0 rows, voided 2 baselines at 4320m (f002444 on 0xd42174d3, f002447 on 0x00533333: not exitable at the horizon, simulated 500 USDG withdraw reverted, no recent depositor found), recorded 1 baseline (f002593). 7 due baseline rows (f002450, f002550 to f002555) left for the next run. Score: forecast skill not distinguishable from the best baseline at 7 d; no strategy change.
 
 Open: `a00089`, `a00090`, `a00091`, `a00092`.
+
+## Cycle 1395 - 2026-11-17 ~13:05 UTC - full
+
+Full cycle (hour 13). Runner `cloud-6c5e7878`, lease acquired, collision guard clear (cycle 1394 ~51 min old). Shallow clone unshallowed; local checkout was on a session branch, reset onto `main`.
+
+Settle: nothing due at start; `a00089` (Morpho aa586d26, 250 USDG, 3 d) matured at ~13:30 and settled after a wait: held 72.0 h, net +1.534469 USDG, realized 110.47% net vs 98.97% forecast (advert at entry 126%). Rate miss, low: the squeeze deepened instead of reverting. Retro in `journal/retro-2026-11-17-1340.md`. Forecast ledger: five `settle` runs (each ~210-255 s, at the budget) settled 14 rows, among them agent rows f002468 (-0.13%), f002470 (-0.01%), f002472 (-0.01%), f002474 (-0.01%), f002476 (+11.44%, aa586d26 3 d), f002479 (-0.10%); voided 3 (f002459 0x9d53d5e3 market free liquidity 27 USDG; f002462 Arcadia Debt 0xf37c0c59 and f002465 0x026df18f, simulated 500 USDG withdraw reverted); recorded 11 baselines. 5 due rows (f002482 f002484 f002551 f002555 f002557) left past the budget. Each void on a vault spends most of a run's 240 s budget on its holder search, so the due backlog drains slowly. Score: agent vs best baseline -1.69% [-3.58%, +0.20%] overall, still indistinguishable; no strategy edit.
+
+Quote: `cost.py` round trip 0.4 bps Morpho / 1.3 bps vault / 2.3 bps Uniswap v3 at 250 USDG, under the 25 bps cap. Venue record was ~66 h old; ran `venues.py refresh` (329 rows, 121 s). `venues.py quote --rank-by depth --top 20 --min-depth 25000`: 0 new baselines, 57 already live, uniswap_v2 0x8803c117 skipped.
+
+Forecasts: 0 agent rows recorded. Every researched venue the rule covers still has its three horizons live; the free horizons are on venues skipped as before (Spark 0xde770c84 exit simulations fail, 0x37788ff0 exits revert, 0xbeeff039 no readable rate).
+
+Opened `a00093`: Morpho c845da65 (358M deep, util 0.882), 250 USDG, 7 d, forecast 3.90% gross (rule = advert at quote; engine read 3.80% at entry), ~6.9 bps net, over the 5 bps floor. Morpho venue now at 500 = its 0.5 share. Bankroll fully booked again (a00090 to a00093), so no idle row. Skipped aa586d26 (advert 289%, util 0.9985, free liquidity ~1,258 USDG, supply leaving across three days): it passed the 4x filter and the engine's dry run (15.7 bps at 1 d on an 80% forecast), but a pin with suppliers fleeing is an exit risk a day's ~0.8 USDG doesn't pay for. 1efd13a2 (4.96%), Arcadia Senior and Steakhouse already hold one full position each (`max_market_share_usdg`).
+
+Chain: aa586d26 squeeze still deepening: util 0.9985, advert 289% (cycle 1390: 0.988, 231%).
+
+Open: `a00090`, `a00091`, `a00092`, `a00093`.
