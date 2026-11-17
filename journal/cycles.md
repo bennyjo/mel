@@ -34327,3 +34327,9 @@ Opened nothing. The 1000 USDG bankroll is fully booked in a00089 to a00092 (4 x 
 Chain: Morpho aa586d26 still squeezed (97.7% utilization, borrow rate ~190%), its 24 h realized supply rate ~61%.
 
 Open: `a00089`, `a00090`, `a00091`, `a00092`.
+
+## Cycle 1389 - 2026-11-17 ~02:05 UTC - light
+
+Light tick (hour 2). Runner `cloud-1d39d924`, lease acquired, collision guard clear (cycle 1388 ~1 h old). Local checkout was on a session branch; reset onto `main`. Position ledger: nothing due. Forecast ledger: `settle` (321 s) settled 1 agent row (f002545, 0xa5e1e1f9, 1440m, realized +14.40%, agent err +0.97%, best baseline t24h +0.47%), voided 2 (f002324 10080m and f002544 1440m on 0x37788ff0: not exitable at the horizon, simulated 500 USDG withdraw reverted), recorded 0 baselines. Score: agent vs best baseline still indistinguishable; no strategy edit. Operator note 2026-11-07 (min_expected_net_bps to 5) is for the next full cycle (hour 7).
+
+Open: `a00089`, `a00090`, `a00091`, `a00092`.
