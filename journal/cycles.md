@@ -34491,3 +34491,19 @@ Open: `a00090`, `a00091`, `a00092`, `a00093`.
 Light tick (hour 5). Runner `cloud-a95cf8a8`, lease acquired, collision guard clear (cycle 1408 ~3 h old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (153 s) settled baseline f002376 (0xbeeff039, 10080m, realized +0.00%), voided 0, recorded 1 baseline. No agent row settled beyond f002577 (retro owed by the next full cycle, hour 7). Score: agent vs best baseline indistinguishable at every horizon; no strategy edit.
 
 Open: `a00090`, `a00091`, `a00092`, `a00093`.
+
+## Cycle 1410 - 2026-11-18 ~07:05 UTC - full
+
+Full cycle (hour 7). Runner `cloud-138a58c7`, lease acquired, collision guard clear (cycle 1409 ~2 h old). Shallow clone unshallowed; local checkout was on a session branch, reset onto `main`.
+
+Settle: position ledger nothing due. Forecast ledger: first `settle` found 0 due; a second run late in the cycle settled agent row f002579 (Arcadia Senior 0xa5e1e1f9, 1440m, forecast 14.00%, realized +15.34%, err +1.34%), voided 0, recorded 0 baselines. Retro retro-2026-11-18-0705 covers f002577 (settled in light tick 1408) and f002579. Score: agent vs best baseline -1.66% [-3.51%, +0.19%], indistinguishable; lending 14-28 d ago now reads the agent's error smaller than the best baseline's (-0.53% [-0.98%, -0.08%]), one bucket, not evidence for a strategy move. No experiments open; no strategy edit.
+
+Quote: `cost.py` round trip 2.0 bps Morpho / 6.5 bps vault / 7.6 bps Uniswap v3 at 50 USDG, under the 25 bps cap. Venue record refreshed 03:02 today, no refresh. `venues.py quote --rank-by depth --top 20 --min-depth 25000` ran clean: 2 baselines recorded, 55 already live, 1 skipped (uniswap_v2 0x8803c117, no settlement maths).
+
+Forecasts: 4 agent rows. f002650 Steakhouse 0xbeeff033 1440m at 3.84% (rule: t24h; its 3d/7d still live). f002651 to f002653 Grove x Steakhouse 0xbeeff039 at 0.00% on all three horizons: the rule has no rate there, and the state read directly shows share price 1.001250 unchanged and all 100,003 USDG idle (the same reading that scored f002503 at zero error). Every other researched venue still has its three horizons live.
+
+Opened nothing. The 1000 USDG bankroll is fully booked in a00090 to a00093 (7 d holds), so no new row and no idle row.
+
+Chain: aa586d26 still pinned near full utilization (0.9916, advert 311%, 0.79M deep). Nothing new against `CHAIN.md`.
+
+Open: `a00090`, `a00091`, `a00092`, `a00093`.
