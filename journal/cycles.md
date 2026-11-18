@@ -34553,3 +34553,19 @@ Open: `a00090`, `a00091`, `a00092`, `a00093`.
 Light tick (hour 18). Runner `cloud-06270087`, lease acquired, collision guard clear (cycle 1415 ~2 h old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (142 s) settled 0 rows, voided 1 (f002613, baseline 1440m on 0x9d53d5e3: free liquidity at exit 2.18 USDG, under 2.0 x 250), recorded 1 baseline. No agent row settled, so no retro owed. Score: agent vs best baseline indistinguishable at every horizon; no strategy edit.
 
 Open: `a00090`, `a00091`, `a00092`, `a00093`.
+
+## Cycle 1417 - 2026-11-18 ~19:05 UTC - full
+
+Full cycle (hour 19). Runner `cloud-9e74606f`, lease acquired, collision guard clear (cycle 1416 ~1 h old). Shallow clone unshallowed; local checkout was on a session branch, reset onto `main`.
+
+Settle: position ledger nothing due. Forecast ledger: one `settle` run (321 s) settled 0, voided 1 (f002614, baseline 1440m on vault 0xd42174d3: simulated withdraw of 500 USDG reverted, no recent depositor found to simulate with), recorded 1 baseline. Nothing settled since retro-2026-11-18-0705, so no retro. Score unchanged: agent vs best baseline -1.66% [-3.51%, +0.19%], indistinguishable; lending 14-28 d ago still reads the agent closer (-0.53% [-0.99%, -0.07%]), one bucket, not evidence. No experiments open; no strategy edit.
+
+Quote: `cost.py` round trip 2.0 bps Morpho / 6.3 bps vault / 7.4 bps Uniswap v3, under the 25 bps cap. Venue record quoted 2026-11-17 13:09, no refresh. `venues.py quote --rank-by depth --top 20 --min-depth 25000` ran clean: 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117, no settlement maths).
+
+Forecasts: 0 agent rows recorded. All 30 agent horizons on the 10 forecastable venues are still live (a live forecast is never revised). Skipped as before: Arcadia Debt 0xf37c0c59 (exit simulations revert), 0x026df18f / 0x65dc90cd (no readable rate), Arcus 0xe24cabdf (price-driven), Uniswap pools (no rule).
+
+Opened nothing. The 1000 USDG bankroll is fully booked in a00090 to a00093 (7 d holds; a00090 matures first, 2026-11-21 ~13:37), so no new row and no idle row.
+
+Chain: aa586d26 advert 398% at 0.78M deep (was 281%), still pinned near full utilization. Nothing new against `CHAIN.md`.
+
+Open: `a00090`, `a00091`, `a00092`, `a00093`.
