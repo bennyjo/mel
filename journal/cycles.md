@@ -34463,3 +34463,19 @@ Open: `a00090`, `a00091`, `a00092`, `a00093`.
 Light tick (hour 0). Runner `cloud-d70cee30`, lease acquired, collision guard clear (cycle 1405 ~1 h old). Shallow clone unshallowed; local checkout was on a session branch, reset onto `main`. Position ledger: nothing due. Forecast ledger: three `settle` runs (the first 393 s) settled 1 baseline, voided 5 baselines (not exitable at the horizon: free liquidity under the 2.0x multiple, or the simulated 500 USDG withdraw reverted), recorded 5 baselines; 2 due baseline rows (f002570, f002571) left past the budget. No agent row settled, no retro. Score: agent vs best baseline indistinguishable at every horizon; no strategy edit.
 
 Open: `a00090`, `a00091`, `a00092`, `a00093`.
+
+## Cycle 1407 - 2026-11-18 ~01:05 UTC - full
+
+Full cycle (hour 1). Runner `cloud-5bbede9c`, lease acquired, collision guard clear (cycle 1406 ~43 min old). Shallow clone unshallowed; local checkout was on a session branch, reset onto `main`.
+
+Settle: position ledger nothing due. Forecast ledger: first `settle` found 0 due; a second run later in the cycle settled 4 agent 1440m Morpho rows (f002572 to f002575, errors -0.05% to +0.00%) and voided f002576 (aa586d26 1440m, free liquidity at exit 0) and baseline f002369 (aa586d26 10080m, free liquidity 10 USDG); 1 baseline recorded. Retro retro-2026-11-18-0105 covers f002501 and f002503 (settled in light tick 1403) and these. Score: agent vs best baseline -1.67% [-3.54%, +0.19%], indistinguishable; no strategy edit. No experiments open.
+
+Quote: `cost.py` round trip 2.0 bps Morpho / 6.5 bps vault / 7.6 bps Uniswap v3, under the 25 bps cap. Venue record refreshed cycle 1395 (~12 h), no refresh. `venues.py quote --rank-by depth --top 20 --min-depth 25000` ran clean in 176 s: 0 new baselines, 55 already live, 2 skipped (uniswap_v2 0x8803c117; Arcus 0xe24cabdf over the rate bound).
+
+Forecasts: 11 agent rows. Spark 0xde770c84 f002635 to f002637 at 3.76% (rule: t24h) and Purinta 0x37788ff0 f002638 to f002640 at 5.79% (rule: t7d, no 24h window), all three horizons. Morpho 1440m on the rule's IRM advert: f002642 c845da65 3.99%, f002643 919a9b6b 3.86%, f002644 1efd13a2 4.96%, f002645 0309c02d 3.19%, f002646 aa586d26 332% (noted it will likely void as unexitable). Other venues' horizons still live.
+
+Opened nothing. The 1000 USDG bankroll is fully booked in a00090 to a00093 (7 d holds), so no new row and no idle row.
+
+Chain: aa586d26 has pinned: util 1.0000, advert 332%, free liquidity 0 at f002576's exit (cycle 1401: util 0.9992, 306%). Any lender there cannot withdraw.
+
+Open: `a00090`, `a00091`, `a00092`, `a00093`.
