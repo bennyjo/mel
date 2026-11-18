@@ -34513,3 +34513,19 @@ Open: `a00090`, `a00091`, `a00092`, `a00093`.
 Light tick (hour 11). Runner `cloud-1bd0a880`, lease acquired, collision guard clear (cycle 1410 ~4 h old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (87 s) settled 3 baseline 1440m rows (f002585 to f002587), voided 0, recorded 3 baselines. No agent row settled, so no retro owed. Score: agent vs best baseline indistinguishable at every horizon; no strategy edit.
 
 Open: `a00090`, `a00091`, `a00092`, `a00093`.
+
+## Cycle 1412 - 2026-11-18 ~13:05 UTC - full
+
+Full cycle (hour 13). Runner `cloud-9ed15a1f`, lease acquired, collision guard clear (cycle 1411 ~2 h old). Shallow clone unshallowed; local checkout was on a session branch, reset onto `main`.
+
+Settle: position ledger nothing due; forecast ledger 0 of 105 open rows due, so 0 settled, 0 voided, 0 baselines recorded by `settle`. Nothing settled since retro-2026-11-18-0705, so no retro. Score unchanged: agent vs best baseline -1.66% [-3.51%, +0.19%], indistinguishable; lending 14-28 d ago still reads the agent closer (-0.53% [-0.98%, -0.08%]), one bucket, not evidence. No experiments open; no strategy edit.
+
+Quote: `cost.py` round trip 2.0 bps Morpho / 6.4 bps vault / 7.5 bps Uniswap v3, under the 25 bps cap. Venue record quoted 2026-11-17 13:09, no refresh. `venues.py quote --rank-by depth --top 20 --min-depth 25000` ran clean: 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117, no settlement maths).
+
+Forecasts: 1 agent row, f002657 on Arcadia Senior 0xa5e1e1f9 at 1440m, 15.00%, its only free agent horizon. Off-rule, and the note overstates the gap: I wrote it from the last stored t7d (18.6%) before `record` read the live t7d at 14.75% (no t24h), so the rule itself would have given 14.75%; 15.0% rests on the last three 1d settles (14.4%, 15.4%, 15.3%). Skipped as before: Arcadia Debt 0xf37c0c59 (exit simulations revert), 0x026df18f / 0x65dc90cd (no readable rate), Arcus 0xe24cabdf (price-driven), Uniswap pools (no rule). All other researched venues' horizons are still live.
+
+Opened nothing. The 1000 USDG bankroll is fully booked in a00090 to a00093 (7 d holds), so no new row and no idle row.
+
+Chain: aa586d26 advert 281% at 0.80M deep, still pinned near full utilization. Nothing new against `CHAIN.md`.
+
+Open: `a00090`, `a00091`, `a00092`, `a00093`.
