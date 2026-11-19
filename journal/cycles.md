@@ -34693,3 +34693,17 @@ Open: `a00090`, `a00091`, `a00092`, `a00093`.
 Light tick (hour 17). Runner `cloud-10d967f8`, lease acquired, collision guard clear (cycle 1432 ~1 h old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (182 s) settled 1 baseline row (f002663, Morpho 0xa5e1e1f9..., 1440m, realized +44.16%, advertised +30.30%) and recorded 1 next baseline. No agent rows settled, none voided. No strategy edit; no retro owed (no allocation or agent row settled).
 
 Open: `a00090`, `a00091`, `a00092`, `a00093`.
+
+## Cycle 1434 - 2026-11-19 ~19:05 UTC - full
+
+Full cycle (hour 19). Runner `cloud-23cb54ae`, lease acquired, collision guard clear (cycle 1433 ~2 h old; hour 18 left no entry). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (342 s) settled 0 rows, voided 2 baselines (f002664 Morpho 0x9d53d5e3 1440m: free liquidity at exit 31.6 USDG, under 2x 250; f002665 Flock 0xd42174d3 1440m: simulated 500 USDG withdraw reverted for every holder), recorded 2 next baselines. Retro retro-2026-11-19-1905 covers f002657 (agent +30.27 pts under realized, every baseline missed alike). Score: agent vs best baseline -1.65% [-3.48%, +0.18%], indistinguishable; no experiments open; no strategy edit.
+
+Quote: `cost.py` round trip 2.0 bps Morpho / 6.5 bps vault / 7.6 bps Uniswap v3 at 250 USDG, under the 25 bps cap. Venue record quoted 2026-11-17 13:09, inside three days, no refresh. `venues.py quote --rank-by depth --top 20 --min-depth 25000` ran clean: 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117, no settlement maths).
+
+Forecasts: 1 agent row. f002706 Arcadia Senior 0xa5e1e1f9 1d 18.29% (rule: tranche capped at trailing week; input from baseline f002703, 2.2 h old; the live record read t7d 18.21%, t24h 41.09%, advert 16.86%). Every other quoted lending venue's horizons are live already; Grove 0xbeeff039 1d and 0x65dc90cd have no rule input; Arcus HOOD 3x Long 0xe24cabdf is a price, not a rate.
+
+Opened nothing. The 1000 USDG bankroll is fully booked in a00090 to a00093 (7 d holds; a00090 matures first, 2026-11-21 ~13:37), so no new row and no idle row.
+
+Chain: Morpho aa586d26 advert now 456% (342% at cycle 1429), still pinned at full utilization. Morpho market voided with only 31.6 USDG free at exit on 0x9d53d5e3 (f002664's market). Nothing new for `CHAIN.md`.
+
+Open: `a00090`, `a00091`, `a00092`, `a00093`.
