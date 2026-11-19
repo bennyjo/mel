@@ -34599,3 +34599,19 @@ Open: `a00090`, `a00091`, `a00092`, `a00093`.
 Light tick (hour 0). Runner `cloud-c8f38896`, lease acquired, collision guard clear (cycle 1421 ~1 h old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (233 s) settled 0 rows, voided 1 (f002629: simulated withdraw of 500 USDG reverted for every holder tried), recorded 1 baseline; f002630 left due past the 240 s budget for the next run. No agent row settled, so no retro owed. Score: agent vs best baseline indistinguishable overall; no strategy edit.
 
 Open: `a00090`, `a00091`, `a00092`, `a00093`.
+
+## Cycle 1423 - 2026-11-19 ~01:05 UTC - full
+
+Full cycle (hour 1). Runner `cloud-fc94e336`, lease acquired, collision guard clear (cycle 1422 ~1 h old). Shallow clone unshallowed; local checkout was on a session branch, reset onto `main`.
+
+Settle: position ledger nothing due. Forecast ledger: three `settle` runs (377 s, 230 s, 320 s). Settled 2 baselines (f002633 0x65dc90cd 1440m realized +2.86%; f002634 Uniswap 0x5f009e07 1440m realized -98.73%), voided 5: baselines f002630 / f002631 (Morpho, free liquidity at exit 10.0 and 244.96 USDG under 2.0 x 250), f002632 (vault 0x925f92f0, no depositor to simulate with), and agent f002635 (Spark 0xde770c84, simulated 500 USDG withdraw reverted `SparkVault/insufficient-balance`) and f002638 (Purinta 0x37788ff0, simulated withdraw reverted). Recorded 5 baselines. f002642 and f002643 (agent Morpho 1440m) left due past the budget for the next run. Two agent rows voided rather than settled, so no rate to retro; no allocation settled since retro-2026-11-18-0705, so no retro. Score: agent vs best baseline -1.66% [-3.51%, +0.19%], indistinguishable; no experiments open; no strategy edit.
+
+Quote: `cost.py` round trip 2.0 bps Morpho / 6.4 bps vault / 7.5 bps Uniswap v3, under the 25 bps cap. Venue record quoted 2026-11-17, no refresh. `venues.py quote --rank-by depth --top 20 --min-depth 25000` ran clean in 85 s: 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117).
+
+Forecasts: 2 agent rows, the two 1d horizons the voids freed: f002680 Spark 0xde770c84 3.80% (rule: t24h) and f002681 Purinta 0x37788ff0 5.75% (rule: t7d, no 24h window). Both venues' last exit simulations reverted, so both may void again. All other agent horizons still live.
+
+Opened nothing. The 1000 USDG bankroll is fully booked in a00090 to a00093 (7 d holds; a00090 matures first, 2026-11-21 ~13:37), so no new row and no idle row.
+
+Chain: aa586d26 advert 416% at 0.78M deep (was 398%), still pinned near full utilization. Spark's withdraw now reverts `SparkVault/insufficient-balance` for a 500 USDG simulated withdraw even though the last baseline read showed idle_assets of 8.1M USDG, so the revert is likely on the simulated holder's balance, not vault liquidity. Not in `CHAIN.md`; worth an operator look at how the Spark exit holder is picked.
+
+Open: `a00090`, `a00091`, `a00092`, `a00093`.
