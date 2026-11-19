@@ -34655,3 +34655,17 @@ Open: `a00090`, `a00091`, `a00092`, `a00093`.
 Light tick (hour 12). Runner `cloud-a2012217`, lease acquired, collision guard clear (cycle 1427 ~3 h old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (87 s) settled 3 baseline rows (f002654 0x69bfaf19 +6.18%, f002655 0x9b050cb1 -1.27%, f002656 0x9d53d5e3 +3.18%, all 1440m), voided 0, and recorded 3 next baselines. No agent row settled, so no retro. Score: agent vs best baseline -1.65% [-3.48%, +0.19%], indistinguishable; no strategy edit.
 
 Open: `a00090`, `a00091`, `a00092`, `a00093`.
+
+## Cycle 1429 - 2026-11-19 ~13:05 UTC - full
+
+Full cycle (hour 13). Runner `cloud-9f4dab27`, lease acquired, collision guard clear (cycle 1428 ~58 min old, not under 20). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: 0 of 104 open rows due, nothing settled or voided. Retro retro-2026-11-19-1305 covers f002650 (settled in tick 1427, agent error -0.11%). Score: agent vs best baseline -1.65% [-3.48%, +0.19%], indistinguishable; no experiments open; no strategy edit.
+
+Quote: `cost.py` round trip 2.0 bps Morpho / 6.5 bps vault / 7.6 bps Uniswap v3, under the 25 bps cap. Venue record quoted 2026-11-17 13:09, inside three days, no refresh. `venues.py quote --rank-by rate --top 20 --min-depth 25000` ran clean: 0 baselines recorded, 54 already live, 2 skipped (uniswap_v2 0x8803c117, no settlement maths; Arcus BTC 3x Short 0xadcceee8, advert 1184%, trailing 7d absurd: moves with a price).
+
+Forecasts: 7 agent rows on the free horizons. f002691 Steakhouse 0xbeeff033 1d 3.81%; f002692-f002694 ArcadiaV2 Global Dollar 0xf37c0c59 1/3/7d 19.94%; f002695-f002697 0x026df18f 1/3/7d 0.27%. Process slip, written up in the retro: I worked the rule from the newest stored baseline rows rather than the live quote, whose trailing 24h was 3.70% (0xbeeff033) and 21.42% (0xf37c0c59); the rows stand as recorded. Grove 0xbeeff039 1d not recorded: the rule has no input for it (no advert, no trailing rate).
+
+Opened nothing. The 1000 USDG bankroll is fully booked in a00090 to a00093 (7 d holds; a00090 matures first, 2026-11-21 ~13:37), so no new row and no idle row.
+
+Chain: Morpho aa586d26 advert 342% (329% at cycle 1425), still pinned at full utilization. Arcus BTC 3x Short 0xadcceee8 now shows on a rate ranking at 28k USDG depth. Nothing new for `CHAIN.md`.
+
+Open: `a00090`, `a00091`, `a00092`, `a00093`.
