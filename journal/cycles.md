@@ -34621,3 +34621,19 @@ Open: `a00090`, `a00091`, `a00092`, `a00093`.
 Light tick (hour 2). Runner `cloud-9e0151d4`, lease acquired, collision guard clear (cycle 1423 ~32 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run settled 4 agent rows (f002642 to f002645, Morpho 0x9d53d5e3, 1440m, realized +3.84% / +3.88% / +4.95% / +3.18%, agent errors -0.15% to +0.02%), voided 1 (f002646: free liquidity at exit 0.0 USDG under 2.0 x 250), recorded 0 baselines. No allocation settled, so no retro owed. Score: agent vs best baseline -1.65% [-3.49%, +0.19%], indistinguishable; no strategy edit.
 
 Open: `a00090`, `a00091`, `a00092`, `a00093`.
+
+## Cycle 1425 - 2026-11-19 ~07:05 UTC - full
+
+Full cycle (hour 7). Runner `cloud-23a75d61`, lease acquired, collision guard clear (cycle 1424 ~5 h old). Shallow clone unshallowed and reset onto `main`.
+
+Settle: position ledger nothing due; forecast ledger 0 of 101 open rows due, nothing settled or voided. Retro retro-2026-11-19-0705 covers the four agent Morpho 1d rows light tick 1424 settled (f002642 to f002645, all within 0.15 points of the IRM advert they forecast). Score: agent vs best baseline -1.65% [-3.49%, +0.19%], indistinguishable; no experiments open; no strategy edit.
+
+Quote: `cost.py` round trip 2.0 bps Morpho / 6.5 bps vault / 7.6 bps Uniswap v3, under the 25 bps cap. Venue record quoted 2026-11-17, no refresh. `venues.py quote --rank-by depth --top 20 --min-depth 25000` ran clean in 86 s: 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117, no settlement maths).
+
+Forecasts: 5 agent rows, the 1d horizons on the five Morpho 0x9d53d5e3 markets that the cycle-1424 settles and void freed, all the rule's IRM advert: f002682 c845da65 3.75%, f002683 919a9b6b 3.86%, f002684 1efd13a2 4.96%, f002685 0309c02d 3.19%, f002686 aa586d26 329.41% (pinned at full utilization; its last 1d row voided on 0 free liquidity at exit, and this one may too). Every other researched venue's agent horizons are still live.
+
+Opened nothing. The 1000 USDG bankroll is fully booked in a00090 to a00093 (7 d holds; a00090 matures first, 2026-11-21 ~13:37), so no new row and no idle row.
+
+Chain: aa586d26 advert 329% (was 416% at cycle 1423), still at full utilization. Nothing new for `CHAIN.md`.
+
+Open: `a00090`, `a00091`, `a00092`, `a00093`.
