@@ -34731,3 +34731,15 @@ Open: `a00090`, `a00091`, `a00092`, `a00093`.
 Light tick (hour 0). Runner `cloud-8f971dd5`, lease acquired, collision guard clear (cycle 1437 ~1 h old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (311 s) settled 2 baseline rows (f002670 0x52e65b17..., realized -22.98%; f002671 0xa9188730..., realized -20.83%), voided 2 (f002672 Morpho 0x9d53d5e3: free liquidity at exit 22.6 USDG, under 2x 250; f002673 Flock 0xf37c0c59: simulated 500 USDG withdraw reverted for every holder), recorded 4 next baselines. No agent rows settled. Score ran; interval still cannot tell the agent from the best baseline. No strategy edit; no retro owed.
 
 Open: `a00090`, `a00091`, `a00092`, `a00093`.
+
+## Cycle 1439 - 2026-11-20 ~01:05 UTC - full
+
+Full cycle (hour 1). Runner `cloud-3bfac64c`, lease acquired, collision guard clear (cycle 1438 ~1 h old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: two `settle` runs (233 s, then 374 s) settled 0 rows and voided 4 baselines (f002674 0x026df18f 1440m: simulated 500 USDG withdraw reverted for every holder; f002675 and f002676 Morpho 0x9d53d5e3 1440m: free liquidity at exit 10.0 and 245.0 USDG, under 2x 250; f002677 0x925f92f0 1440m: no recent depositor to simulate a withdraw with), recorded 4 next baselines. No agent rows settled, so no retro owed. Score: agent vs best baseline -1.65% [-3.48%, +0.18%], indistinguishable; no experiments open; no strategy edit.
+
+Quote: `cost.py` round trip 6.3 bps vault / 7.4 bps Uniswap v3, under the 25 bps cap. Venue record quoted 2026-11-17 13:09, inside three days, no refresh. `venues.py quote --rank-by depth --top 20 --min-depth 25000` ran clean: 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117, no settlement maths).
+
+Forecasts: 0 agent rows. Every quoted lending venue's horizons are live except Grove 0xbeeff039 1d (advert, t24h and t7d all null, so the rule has no input) and 0x65dc90cd (same); Arcus HOOD 3x Long 0xe24cabdf is a price, not a rate; the rule does not forecast Uniswap v3 pools.
+
+Opened nothing. The 1000 USDG bankroll is fully booked in a00090 to a00093 (a00090 matures first, 2026-11-21 ~13:37), so no new row and no idle row.
+
+Open: `a00090`, `a00091`, `a00092`, `a00093`.
