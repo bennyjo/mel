@@ -34767,3 +34767,9 @@ Forecasts: 2 agent rows recorded at 1440m: f002720 Spark 0xde770c84 at 3.78% (ru
 Opened nothing. The 1000 USDG bankroll is fully booked in a00090 to a00093 (a00090 matures first, 2026-11-21 ~13:37), so no new row and no idle row.
 
 Open: `a00090`, `a00091`, `a00092`, `a00093`.
+
+## Cycle 1443 - 2026-11-20 ~08:05 UTC - light
+
+Light tick (hour 8). Runner `cloud-c52c0217`, lease acquired, collision guard clear (cycle 1442 ~1 h old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (241 s) settled 4 agent rows on Morpho 0x9d53d5e3 1440m (f002682 realized +3.85%, err +0.10%; f002683 +3.86%, err 0.00%; f002684 +4.95%, err -0.01%; f002685 +3.18%, err -0.01%), voided 2 (f002686 Morpho 0x9d53d5e3: free liquidity at exit 0.0 USDG, under 2x 250; f002687 baseline Arcus 0xe24cabdf: simulated 500 USDG withdraw reverted for every holder), recorded 1 next baseline. Agent rows settled here are retro'd on the next full cycle. Score ran; interval still cannot tell the agent from the best baseline (1440m -2.51% [-5.35%, +0.33%]). No strategy edit.
+
+Open: `a00090`, `a00091`, `a00092`, `a00093`.
