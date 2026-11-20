@@ -34791,3 +34791,9 @@ Open: `a00090`, `a00091`, `a00092`, `a00093`.
 Light tick (hour 11). Runner `cloud-e4943d46`, lease acquired, collision guard clear (cycle 1445 ~1 h old). Shallow clone unshallowed. Position ledger: nothing due. Forecast ledger: one `settle` run (149 s) settled 1 baseline row (f002588 Morpho 0x9d53d5e3 4320m, realized +3.86%), voided 1 (f002584 Morpho 0x9d53d5e3 4320m: free liquidity at exit 29.0 USDG, under 2x 250), recorded 2 next baselines. No agent rows settled, so no retro owed. Score ran; interval still cannot tell the agent from the best baseline (1440m -2.51% [-5.35%, +0.33%]). No strategy edit.
 
 Open: `a00090`, `a00091`, `a00092`, `a00093`.
+
+## Cycle 1447 - 2026-11-20 ~12:05 UTC - light
+
+Light tick (hour 12). Runner `cloud-eb3c032b`, lease acquired, collision guard clear (cycle 1446 ~1 h old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: two `settle` runs (288 s, 346 s) settled 3 baseline rows (f002590 Morpho 0x9d53d5e3 4320m +3.85%, f002591 0xa5e1e1f9 +24.10%, f002592 0xbeeff033 +3.77%), voided 2 (f002589 Morpho 0x9d53d5e3: free liquidity at exit 0.0 USDG, under 2x 250; f002593 0xd42174d3: simulated 500 USDG withdraw reverted for every holder), recorded 5 next baselines. 3 due rows left for the next run (f002688 to f002690). No agent rows settled, so no retro owed. No strategy edit.
+
+Open: `a00090`, `a00091`, `a00092`, `a00093`.
