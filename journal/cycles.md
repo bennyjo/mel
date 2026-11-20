@@ -34839,3 +34839,15 @@ Open: `a00090`, `a00091`, `a00092`, `a00093`.
 Light tick (hour 18). Runner `cloud-9a742b0c`, lease acquired, collision guard clear (cycle 1452 ~48 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (240 s) settled 3 baseline rows (f002698 +4.05%, f002699 +3.88%, f002700 +4.94%, all Morpho 0x9d53d5e3 1440m), voided 0, recorded 3 next baselines. 2 due rows left past the budget (f002701, f002703). No agent row settled this tick; the retro owed from f002691 (cycle 1452) is still owed to the next full cycle (hour 19). Score ran; interval still cannot tell the agent from the best baseline. No strategy edit.
 
 Open: `a00090`, `a00091`, `a00092`, `a00093`.
+
+## Cycle 1454 - 2026-11-20 ~19:05 UTC - full
+
+Full cycle (hour 19). Runner `cloud-bc70f33a`, lease acquired, collision guard clear (cycle 1453 ~55 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (330 s) settled 2 baseline rows (f002612 0x5f009e07 4320m -99.60%; f002703 Arcadia Senior 0xa5e1e1f9 1440m +453.48% against advert +436.22%), voided 1 (f002701 Morpho 0x9d53d5e3 market aa586d26: free liquidity at exit 0.000000 USDG, 100% utilized), recorded 3 next baselines; f002704 left past the budget. Retro retro-2026-11-20-1910 covers agent row f002691 (Steakhouse 1440m, miss 0.03 pts, no lesson). Score: agent vs best baseline -1.63% [-3.44%, +0.18%], indistinguishable; no experiments open; no strategy edit.
+
+Quote: venue record from cycle 1448 (6 h old), no refresh. `cost.py` round trip 1.9 bps Morpho / 6.0 bps vault / 7.2 bps Uniswap v3, under the 25 bps cap. `venues.py quote --rank-by depth --top 20 --min-depth 25000` ran clean: 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117, no settlement maths).
+
+Forecasts: 2 agent rows at 1440m, the only free lending horizons with a rule input: f002761 Steakhouse 0xbeeff033 3.84% (rule's t24h from baseline f002753; the live read at record showed t24h 3.99%), f002762 0xf37c0c59 17.29% (t24h from f002746; its recent rows voided on a reverting 500 USDG withdraw, so this may void too). Skipped 0x026df18f and Grove 0xbeeff039 at 1440m: no advert or trailing rate. Every other lending horizon is live.
+
+Opened nothing. The 1000 USDG bankroll is fully booked in a00090 to a00093 (a00090 matures first, ~2026-11-21 13:37), so no new row and no idle row.
+
+Open: `a00090`, `a00091`, `a00092`, `a00093`.
