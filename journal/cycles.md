@@ -34797,3 +34797,15 @@ Open: `a00090`, `a00091`, `a00092`, `a00093`.
 Light tick (hour 12). Runner `cloud-eb3c032b`, lease acquired, collision guard clear (cycle 1446 ~1 h old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: two `settle` runs (288 s, 346 s) settled 3 baseline rows (f002590 Morpho 0x9d53d5e3 4320m +3.85%, f002591 0xa5e1e1f9 +24.10%, f002592 0xbeeff033 +3.77%), voided 2 (f002589 Morpho 0x9d53d5e3: free liquidity at exit 0.0 USDG, under 2x 250; f002593 0xd42174d3: simulated 500 USDG withdraw reverted for every holder), recorded 5 next baselines. 3 due rows left for the next run (f002688 to f002690). No agent rows settled, so no retro owed. No strategy edit.
 
 Open: `a00090`, `a00091`, `a00092`, `a00093`.
+
+## Cycle 1448 - 2026-11-20 ~13:05 UTC - full
+
+Full cycle (hour 13). Runner `cloud-1167400b`, lease acquired, collision guard clear (cycle 1447 ~47 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (233 s) settled 4 baseline rows (f002594 Spark 0xde770c84 4320m +3.80%, f002688 0x69bfaf19 1440m -99.81%, f002689 0x9b050cb1 1440m -99.64%, f002690 Morpho 0x9d53d5e3 1440m +3.18%), voided 0, recorded 4 next baselines. No allocation or agent forecast row settled since retro-2026-11-20-0705, so no retro. Score: agent vs best baseline -1.63% [-3.45%, +0.18%], indistinguishable; no experiments open; no strategy edit.
+
+Quote: venue record was 2026-11-17 13:09 (three days), so `venues.py refresh` ran first (329 rows, 113 s, no errors). `cost.py` round trip 2.0 bps Morpho / 6.2 bps vault / 7.3 bps Uniswap v3 at 50 USDG, under the 25 bps cap. `venues.py quote --rank-by depth --top 20 --min-depth 25000` ran clean: 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117, no settlement maths).
+
+Forecasts: 5 agent rows recorded at 1440m, all Morpho 0x9d53d5e3 at the rule's advert: f002738 c845da65 3.90%, f002739 919a9b6b 3.86%, f002740 1efd13a2 4.96%, f002741 0309c02d 3.19%, f002742 aa586d26 627.0% (utilization 100%, 739k supply; the last three 1d rows on this market voided for no free liquidity at exit, and this one likely will too). Every other lending horizon on the quoted board is live. Skipped Grove 0xbeeff039, 0x65dc90cd and Flock 0xd42174d3: advert, t24h and t7d all null, so the rule has no input. Arcus 3x Long is a price; the rule does not forecast Uniswap pools.
+
+Opened nothing. The 1000 USDG bankroll is fully booked in a00090 to a00093 (a00090 matures first, 2026-11-21 ~13:37), so no new row and no idle row.
+
+Open: `a00090`, `a00091`, `a00092`, `a00093`.
