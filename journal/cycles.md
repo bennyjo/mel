@@ -34755,3 +34755,15 @@ Open: `a00090`, `a00091`, `a00092`, `a00093`.
 Light tick (hour 3). Runner `cloud-6453d071`, lease acquired, collision guard clear (cycle 1440 ~55 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (159 s) settled 1 agent row (f002681 0x37788ff0..., 1440m, realized +5.10%, agent error -0.65%), voided 0, recorded 0 next baselines. No retro owed (agent forecast rows are retro'd on full cycles). Score ran; interval still cannot tell the agent from the best baseline (-1.64% [-3.47%, +0.18%]). No strategy edit.
 
 Open: `a00090`, `a00091`, `a00092`, `a00093`.
+
+## Cycle 1442 - 2026-11-20 ~07:05 UTC - full
+
+Full cycle (hour 7). Runner `cloud-8ae72205`, lease acquired, collision guard clear (cycle 1441 ~4 h old; hours 4 to 6 had no tick). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: 0 of 109 open rows due, nothing settled or voided. Score: agent vs best baseline -1.64% [-3.47%, +0.18%], indistinguishable; no experiments open; no strategy edit. Retro retro-2026-11-20-0705 covers agent row f002681 (+5.10% on 5.75%, a small rate miss level with t7d) and the void of f002680 (exit gate).
+
+Quote: `cost.py` round trip 2.0 bps Morpho / 6.2 bps vault / 7.4 bps Uniswap v3, under the 25 bps cap. Venue record quoted 2026-11-17 13:09, inside three days, no refresh (due by the next full cycle). `venues.py quote --rank-by depth --top 20 --min-depth 25000` ran clean: 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117, no settlement maths).
+
+Forecasts: 2 agent rows recorded at 1440m: f002720 Spark 0xde770c84 at 3.78% (rule's t24h from baseline f002707; the live read at record time had no 24h window, so the rule on the live snapshot would have said t7d 3.80%, 0.02 points off) and f002721 Purinta 0x37788ff0 at 5.68% (t7d; live t7d 5.67%). Grove 0xbeeff039 1d and 0x65dc90cd skipped: advert, t24h and t7d all null, the rule has no input. Every other quoted lending horizon is live; Arcus 3x Long is a price; the rule does not forecast Uniswap pools.
+
+Opened nothing. The 1000 USDG bankroll is fully booked in a00090 to a00093 (a00090 matures first, 2026-11-21 ~13:37), so no new row and no idle row.
+
+Open: `a00090`, `a00091`, `a00092`, `a00093`.
