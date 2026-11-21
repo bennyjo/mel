@@ -34967,3 +34967,9 @@ Forecasts: 2 agent rows, the free horizons with a rule input. f002805 vault 0xde
 Opened nothing. The 1000 USDG bankroll is fully booked in a00090 to a00093, so no new row and no idle row; a00090 frees 250 USDG for the hour-19 cycle.
 
 Open: `a00090`, `a00091`, `a00092`, `a00093`.
+
+## Cycle 1471 - 2026-11-21 ~14:10 UTC - light
+
+Light tick (hour 14). Runner `cloud-b0cbcf9e`, lease acquired, collision guard clear (cycle 1470 ~57 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: settled `a00090` (Arcadia Senior 0xa5e1e1f9, 250 USDG, held 168.5 h): realized 49.11% vs forecast 11.91%, net 1.928 USDG, a rate miss on the high side (the lump the t7d input carried). Retro owed to the next full cycle. Forecast ledger: one `settle` run (263 s) settled 4 baseline rows (f002451, f002454, f002457, f002460), voided 0, recorded 4 next baselines; 13 due rows left past the budget. No agent row settled. Score ran; deployed net_delta +11.73%. No strategy edit.
+
+Open: `a00091`, `a00092`, `a00093`.
