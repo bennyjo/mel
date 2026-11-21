@@ -35019,3 +35019,9 @@ Light tick (hour 20 not in full_cycle_hours_utc). No allocation rows due. Foreca
 Light tick (hour 21). Runner `cloud-96e3c5e2`, lease acquired, collision guard clear (cycle 1477 ~51 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (274 s) settled 1 agent row (f002761 Grove 0xbeeff033 1440m realized +3.99%, err +0.15 pts), voided 1 agent row (f002762 0xf37c0c59 1440m, simulated withdraw of 500 USDG reverted for every holder tried), recorded 0 next baselines; 0 due rows left. Score ran; agent vs best baseline all -2.31% [-4.51%, -0.11%], but per-kind and per-horizon intervals mostly cannot tell them apart. No strategy edit.
 
 Open: `a00091`, `a00092`, `a00093`, `a00094`.
+
+## Cycle 1479 - 2026-11-21 ~22:10 UTC - light
+
+Light tick (hour 22). Runner `cloud-0f7a6d4e`, lease acquired, collision guard clear (cycle 1478 ~54 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (300 s) settled 0 rows, voided 2 baseline rows (f002763 0x9d53d5e3 1440m, free liquidity at exit 412.5 USDG under the 2.0x multiple; f002764 0xd42174d3 1440m, simulated 500 USDG withdraw reverted for every holder tried), recorded 2 next baselines; 0 agent rows settled. Score ran; per-horizon intervals mostly cannot tell the agent from the best baseline (1440m: -2.92% [-5.68%, -0.15%]). No strategy edit.
+
+Open: `a00091`, `a00092`, `a00093`, `a00094`.
