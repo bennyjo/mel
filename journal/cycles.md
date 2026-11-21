@@ -34955,3 +34955,15 @@ Open: `a00090`, `a00091`, `a00092`, `a00093`.
 Light tick (hour 12). Runner `cloud-01dcb33f`, lease acquired, collision guard clear (cycle 1468 ~55 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (390 s) settled 1 baseline row (f002442 Grove 0xbeeff033 10080m realized +3.86%), voided 1 (f002445 0xd42174d3 10080m: simulated withdraw reverted for every holder, no recent depositor), recorded 2 next baselines. 1 due row left past the budget (f002448). No agent row settled, so no retro owed. Score ran; interval still cannot tell the agent from the best baseline at any horizon. No strategy edit.
 
 Open: `a00090`, `a00091`, `a00092`, `a00093`.
+
+## Cycle 1470 - 2026-11-21 ~13:05 UTC - full
+
+Full cycle (hour 13). Runner `cloud-651ad3f0`, lease acquired, collision guard clear (cycle 1469 ~55 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due (a00090, Arcadia Senior, matures ~13:37, after this cycle). Forecast ledger: one `settle` run (218 s) voided 1 baseline (f002448 0x0053333f 10080m: simulated withdraw of 500 USDG reverted for every holder, no recent depositor), settled 0, recorded 3 next baselines; 4 due rows left past the budget (f002451, f002454, f002457, f002460). Retro retro-2026-11-21-1310 covers the two agent rows the light ticks settled (f002720 err +0.02 pts; f002721 err -0.58 pts, the second same-direction miss on Purinta's thin t7d input). Score: agent vs best baseline -2.08% [-4.31%, +0.15%], indistinguishable; no experiment open (E-2026-11-21-a blocked by core); no strategy edit.
+
+Quote: venue record 24 h old, no refresh. `cost.py` round trip 0.4 bps Morpho / 1.2 bps vault / 2.3 bps Uniswap v3 at 250 USDG, under the 25 bps cap. `venues.py quote --rank-by depth --top 20 --min-depth 25000` ran clean: 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117, no settlement maths).
+
+Forecasts: 2 agent rows, the free horizons with a rule input. f002805 vault 0xde770c84 1440m 3.78% (t24h from the latest baseline; the live read showed 3.80%, so on-rule within rounding). f002806 vault 0x37788ff0 1440m 5.67%, the latest baseline's t7d; the live read again showed no t7d (no 1000 USDG event in the window), so this rests on the older window. Skipped 0x026df18f and 0xbeeff039: no advert or trailing rate. Every other researched horizon already holds a live agent row.
+
+Opened nothing. The 1000 USDG bankroll is fully booked in a00090 to a00093, so no new row and no idle row; a00090 frees 250 USDG for the hour-19 cycle.
+
+Open: `a00090`, `a00091`, `a00092`, `a00093`.
