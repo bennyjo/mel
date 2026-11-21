@@ -34997,3 +34997,15 @@ Open: `a00091`, `a00092`, `a00093`.
 Light tick (hour 18). Runner `cloud-4f59d9e2`, lease acquired, collision guard clear (cycle 1474 ~60 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (166 s) settled 2 baseline rows (f002753 0xbeeff033 1440m realized +4.13%; f002755 0x9d53d5e3 1440m realized +4.29%), voided 0, recorded 2 next baselines; 0 agent rows settled. Score ran; interval still cannot tell the agent from the best baseline at any horizon. No strategy edit.
 
 Open: `a00091`, `a00092`, `a00093`.
+
+## Cycle 1476 - 2026-11-21 ~19:05 UTC - full
+
+Full cycle (hour 19). Runner `cloud-59bb9522`, lease acquired, collision guard clear (cycle 1475 ~56 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (147 s) settled 2 baseline rows (f002756 0x9d53d5e3 1440m +3.86%, f002757 +4.94%), voided 0, recorded 2 next baselines; 0 agent rows settled. Retro retro-2026-11-21-1910 covers a00090 (rate miss on the high side, Arcadia's weekly lump) and the agent rows the light ticks settled (the two big misses are Morpho aa586d26 forecast at a 100%-utilization spot). Score: agent vs best baseline -2.00% [-4.20%, +0.21%], indistinguishable; no experiment open (E-2026-11-21-a blocked by core); no strategy edit.
+
+Quote: venue record 30 h old, no refresh. Round trip 1.2 bps vault at 250 USDG, under the 25 bps cap. `venues.py quote --rank-by depth --top 20 --min-depth 25000` ran clean in 86 s: 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117).
+
+Forecasts: 8 agent rows on the free horizons, all on-rule: f002820-f002823 Morpho c845da65 / 919a9b6b / 1efd13a2 / 0309c02d at 1440m (IRM advert 3.89 / 3.86 / 4.96 / 3.19%); f002824-f002825 Morpho aa586d26 1440m and 10080m at the 44.2% advert, util now 0.76, off the 100% pin; f002826 Steakhouse 10080m 4.08% (baseline t24h; live read 4.00%); f002827 Arcadia Senior 10080m 13.8%. That last one was worked from the 11:12 baseline's t24h before the live read showed t24h 7.59%, so it is the rule on a stale input, not on the quote; recorded and unrevisable.
+
+Opened `a00094`: Arcadia Senior 0xa5e1e1f9, 250 USDG, 10080m, gross 7.59% (the rule on the live quote's t24h, under t7d 51.7%), forecast net ~12.8 bps; exit sim of 500 USDG passed. It fills the 250 USDG a00090 freed. Morpho is at the 0.5 venue share (a00091, a00093) and Steakhouse holds a full market share (a00092), so Arcadia and Spark (3.77%, ~6 bps) were the only open slots; Arcadia nets more. Bankroll now fully booked, no idle row.
+
+Open: `a00091`, `a00092`, `a00093`, `a00094`.
