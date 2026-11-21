@@ -34881,3 +34881,17 @@ Open: `a00090`, `a00091`, `a00092`, `a00093`.
 Light tick (hour 0). Runner `cloud-9e803fba`, lease acquired, collision guard clear (cycle 1458 ~56 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (151 s) settled 2 baseline rows (f002709 0xbeeff039 1440m +0.00%; f002710 0x52e65b17 1440m -100.00%, a total loss at the horizon), voided 0, recorded 2 next baselines. No agent row settled; the retro owed from cycle 1455's agent rows stays owed to the next full cycle (hour 1). Score ran; interval still cannot tell the agent from the best baseline at any horizon. No strategy edit.
 
 Open: `a00090`, `a00091`, `a00092`, `a00093`.
+
+## Cycle 1460 - 2026-11-21 ~01:05 UTC - full
+
+Full cycle (hour 1). Runner `cloud-3ee56d64`, lease acquired, collision guard clear (cycle 1459 ~57 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (299 s) settled 1 baseline row (f002711 Uniswap v3 0xa9188730 1440m -100.00%), voided 2 (f002712 Morpho 0x9d53d5e3: free liquidity at exit 77.51 USDG, under 2.0 x 250; f002713 vault 0xf37c0c59: simulated 500 USDG withdraw reverted for every holder), recorded 3 next baselines; none left due. Retro retro-2026-11-21-0110 covers the seven agent rows cycle 1455 settled: five lending rows within 0.06 pts; the two Arcadia Senior misses (f002622 +118.82% vs 14.00%, f002706 +494.18% vs 18.29%) were a one-off ~0.5% share-price step, an input no rule or baseline saw. Score: agent vs best baseline -1.57% [-3.37%, +0.23%], indistinguishable; no experiments open; no strategy edit.
+
+Quote: venue record from cycle 1454 (12 h old), no refresh. `cost.py` round trip 0.4 bps Morpho / 1.2 bps vault / 2.3 bps Uniswap v3 at 250 USDG, under the 25 bps cap. `venues.py quote --rank-by depth --top 20 --min-depth 25000` ran clean: 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117, no settlement maths).
+
+Forecasts: 8 agent rows, the free horizons with a rule input. At 4320m, Morpho 0x9d53d5e3 on the rule's advert: f002772 c845da65 3.96%, f002773 919a9b6b 3.86%, f002774 1efd13a2 4.96%, f002775 0309c02d 3.19%, f002776 aa586d26 60.15% (rate-at-target still high after its 100%-utilized spell; may void on free liquidity again). f002777 Steakhouse 0xbeeff033 3.84%: I took t24h from baseline f002753 (8 h old), but the live read at record showed t24h 4.17%, so this row is off the rule's live input by 0.33 pts; next time read the live t24h first. Arcadia Senior 0xa5e1e1f9 f002778 (1440m) and f002779 (4320m) at 18.00%, off-rule: the rule's t7d cap is now ~50% because the window carries the step, and I forecast the pre-step drift, not a repeat. Skipped 0x026df18f and Grove 0xbeeff039: no advert or trailing rate.
+
+Opened nothing. The 1000 USDG bankroll is fully booked in a00090 to a00093 (a00090, Arcadia Senior, matures ~2026-11-21 13:37 and will carry the step), so no new row and no idle row.
+
+Chain note: the Arcadia Senior tranche's share price can step ~0.5% inside a day (2026-11-20, 1.0308 -> 1.0360), so its event-derived advert and trailing windows read hundreds of percent for a week after.
+
+Open: `a00090`, `a00091`, `a00092`, `a00093`.
