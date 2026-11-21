@@ -34895,3 +34895,9 @@ Opened nothing. The 1000 USDG bankroll is fully booked in a00090 to a00093 (a000
 Chain note: the Arcadia Senior tranche's share price can step ~0.5% inside a day (2026-11-20, 1.0308 -> 1.0360), so its event-derived advert and trailing windows read hundreds of percent for a week after.
 
 Open: `a00090`, `a00091`, `a00092`, `a00093`.
+
+## Cycle 1461 - 2026-11-21 ~02:10 UTC - light
+
+Light tick (hour 2). Runner `cloud-e5c97ebe`, lease acquired, collision guard clear (cycle 1460 ~39 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (309 s) settled 2 agent rows (f002636 0xde770c84 4320m realized +3.80%, err +0.04 pts; f002639 0x37788ff0 4320m realized +5.35%, err -0.44 pts), voided 0, recorded 0 next baselines. 4 due rows left past the budget (f002714 to f002717). Retro owed to the next full cycle (hour 7) for these agent rows. Score ran; interval still cannot tell the agent from the best baseline at any horizon. No strategy edit.
+
+Open: `a00090`, `a00091`, `a00092`, `a00093`.
