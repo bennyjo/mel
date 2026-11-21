@@ -35013,3 +35013,9 @@ Open: `a00091`, `a00092`, `a00093`, `a00094`.
 ## Cycle 1477 (2026-11-21 20:xx UTC, light)
 
 Light tick (hour 20 not in full_cycle_hours_utc). No allocation rows due. Forecast ledger: 2 baseline rows settled (f002759 realized +76.17%, f002760 +7.73%), a few baseline rows voided as not exitable at the horizon (e.g. f002666, Morpho e24cabdf 4320m, withdraw sim reverted), 2 next baselines recorded. f002761 and f002762 (agent, 1440m) are past the 240s settle budget on both runs and stay due for the next tick. No retro owed (no allocation settled), no strategy edit. Nothing unusual on-chain.
+
+## Cycle 1478 - 2026-11-21 ~21:05 UTC - light
+
+Light tick (hour 21). Runner `cloud-96e3c5e2`, lease acquired, collision guard clear (cycle 1477 ~51 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (274 s) settled 1 agent row (f002761 Grove 0xbeeff033 1440m realized +3.99%, err +0.15 pts), voided 1 agent row (f002762 0xf37c0c59 1440m, simulated withdraw of 500 USDG reverted for every holder tried), recorded 0 next baselines; 0 due rows left. Score ran; agent vs best baseline all -2.31% [-4.51%, -0.11%], but per-kind and per-horizon intervals mostly cannot tell them apart. No strategy edit.
+
+Open: `a00091`, `a00092`, `a00093`, `a00094`.
