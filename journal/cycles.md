@@ -34913,3 +34913,15 @@ Open: `a00090`, `a00091`, `a00092`, `a00093`.
 Light tick (hour 4). Runner `cloud-441add96`, lease acquired, collision guard clear (cycle 1462 ~55 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (154 s) settled 2 baseline rows (f002718 0x65dc90cd 1440m +3.55%; f002719 0x5f009e07 1440m -100.00%, a total loss at the horizon), voided 0, recorded 2 next baselines; none left due. No agent row settled; the retro owed from cycles 1455 and 1461 settled agent rows stays owed to the next full cycle (hour 7). Score ran; interval still cannot tell the agent from the best baseline at any horizon. No strategy edit.
 
 Open: `a00090`, `a00091`, `a00092`, `a00093`.
+
+## Cycle 1464 - 2026-11-21 ~07:10 UTC - full
+
+Full cycle (hour 7). Runner `cloud-e93dcf6f`, lease acquired, collision guard clear (cycle 1463 ~3 h old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: 0 of 108 open rows due; nothing settled, voided or recorded by `settle`. Retro retro-2026-11-21-0710 covers the two agent rows cycle 1461 settled (f002636 err +0.04 pts; f002639 err -0.44 pts, a thin t7d-only input). Score: agent vs best baseline -1.57% [-3.36%, +0.22%], indistinguishable; no experiments open; no strategy edit.
+
+Quote: venue record 18 h old, no refresh. `cost.py` round trip 0.4 bps Morpho / 1.2 bps vault / 2.3 bps Uniswap v3 at 250 USDG, under the 25 bps cap. `venues.py quote --rank-by depth --top 20 --min-depth 25000` ran clean: 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117, no settlement maths).
+
+Forecasts: 5 agent rows, the free horizons with a rule input. f002786 vault 0xde770c84 4320m 3.78% (t24h from a ~9 h old baseline; the live read at record showed 3.77%, so on-rule). f002787 vault 0x37788ff0 4320m 5.67%, from the latest baseline's t7d; the live read at record showed no t7d at all (no 1000 USDG event in the window now), so the rule on the live input returns nothing and this row rests on the older window. f002788 to f002790 vault 0x65dc90cd 1440/4320/10080m 2.63%, advert 3.09% x 0.85 haircut (no trailing rate). Skipped 0xd42174d3, 0xbeeff039 and 0x026df18f: no advert or trailing rate. All Morpho, Steakhouse, Arcadia Senior and 0xf37c0c59 horizons already hold live agent rows.
+
+Opened nothing. The 1000 USDG bankroll is fully booked in a00090 to a00093 (a00090, Arcadia Senior, matures ~13:37 today), so no new row and no idle row.
+
+Open: `a00090`, `a00091`, `a00092`, `a00093`.
