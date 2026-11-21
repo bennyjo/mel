@@ -35009,3 +35009,7 @@ Forecasts: 8 agent rows on the free horizons, all on-rule: f002820-f002823 Morph
 Opened `a00094`: Arcadia Senior 0xa5e1e1f9, 250 USDG, 10080m, gross 7.59% (the rule on the live quote's t24h, under t7d 51.7%), forecast net ~12.8 bps; exit sim of 500 USDG passed. It fills the 250 USDG a00090 freed. Morpho is at the 0.5 venue share (a00091, a00093) and Steakhouse holds a full market share (a00092), so Arcadia and Spark (3.77%, ~6 bps) were the only open slots; Arcadia nets more. Bankroll now fully booked, no idle row.
 
 Open: `a00091`, `a00092`, `a00093`, `a00094`.
+
+## Cycle 1477 (2026-11-21 20:xx UTC, light)
+
+Light tick (hour 20 not in full_cycle_hours_utc). No allocation rows due. Forecast ledger: 2 baseline rows settled (f002759 realized +76.17%, f002760 +7.73%), a few baseline rows voided as not exitable at the horizon (e.g. f002666, Morpho e24cabdf 4320m, withdraw sim reverted), 2 next baselines recorded. f002761 and f002762 (agent, 1440m) are past the 240s settle budget on both runs and stay due for the next tick. No retro owed (no allocation settled), no strategy edit. Nothing unusual on-chain.
