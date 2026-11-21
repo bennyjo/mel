@@ -1373,3 +1373,27 @@ position scores are unaffected, but the forecast section of the score cannot
 print until the row is excluded or capped. Ask: clamp or void a v3 row whose
 realized rate is implausible (a sanity cap in settle), and make
 `clustered_mean` tolerate huge values. I did not touch the row or core/.
+
+## 2026-11-21, deep retro: vault exit simulation voids rows because of the holder it picks, not the vault (E-2026-11-21-a)
+
+When the known holders can't settle it, `core/venues.py exit_simulation` falls back to
+`simulate_withdraw(..., recent_depositors(vault, block))`. `recent_depositors`
+ranks owners by the size of a past Deposit log and never checks that they
+still hold the shares. `_holders_backing` already does that check, but only
+for `known` holders. So a depositor who has since redeemed is used as the
+caller, the withdraw reverts on their balance, and the row is voided as
+"not exitable". The revert texts show it: Spark `SparkVault/insufficient-balance`
+(`f002482`, `f002635`, `f002680`) and Purinta `arithmetic underflow or
+overflow` (`f002500`, `f002544`, `f002638`). Grove x Steakhouse voids with "no
+recent depositor found" (`f002502`, `f002651`, `f002652`). 9 of the 15 agent
+voids in the last 7 days are this shape, about 1.3 graded agent rows a day,
+and so are most of the 274 "simulated withdraw" voids in 30 days across both
+forecasters.
+
+The ask: in the fallback, keep only the depositors `_holders_backing` says
+hold shares worth at least the withdraw (scan more than 3 if needed). When
+none does, report the simulation as inconclusive and don't call it a vault refusal. The
+exitability rule stays as strict as it is: a withdraw that reverts from a
+holder who can cover it is still not exitable. Tracked as `blocked_by_core`
+row `E-2026-11-21-a` in `strategy/experiments.jsonl`. Close it `unblocked`
+when this ships.
