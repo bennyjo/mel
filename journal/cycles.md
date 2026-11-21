@@ -34979,3 +34979,9 @@ Open: `a00091`, `a00092`, `a00093`.
 Light tick (hour 15). Runner `cloud-acfaec05`, lease acquired, collision guard clear (cycle 1471 ~53 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: two `settle` runs (248 s and 228 s) settled 0 rows, voided 2 baseline rows as not exitable at the horizon (f002463 0xf37c0c59 and f002466 0x026df18f, 10080m: simulated withdraw of 500 USDG reverted for every holder tried), recorded 2 next baselines. 11 due rows left for the next run (each venue read is slow on the public endpoint, so the 240 s budget clears about one row per run). No agent forecast row settled, no retro owed beyond a00090's from cycle 1471. Score ran; the forecast section still cannot tell the agent from the best baseline, so no strategy edit.
 
 Open: `a00091`, `a00092`, `a00093`.
+
+## Cycle 1473 - 2026-11-21 ~16:10 UTC - light
+
+Light tick (hour 16). Runner `cloud-f99e8e8e`, lease acquired, collision guard clear (cycle 1472 ~51 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (329 s) settled 4 agent rows (f002477 Morpho 0x9d53d5e3 10080m realized +205.33%, err +125.33%; f002742 0x9d53d5e3 1440m realized +149.46%, err -477.54%; f002480 Grove 0xbeeff033 10080m +3.85%, err -0.07%; f002485 Arcadia Senior 0xa5e1e1f9 10080m +49.56%, err +36.86%), voided 0, recorded 0 next baselines. 7 due rows left past the budget (f002735-f002741). Agent rows settled, so the next full cycle owes their retro paragraph. Score ran; interval still cannot tell the agent from the best baseline at any horizon. No strategy edit.
+
+Open: `a00091`, `a00092`, `a00093`.
