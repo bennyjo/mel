@@ -35097,3 +35097,17 @@ Open: `a00091`, `a00092`, `a00093`, `a00094`.
 Light tick (hour 8). Runner `cloud-4ccea510`, lease acquired, collision guard clear (cycle 1488 ~51 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (166 s) settled 1 agent row (f002788 0x65dc90cd 1440m realized +0.11%, agent err -2.52 pts), voided 0, recorded 0 next baselines. Score ran; agent vs best baseline all -2.35% [-4.54%, -0.16%] (n 680). Retro owed to the next full cycle. No strategy edit.
 
 Open: `a00091`, `a00092`, `a00093`, `a00094`.
+
+## Cycle 1490 - 2026-11-22 ~13:03 UTC - full
+
+Full cycle (hour 13). Runner `cloud-69b3e888`, lease acquired, collision guard clear (newest `main` commit was the 08:42 deep retro; cycles for hours 9-12 did not run). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due at 13:03; a00091 and a00092 matured at 13:23/13:27 and `settle.py run` settled both at 13:28: a00091 Morpho 1efd13a2 realized 4.73% net vs 4.73% forecast (0.2216 USDG); a00092 Steakhouse vault realized 3.17% net vs 3.09% forecast (0.1496 USDG). Forecast ledger: 0 of 110 open rows due; nothing settled, voided or recorded by `settle`. Score: deployed net_delta +11.18% (n 43); agent vs best baseline all -2.35% [-4.54%, -0.16%] (n 680). Retro retro-2026-11-22-1340 covers a00091, a00092 and f002788. Experiments: 0 open, E-2026-11-21-a still blocked by core. No strategy edit.
+
+Quote: venue record ~48 h old, no refresh. Round trip 0.4 bps Morpho / 1.2 bps vault / 2.3 bps pool at 250 USDG, under the 25 bps cap. `venues.py quote --rank-by depth --top 20 --min-depth 25000` ran clean: 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117).
+
+Forecasts: 1 agent row, the rule. f002852 vault 0x65dc90cd 1440m at 0.095% (t24h from baseline f002847; share price flat). Every other agent horizon was live, except 0xbeeff039, 0x026df18f and Flock 0xd42174d3 (no readable rate), the blocked 0xf37c0c59, and the pools (the rule forecasts no pool).
+
+Allocation: a00095 Morpho 1efd13a2, 250 USDG, 10080m, gross 4.96% (IRM advert), ~8.9 bps net; a00096 Steakhouse vault 0xbeeff033, 250 USDG, 10080m, gross 4.08% (t24h, baseline f002816), ~6.5 bps net. Both re-enter the venues that just settled on-forecast. Morpho contract share 0.5 with a00093, at the cap. Bankroll fully booked (4 x 250), no idle row.
+
+Process note: a wait-for-maturity loop overran the 600 s tool timeout and was moved to the background by the harness; it finished on its own (the settle above is its output) and nothing ran concurrently with it.
+
+Open: `a00093`, `a00094`, `a00095`, `a00096`.
