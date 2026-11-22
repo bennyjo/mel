@@ -35111,3 +35111,9 @@ Allocation: a00095 Morpho 1efd13a2, 250 USDG, 10080m, gross 4.96% (IRM advert), 
 Process note: a wait-for-maturity loop overran the 600 s tool timeout and was moved to the background by the harness; it finished on its own (the settle above is its output) and nothing ran concurrently with it.
 
 Open: `a00093`, `a00094`, `a00095`, `a00096`.
+
+## Cycle 1491 - 2026-11-22 ~14:10 UTC - light
+
+Light tick (hour 14). Runner `cloud-f8cb95f6`, lease acquired, collision guard clear (cycle 1490 ~28 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (310 s) settled 1 agent row (f002520 0x9d53d5e3 10080m realized +3.96%, agent err +0.25 pts), voided 2 (f002693 0xf37c0c59 and f002696 0x026df18f 4320m, simulated withdraw reverted for every holder), recorded 0 next baselines. 3 due rows left past the time budget (f002802, f002805, f002806); the next tick picks them up. Score ran; agent vs best baseline all -2.35% [-4.53%, -0.16%] (n 681). Retro owed to the next full cycle. No strategy edit.
+
+Open: `a00093`, `a00094`, `a00095`, `a00096`.
