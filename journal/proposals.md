@@ -1397,3 +1397,12 @@ exitability rule stays as strict as it is: a withdraw that reverts from a
 holder who can cover it is still not exitable. Tracked as `blocked_by_core`
 row `E-2026-11-21-a` in `strategy/experiments.jsonl`. Close it `unblocked`
 when this ships.
+
+## 2026-11-22, deep retro: add `graded_rows_per_day` to the experiments metric catalog
+
+`core/experiments.py propose` offers `agent_rows_per_day` (rows recorded) but
+nothing for rows that actually settle. Voids are the gap: 19 of 86 agent rows
+ended in the last 7 days were voided (9.6 graded/day against 13.0 recorded).
+Any strategy lever aimed at voids (venue filters, sizing to free liquidity)
+cannot be graded today. Ask: a `graded_rows_per_day` metric, agent forecaster,
+counted by settle time, `status == settled`. `E-2026-11-21-a` still stands.
