@@ -35079,3 +35079,15 @@ Open: `a00091`, `a00092`, `a00093`, `a00094`.
 Light tick (hour 6). Runner `cloud-e63493ce`, lease acquired. Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (154 s) settled 2 baseline rows (f002784 0x65dc90cd 1440m realized +0.10%; f002785 0x5f009e07 1440m a price-moving read, not a rate), voided 0, recorded 2 next baselines; 0 agent rows settled. Score ran; 1440m agent error smaller than best baseline (-2.99% [-5.75%, -0.22%]), other horizons cannot tell them apart. Retro still owed to the next full cycle. No strategy edit.
 
 Open: `a00091`, `a00092`, `a00093`, `a00094`.
+
+## Cycle 1488 - 2026-11-22 ~07:05 UTC - full
+
+Full cycle (hour 7). Runner `cloud-5561169d`, lease acquired, collision guard clear (cycle 1487 ~57 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: 0 of 108 open rows due; nothing settled, voided or recorded by `settle`. Score: agent vs best baseline all -2.35% [-4.54%, -0.16%] (n 679); per-kind intervals cannot tell them apart. Retro retro-2026-11-22-0710 covers f002778 (Arcadia Senior 1d, realized +9.11% vs 18.0% off-rule forecast; closer than every baseline). Experiments: 0 open, E-2026-11-21-a still blocked by core. No strategy edit.
+
+Quote: venue record ~42 h old, no refresh. Round trip 0.4 bps Morpho / 1.2 bps vault / 2.2 bps pool at 250 USDG, under the 25 bps cap. `venues.py quote --rank-by depth --top 20 --min-depth 25000` ran clean in 85 s: 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117).
+
+Forecasts: 3 agent rows, all the rule. f002849 Arcadia Senior 0xa5e1e1f9 1440m at 7.71% (t24h from baseline f002829, 11 h old; the live read at record showed t24h 10.49%, so the row sits about 2.8 points under the rule on a live input, unrevisable). f002850 Morpho 919a9b6b 10080m at 3.86% and f002851 Morpho 1efd13a2 10080m at 4.96%, both the IRM advert at util 0.90. Every other agent horizon was live, except Grove x Steakhouse 0xbeeff039 and 0x026df18f (no readable rate), the blocked 0xf37c0c59 and Flock 0xd42174d3, and the uniswap pools (the rule forecasts no pool).
+
+Allocation: none, and no idle row. The 1000 USDG bankroll is fully booked in a00091-a00094 (4 x 250); a00091 and a00092 mature in about 6 h.
+
+Open: `a00091`, `a00092`, `a00093`, `a00094`.
