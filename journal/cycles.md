@@ -35147,3 +35147,9 @@ Forecasts: 2 agent rows, both the rule. f002859 Morpho 0xc845da65 10080m at 3.85
 Allocation: none. Bankroll fully booked (a00093-a00096, 4 x 250 USDG); a dry-run idle row was refused for exceeding `sim_bankroll_usdg`. Next maturity a00093 in ~1.8 d.
 
 Open: `a00093`, `a00094`, `a00095`, `a00096`.
+
+## Cycle 1496 - 2026-11-22 ~20:05 UTC - light
+
+Light tick (hour 20). Runner `cloud-048c207c`, lease acquired, collision guard clear (cycle 1495 ~50 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: `settle` (225 s) settled 9 rows on 0x9d53d5e3 (5 agent, 4 baseline; agent errors -0.01 to -0.02 pts except f002824 at -2.85 pts on a +41.35% realized day), voided 0, recorded 3 next baselines. Score ran. Retro still owed to the next full cycle. No strategy edit.
+
+Open: `a00093`, `a00094`, `a00095`, `a00096`.
