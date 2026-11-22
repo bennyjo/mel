@@ -35037,3 +35037,15 @@ Open: `a00091`, `a00092`, `a00093`, `a00094`.
 Light tick (hour 0). Runner `cloud-132f0efe`, lease acquired, collision guard clear (cycle 1480 ~61 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (146 s) settled 1 baseline row (f002767 0xbeeff039 1440m realized +0.00%), voided 0, recorded 1 next baseline; 0 agent rows settled. Score ran; agent vs best baseline all -2.31% [-4.51%, -0.11%], per-kind intervals cannot tell them apart. No strategy edit.
 
 Open: `a00091`, `a00092`, `a00093`, `a00094`.
+
+## Cycle 1482 - 2026-11-22 ~01:05 UTC - full
+
+Full cycle (hour 1). Runner `cloud-ff536b35`, lease acquired, collision guard clear (cycle 1481 ~57 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (98 s) settled 3 baseline rows (f002768 uniswap_v3 0x52e65b17 1440m and f002769 0xa9188730 1440m, realized +74904% and +81594%, price moves on an LP read, not rates; f002770 Morpho 0x9d53d5e3 1440m +4.69%), voided 0, recorded 3 next baselines; 0 agent rows settled. Retro retro-2026-11-22-0110 covers the one agent row light tick 1478 settled (f002761 Grove, +0.15 pts). Score: agent vs best baseline all -2.31% [-4.51%, -0.11%]; per-kind intervals cannot tell them apart. Experiments: 0 open, E-2026-11-21-a still blocked by core. No strategy edit.
+
+Quote: venue record 36 h old, no refresh. Round trip 1.2 bps vault / 0.4 bps Morpho at 250 USDG, under the 25 bps cap. `venues.py quote --rank-by depth --top 20 --min-depth 25000` ran clean in 84 s: 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117).
+
+Forecasts: 1 agent row. f002838 Steakhouse 0xbeeff033 1440m at 4.00%, the rule (t24h) worked from the 19:18 baseline's t24h 3.996%; the live read at record time showed t24h 3.80%, so the row is the rule on a 6 h old input, about 0.2 points high, and unrevisable. Every other agent horizon was live, except 0x026df18f 1440m and Grove x Steakhouse 0xbeeff039 1440m/4320m, which have no readable rate (no Deposit or Withdraw above 1000 USDG in 6M blocks), so the rule gives nothing, and the blocked Arcadia debt token 0xf37c0c59 1440m.
+
+Allocation: none, and no idle row. The 1000 USDG bankroll is fully booked in a00091-a00094 (4 x 250); a00091 and a00092 mature in about 12 h. Live boards are unchanged in shape: Morpho majors 3.2-5.0% at about 0.90 util, aa586d26 44.4% at 0.76 util, Arcadia Senior advert 43.8% (event window).
+
+Open: `a00091`, `a00092`, `a00093`, `a00094`.
