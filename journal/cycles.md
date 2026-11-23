@@ -35249,3 +35249,17 @@ Open: `a00093`, `a00094`, `a00095`, `a00096`.
 Light tick (hour 12). Runner `cloud-644c60f0`, lease acquired, collision guard clear (newest `main` commit is cycle 1509, ~1 h old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: `settle` (150 s) settled 1 baseline row (f002728 0x9d53d5e3 4320m realized +3.88%), voided 1 (f002727 0x9d53d5e3 4320m, not exitable at the horizon: free liquidity 432.5 USDG under 2.0 x 250), 0 agent, recorded 2 next baselines. Score ran. No retro owed (no allocation or agent row settled). No strategy edit.
 
 Open: `a00093`, `a00094`, `a00095`, `a00096`.
+
+## Cycle 1511 - 2026-11-23 ~13:05 UTC - full
+
+Full cycle (hour 13). Runner `cloud-2960d9a5`, lease acquired, collision guard clear (cycle 1510 ~1 h old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: two `settle` runs (354 s, 219 s) settled 4 baseline rows (f002729 0x9d53d5e3 4320m realized +78.39%, advert -543.99%; f002730 0x9d53d5e3 4320m +4.06%; f002731 Arcadia Senior 0xa5e1e1f9 4320m +93.08%; f002732 Steakhouse 0xbeeff033 4320m +3.92%), 0 agent, voided 0, recorded 4 next baselines. 3 rows left for the next run (f002733, f002734, f002852). Score: deployed net_delta +11.18% (n 43), unchanged. Retro retro-2026-11-23-1310 covers f002849 (agent, Arcadia Senior 1 d, +2.12 pts under on the rate, the lumpy share price). Experiments: 0 open. No strategy edit.
+
+Quote: venue record ~72 h old, no refresh yet (refresh due by the next full cycle). Round trip 1.9 bps Morpho / 6.1 bps vault / 7.2 bps pool, under the 25 bps cap. `venues.py quote --rank-by depth --top 20 --min-depth 25000` ran clean: 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117, no settlement maths).
+
+Forecasts: 1 agent row, the rule. f002898 Arcadia Senior 0xa5e1e1f9 1440m 42.49%: no trailing-24h read this time (no share-price event in the day), so the rule fell to t7d. Every other Morpho and deep-vault agent horizon was still live. Skipped as before: 0xf37c0c59 (withdraw simulation reverts), and 0xbeeff039, 0x026df18f, Purinta 0x37788ff0 and Flock 0xd42174d3 (no readable rate).
+
+Allocation: none. Bankroll fully booked (a00093-a00096, 4 x 250 USDG). Next maturity is a00093 in ~1.0 d.
+
+Chain: Arcadia Senior's share price had no event in 24 h at 13:11, while its advert read 82.8%; its 3 d baseline realized 93% on a lump. The lumps are the whole rate on this vault.
+
+Open: `a00093`, `a00094`, `a00095`, `a00096`.
