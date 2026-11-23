@@ -35275,3 +35275,9 @@ Open: `a00093`, `a00094`, `a00095`, `a00096`.
 Light tick (hour 15). Runner `cloud-93af6cc7`, lease acquired, collision guard clear (cycle 1512 ~45 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: two `settle` runs (408 s, 316 s) settled 0 rows, voided 1 (f002746 0xf37c0c59 4320m, not exitable: simulated withdraw of 500 USDG reverted for every holder), 0 agent, recorded 1 next baseline. f002733 (0xd42174d3) and f002747 (0x026df18f) retried: exit simulation inconclusive, no usable depositor. 2 rows left for the next run (f002852 agent, f002853). Score: deployed net_delta +11.18% (n 43), unchanged. No retro owed. No strategy edit.
 
 Open: `a00093`, `a00094`, `a00095`, `a00096`.
+
+## Cycle 1514 - 2026-11-23 ~18:05 UTC - light
+
+Light tick (hour 18). Runner `cloud-04b7df19`, lease acquired, collision guard clear (cycle 1513 ~3 h old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: two `settle` runs (298 s, 355 s) retried f002733 (0xd42174d3, exit simulation inconclusive, no recent depositor) and voided it on the second run; 0 agent rows settled, 1 next baseline recorded. 12 due rows left for the next run (f002747-f002752, f002754, f002852 agent, f002853-f002856); the public endpoint is slow and the 240 s budget covers about one venue per run. Score: deployed net_delta +11.18% (n 43), unchanged. No retro owed. No strategy edit.
+
+Open: `a00093`, `a00094`, `a00095`, `a00096`.
