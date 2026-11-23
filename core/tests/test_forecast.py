@@ -438,6 +438,26 @@ class TestVoid(Case):
         self.assertEqual(action, "void")
         self.assertIn("did not answer", reason)
 
+    def test_an_inconclusive_exit_simulation_is_retried_not_voided_as_unexitable(self):
+        """E-2026-11-21-a: no depositor that still holds the shares could be
+        asked. That is not the vault refusing, so the row is retried like any
+        unreadable exit, and only past the grace is it void, as unsettleable."""
+        self.baselines(VAULT_OK)
+        row = self.rows()[0]
+        sim = {"ok": None, "assets": "500000000", "holder": None, "errors": [],
+               "note": "inconclusive: no recent depositor found to simulate with"}
+        unknown = exit_quote(VAULT_OK, DAY + 1,
+                             dict(VAULT_OK["settle_state"], exit_simulation=sim))
+        soon = int(VAULT_OK["ts"]) + (DAY + 60) * 60
+        action, reason = forecast.settle_against(row, unknown, soon)
+        self.assertEqual(action, "retry")
+        self.assertIn("inconclusive", reason)
+        late = int(VAULT_OK["ts"]) + (DAY + forecast.SETTLE_GRACE_MIN + 1) * 60
+        action, reason = forecast.settle_against(row, unknown, late)
+        self.assertEqual(action, "void")
+        self.assertNotIn("not exitable", reason)
+        self.assertIn("inconclusive", reason)
+
     def test_a_morpho_market_drained_at_exit_is_void(self):
         self.baselines(MORPHO_QUOTE, morpho_trailing())
         row = [r for r in self.rows() if r["horizon_min"] == DAY][0]

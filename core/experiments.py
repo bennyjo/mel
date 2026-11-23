@@ -551,6 +551,19 @@ def _per_day(items: list[Item], j: Journals, param: str | None, ctx: Context) ->
                   detail=f"{len(items)} rows over {ctx.days:.2f} days")
 
 
+# graded_rows_per_day ----------------------------------------------------------
+
+def _graded_rows_items(j: Journals, param: str | None) -> list[Item]:
+    """Agent rows that settled, placed at their settle time: a void is the
+    gap between this and agent_rows_per_day, and it is known only then."""
+    out = []
+    for r in j.forecasts:
+        ts = _ts(r, "settled_ts")
+        if r.get("forecaster") == "agent" and r.get("status") == "settled" and ts is not None:
+            out.append(Item(ts, ts, r))
+    return out
+
+
 # agent_vs_best_mae:<kind> -----------------------------------------------------
 
 def _agent_items(j: Journals, param: str | None) -> list[Item]:
@@ -684,6 +697,9 @@ def _cycle_seconds(items: list[Item], j: Journals, param: str | None, ctx: Conte
 CATALOG: dict[str, Metric] = {
     "agent_rows_per_day": Metric(
         "agent forecast rows recorded per day", ("days",), _agent_rows_items, _per_day),
+    "graded_rows_per_day": Metric(
+        "agent forecast rows settled (not void) per day, by settle time", ("days",),
+        _graded_rows_items, _per_day),
     "agent_vs_best_mae": Metric(
         "mean |agent error| - |best baseline error| on settled agent rows, "
         "negative is the agent closer", ("days", "rows"), _agent_items, _vs_best,

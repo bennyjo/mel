@@ -878,7 +878,7 @@ def settle_against(row: dict, quote: dict | None, now_ts: float | None = None) -
     if kind in ledger.LIQUIDITY_CHECKED_KINDS:
         free = ledger.free_liquidity(kind, exit_state)
         if free is None:
-            return unreadable("the exit state lacks the fields free liquidity is read from")
+            return unreadable(f"exit state: {ledger.unverifiable_why(exit_state)}")
         multiple = Decimal(str(_cfg()["min_free_liquidity_multiple"]))
         need = Decimal(row["size_usdg"]) * multiple
         if free < need:

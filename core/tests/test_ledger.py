@@ -193,6 +193,18 @@ class TestCaps(LedgerCase):
                                                        "errors": ["0x1234567890: {'code': 3}"]}})
         self.refuses("simulated withdraw of 500.000000 USDG reverted", quote=stuck)
 
+    def test_a_vault_whose_simulation_is_inconclusive_is_refused_whatever_it_holds(self):
+        """No holder with the shares to ask proves nothing either way, so the
+        entry is refused as unverifiable; its idle USDG does not stand in."""
+        unknown = dict(QUOTE, kind="erc4626_usdg_vault", market_id=None,
+                       settle_state={"share_price": "1000000", "total_assets": "88619118751",
+                                     "idle_assets": "9826000000",
+                                     "exit_simulation": {"ok": None, "assets": "500000000",
+                                                         "holder": None, "errors": [],
+                                                         "note": "inconclusive: no recent "
+                                                                 "depositor found"}})
+        self.refuses("exit simulation was inconclusive", quote=unknown)
+
     def test_a_vault_with_no_share_price_is_refused(self):
         blind = dict(QUOTE, kind="erc4626_usdg_vault", market_id=None,
                      settle_state={"share_price": "None", "total_assets": "71311830000",

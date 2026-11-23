@@ -333,9 +333,9 @@ def realized_gross(row: dict, exit_state: dict, exit_ts: int) -> dict:
         need = _cfg()["min_free_liquidity_multiple"]
         size_usdg = ledger._dec(row["size_usdg"])
         if free is None:
-            raise SettleError(f"{row['id']}: exit state lacks the fields free "
-                              "liquidity is read from, so a withdraw cannot be "
-                              "shown to succeed")
+            raise SettleError(f"{row['id']}: exit state: "
+                              f"{ledger.unverifiable_why(exit_state)}, so a withdraw "
+                              "cannot be shown to succeed")
         if free < size_usdg * ledger._dec(need):
             sim = exit_state.get("exit_simulation")
             why = (f"a simulated withdraw of {ledger.free_liquidity_amount(sim)} USDG "
