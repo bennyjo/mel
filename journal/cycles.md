@@ -35213,3 +35213,15 @@ Open: `a00093`, `a00094`, `a00095`, `a00096`.
 Light tick (hour 6). Runner `cloud-681cd280`, lease acquired, collision guard clear (cycle 1504 ~1 h old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: `settle` (353 s wall, 240 s budget) settled 1 baseline row (f002845 0x9d53d5e3 1440m realized +0.01%), voided 2 baseline rows (f002844 0x9d53d5e3: free liquidity at exit 10.0 USDG under 2.0 x 250; f002846 0x925f92f0: simulated withdraw of 500 USDG reverted for every holder tried), recorded 3 next baselines. 1 row left for the next run (f002847). Score ran. Retro still owed to the next full cycle. No strategy edit.
 
 Open: `a00093`, `a00094`, `a00095`, `a00096`.
+
+## Cycle 1506 - 2026-11-23 ~07:05 UTC - full
+
+Full cycle (hour 7). Runner `cloud-70d9c8b2`, lease acquired, collision guard clear (cycle 1505 ~55 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: `settle` (196 s) settled 2 baseline rows (f002847 0x65dc90cd 1440m realized +0.10%; f002848 0x5f009e07 1440m realized +139152.73%, a price-driven venue), 0 agent, voided 0, recorded 2 next baselines. Score: deployed net_delta +11.18% (n 43). Retro retro-2026-11-23-0710 covers f002838 (agent, 0xbeeff033 1 d, -0.22 pts on the rate). Experiments: 0 open, E-2026-11-21-a still blocked by core. No strategy edit.
+
+Quote: venue record ~66 h old, no refresh. Round trip 1.9 bps Morpho / 6.2 bps vault / 7.2 bps pool, under the 25 bps cap. `venues.py quote --rank-by depth --top 20 --min-depth 25000` ran clean (87 s): 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117, no settlement maths).
+
+Forecasts: 1 agent row, the rule. f002887 Steakhouse 0xbeeff033 1440m 3.75% (trailing 24h). Every other Morpho and deep-vault agent horizon was still live from cycles 1500 and earlier. Skipped as before: 0xf37c0c59 (its withdraw simulation reverts, its baseline rows void), and 0xbeeff039, 0x026df18f and Purinta 0x37788ff0 (no readable rate).
+
+Allocation: none. Bankroll fully booked (a00093-a00096, 4 x 250 USDG). A dry-run 1 USDG idle row was refused for exceeding `sim_bankroll_usdg`. Next maturity is a00093 in ~1.3 d.
+
+Open: `a00093`, `a00094`, `a00095`, `a00096`.
