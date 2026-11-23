@@ -35171,3 +35171,15 @@ Open: `a00093`, `a00094`, `a00095`, `a00096`.
 Light tick (hour 0). Runner `cloud-8567ad36`, lease acquired, collision guard clear (cycle 1498 ~1 h old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: `settle` (288 s) settled 2 baseline rows (f002832 Spark 0xde770c84 1440m realized +3.80%; f002833 Purinta 0x37788ff0 1440m realized +3.96%), voided 0, recorded 2 next baselines. Score ran. Retro still owed to the next full cycle. No strategy edit.
 
 Open: `a00093`, `a00094`, `a00095`, `a00096`.
+
+## Cycle 1500 - 2026-11-23 ~01:05 UTC - full
+
+Full cycle (hour 1). Runner `cloud-30c6bf6b`, lease acquired, collision guard clear (cycle 1499 ~55 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (218 s) settled 4 baseline rows (f002834 0xbeeff039 1440m realized +0.00%; f002837 0x9d53d5e3 1440m realized +3.23%; f002835 pool 0x52e65b17 and f002836 pool 0xa9188730 realized +2878% / +5048%, price-driven pools), 0 agent, voided 0, recorded 4 next baselines. Score: deployed net_delta +11.18% (n 43); agent vs best baseline all -2.32% [-4.49%, -0.16%] (n 688). Retro retro-2026-11-23-0110 covers the six agent rows settled in cycle 1496 (no allocation settled); f002824 Morpho 0xaa586d26 missed -2.85 pts as the IRM spot kept drifting down after its 100% pin. Experiments: 0 open, E-2026-11-21-a still blocked by core. No strategy edit.
+
+Quote: venue record ~60 h old, no refresh. Round trip 1.9 bps Morpho / 6.1 bps vault / 7.2 bps pool at 50 USDG, under the 25 bps cap. `venues.py quote --rank-by depth --top 20 --min-depth 25000` ran clean (125 s): 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117).
+
+Forecasts: 6 agent rows, all the rule (Morpho IRM spot). f002873 0xc845da65 1440m 3.854%; f002874 0x919a9b6b 1440m 3.864%; f002875 0x1efd13a2 1440m 4.958%; f002876 / f002877 0x0309c02d 1440m and 10080m 3.186%; f002878 0xaa586d26 1440m 42.607% (util 0.759; t7d 209% is the pinned week). A first attempt passed percents instead of fractions and `forecast.py record` refused every row (extreme line / out of range): nothing was written by it. Every other agent horizon was live, except 0xbeeff039, 0x026df18f, Flock 0xd42174d3 and Purinta 0x37788ff0 (no readable rate), the blocked 0xf37c0c59, and the pools.
+
+Allocation: none. Bankroll fully booked (a00093-a00096, 4 x 250 USDG); a dry-run 1 USDG idle row was refused for exceeding `sim_bankroll_usdg`. Next maturity a00093 in ~1.5 d.
+
+Open: `a00093`, `a00094`, `a00095`, `a00096`.
