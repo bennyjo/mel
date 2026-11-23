@@ -35301,3 +35301,9 @@ Open: `a00093`, `a00094`, `a00095`, `a00096`.
 Light tick (hour 20). Runner `cloud-fdda910f`, lease acquired, collision guard clear (cycle 1515 ~38 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: a plain `settle` run (283 s) voided f002748 (0x9d53d5e3 4320m, not exitable: free liquidity 10.0 USDG under 2.0 x 250), retried f002747 (0x026df18f, exit simulation inconclusive), recorded 1 next baseline. `settle --id f002860` then settled the agent row: 0xde770c84 1 d, realized +3.81%, agent error +0.03 pts (advert +0.07, t24h +0.03, t7d +0.01, haircut +0.63). 1 agent settled, 1 voided. 13 baseline rows still due (f002749-f002752, f002754, f002758, f002853-f002858, f002861). Score: deployed net_delta +11.18% (n 43), unchanged. Retro for f002860 owed to the next full cycle. No strategy edit.
 
 Open: `a00093`, `a00094`, `a00095`, `a00096`.
+
+## Cycle 1517 - 2026-11-23 ~21:05 UTC - light
+
+Light tick (hour 21). Runner `cloud-b21d6bf6`, lease acquired, collision guard clear (cycle 1516 ~50 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: two `settle` runs (258 s, 225 s). The first voided f002747 (0x026df18f, exit simulation inconclusive: no recent depositor holds 500 USDG of shares); the second settled agent rows f002749 (realized +0.01%) and f002750 (realized +4.15%), against 1 and 2 next baselines recorded. 14 due rows left for the next tick. Score read, nothing to move in `strategy/`.
+
+Open: `a00093`, `a00094`, `a00095`, `a00096`.
