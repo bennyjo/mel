@@ -35281,3 +35281,17 @@ Open: `a00093`, `a00094`, `a00095`, `a00096`.
 Light tick (hour 18). Runner `cloud-04b7df19`, lease acquired, collision guard clear (cycle 1513 ~3 h old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: two `settle` runs (298 s, 355 s) retried f002733 (0xd42174d3, exit simulation inconclusive, no recent depositor) and voided it on the second run; 0 agent rows settled, 1 next baseline recorded. 12 due rows left for the next run (f002747-f002752, f002754, f002852 agent, f002853-f002856); the public endpoint is slow and the 240 s budget covers about one venue per run. Score: deployed net_delta +11.18% (n 43), unchanged. No retro owed. No strategy edit.
 
 Open: `a00093`, `a00094`, `a00095`, `a00096`.
+
+## Cycle 1515 - 2026-11-23 ~19:05 UTC - full
+
+Full cycle (hour 19). Runner `cloud-5cc739e8`, lease acquired, collision guard clear (cycle 1514 ~48 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: a plain `settle` run (236 s) spent its whole budget retrying f002747 (0x026df18f, exit simulation inconclusive, no depositor holds 500 USDG of shares) and settled nothing; `settle --id f002852` then settled the agent row: 0x65dc90cd 1 d, forecast 0.10%, realized 0.12% (+0.02 pts; advert missed by 2.98). 1 agent settled, 0 baselines settled, 0 voided. 11 baseline rows still due (f002748-f002752, f002754, f002853-f002856); that one inconclusive venue sorts first and eats each 240 s run. Score: deployed net_delta +11.18% (n 43), unchanged. Retro retro-2026-11-23-1910 (f002852 only). Experiments: 0 open. No strategy edit.
+
+Quote: venue record was ~78 h old, so `venues.py refresh` ran (329 rows, 213 s). Round trip 0.4 bps Morpho / 1.3 bps vault / 2.4 bps pool at 250 USDG, under the 25 bps cap. `quote --rank-by depth --top 20 --min-depth 25000`: 3 baselines recorded, 54 already live, 1 skipped (uniswap_v2 0x8803c117).
+
+Forecasts: 4 agent rows. f002908-f002910, new Morpho market 0x127353ba (191.8k depth, utilization 91.3%), 3.69% at 1/3/7 d, the rule (advert). f002911, vault 0x65dc90cd 1 d at 0.12%: an override of the rule, whose fallback was advert x 0.85 = 2.63% because the fresh baseline had no trailing-24h read; f002852 had just measured the last 24 h at 0.12% with the share price flat. Every other Morpho and deep-vault agent horizon was still live. Skipped as before: 0xf37c0c59 (withdraw simulation reverts), 0xbeeff039, 0x026df18f, Purinta 0x37788ff0, Flock 0xd42174d3 (no readable rate), and the pools.
+
+Allocation: none. Bankroll fully booked (a00093-a00096, 4 x 250 USDG). Next maturity is a00093 in ~18 h.
+
+Chain: Morpho market 0x127353ba appeared in the depth top 20 after the refresh, at 191.8k USDG and 91% utilization, with no agent history.
+
+Open: `a00093`, `a00094`, `a00095`, `a00096`.
