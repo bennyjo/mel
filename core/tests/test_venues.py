@@ -61,8 +61,10 @@ class FakeVault:
     def __init__(self, idle: int, shares: dict[str, int], depositors: list[str]):
         self.idle, self.shares, self.depositors = idle, shares, depositors
         self.scans = 0
+        self.callers: list[str] = []
 
     def eth_call(self, to, data, block="latest", from_=None):
+        self.callers.append(from_)
         assets = abi.decode_uint("0x" + data[10:], 0)
         if self.shares.get(from_, 0) // 10 < assets:
             raise rpc.RpcError("eth_call[...]: {'data': '0xe450d38c'}")
@@ -74,9 +76,9 @@ class FakeVault:
         return ["0x" + abi.encode_uint(self.shares.get("0x" + data[-40:], 0)).hex()
                 for _to, data in calls]
 
-    def recent_depositors(self, vault, head):
+    def recent_depositors(self, vault, head, limit=3):
         self.scans += 1
-        return self.depositors
+        return self.depositors[:limit]
 
     def simulate(self, assets: int, known: list[str], totals: dict | None = TOTALS) -> dict:
         with mock.patch.object(rpc, "eth_call", self.eth_call), \
@@ -88,7 +90,8 @@ class FakeVault:
 RICH = "0x" + "1" * 40      # shares worth 3,000 USDG raw
 POOR = "0x" + "2" * 40      # shares worth 100 USDG raw
 OTHER = "0x" + "3" * 40     # a depositor only the scan finds, 5,000 USDG raw
-SHARES = {RICH: 30_000, POOR: 1_000, OTHER: 50_000}
+GONE = "0x" + "4" * 40      # deposited the most, has since redeemed every share
+SHARES = {RICH: 30_000, POOR: 1_000, OTHER: 50_000, GONE: 0}
 
 
 class TestExitSimulation(unittest.TestCase):
@@ -117,19 +120,55 @@ class TestExitSimulation(unittest.TestCase):
         self.assertEqual(sim["holder"], OTHER)
         self.assertEqual(vault.scans, 1)
 
-    def test_unpriced_shares_prove_nothing_so_the_scan_runs(self):
+    def test_unpriced_shares_prove_nothing_so_the_scan_is_inconclusive(self):
         vault = FakeVault(idle=0, shares=SHARES, depositors=[OTHER])
         sim = vault.simulate(500, [RICH], totals={"total_assets": None, "total_shares": None})
-        self.assertFalse(sim["ok"])
+        self.assertIsNone(sim["ok"])
         self.assertEqual(vault.scans, 1)
-        self.assertNotIn("the revert is the vault's", sim["note"])
+        self.assertIn("totals were not read", sim["note"])
 
-    def test_with_no_known_holder_the_scan_decides_as_before(self):
-        vault = FakeVault(idle=0, shares=SHARES, depositors=[OTHER, POOR])
+    def test_a_depositor_who_has_redeemed_is_skipped(self):
+        """E-2026-11-21-a: the largest recent depositor has since redeemed.
+        Asked to withdraw, it reverts on its own balance (Spark
+        `insufficient-balance`), which says nothing about the vault. The
+        depositor that still holds the shares decides."""
+        vault = FakeVault(idle=10_000, shares=SHARES, depositors=[GONE, POOR, OTHER])
         sim = vault.simulate(500, [])
-        self.assertFalse(sim["ok"])
-        self.assertEqual(vault.scans, 1)
-        self.assertEqual(len(sim["errors"]), 2)
+        self.assertTrue(sim["ok"])
+        self.assertEqual(sim["holder"], OTHER)
+        self.assertEqual(vault.callers, [OTHER])
+
+    def test_the_scan_looks_past_the_three_largest_depositors(self):
+        vault = FakeVault(idle=10_000, shares=SHARES, depositors=[GONE, GONE, POOR, OTHER])
+        sim = vault.simulate(500, [])
+        self.assertTrue(sim["ok"])
+        self.assertEqual(sim["holder"], OTHER)
+
+    def test_when_every_depositor_has_redeemed_the_simulation_is_inconclusive(self):
+        """Nobody left to ask is not the vault refusing: `ok` is None, no
+        withdraw is simulated, and the note says why."""
+        vault = FakeVault(idle=10_000, shares=SHARES, depositors=[GONE, POOR])
+        sim = vault.simulate(500, [])
+        self.assertIsNone(sim["ok"])
+        self.assertEqual(vault.callers, [])
+        self.assertIn("inconclusive", sim["note"])
+        self.assertIn("none of the 2 largest recent depositors", sim["note"])
+
+    def test_no_depositor_at_all_is_inconclusive(self):
+        vault = FakeVault(idle=10_000, shares=SHARES, depositors=[])
+        sim = vault.simulate(500, [])
+        self.assertIsNone(sim["ok"])
+        self.assertIn("no recent depositor found", sim["note"])
+
+    def test_a_revert_from_a_depositor_who_covers_the_withdraw_is_still_not_exitable(self):
+        """The rule stays as strict: a depositor whose shares cover the
+        withdraw and whose withdraw reverts is the vault refusing."""
+        vault = FakeVault(idle=0, shares=SHARES, depositors=[GONE, OTHER, POOR])
+        sim = vault.simulate(500, [])
+        self.assertIs(sim["ok"], False)
+        self.assertEqual(vault.callers, [OTHER])
+        self.assertIn("0x96d80433", sim["errors"][0])
+        self.assertIn("the revert is the vault's", sim["note"])
 
 
 if __name__ == "__main__":

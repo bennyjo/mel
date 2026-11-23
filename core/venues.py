@@ -332,8 +332,9 @@ def quote(rows: list[dict], window_blocks: int = RATE_WINDOW_BLOCKS,
 
     `exit_usdg`, when given, simulates a withdraw of that many USDG from each
     vault and records the outcome in `settle_state["exit_simulation"]`. It is
-    a log scan and up to three calls per vault, so single-venue quotes (open
-    and settle) ask for it and board quotes do not. `exit_holders` maps a
+    a log scan, a balance batch and up to three calls per vault, so
+    single-venue quotes (open and settle) ask for it and board quotes do
+    not. `exit_holders` maps a
     vault address to holders worth trying before that scan; see
     `exit_simulation`.
 
@@ -436,7 +437,8 @@ def _revert_text(exc: Exception) -> str:
 def recent_depositors(vault: str, head: int, lookback: int = VAULT_RATE_LOOKBACK_BLOCKS,
                       limit: int = 3) -> list[str]:
     """Owners of the largest recent deposits into `vault`, largest first. They
-    are the addresses a withdraw can be simulated from: they hold shares."""
+    are candidates to simulate a withdraw from, not proven holders: one may
+    have redeemed since, which `exit_simulation` checks."""
     topics = [[abi.TOPICS["Deposit(address,address,uint256,uint256)"]]]
     logs = rpc.scan_logs(max(1, head - lookback), head, [vault], topics, span=500_000)
     best: dict[str, int] = {}
@@ -455,7 +457,7 @@ def simulate_withdraw(vault: str, assets_raw: int, holders: list[str],
     from each holder in turn. A wrapper vault such as an Arcadia tranche holds
     no USDG itself, so its own balance says nothing; only a simulated withdraw
     does. A holder with too few shares reverts for the wrong reason, which is
-    why the callers are the largest recent depositors and more than one."""
+    why `exit_simulation` asks only holders whose shares cover the withdraw."""
     errors: list[str] = []
     for h in holders:
         data = abi.encode_call("withdraw(uint256,address,address)", assets_raw, h, h)
@@ -469,10 +471,21 @@ def simulate_withdraw(vault: str, assets_raw: int, holders: list[str],
                      else "no recent depositor found to simulate with")}
 
 
+EXIT_SCAN_DEPOSITORS = 50
+EXIT_SIM_CALLERS = 3
+
+
 def exit_simulation(vault: str, assets_raw: int, block: int | str,
                     known: list[str] | tuple = (), totals: dict | None = None) -> dict:
     """Whether a withdraw of `assets_raw` executes, simulated from `known`
     holders first and from a fresh depositor scan only when they cannot say.
+
+    `ok` is True when a holder's withdraw executes and False when it reverts
+    from a holder whose shares are worth at least the withdraw: that revert
+    is the vault refusing. It is None, inconclusive, when no holder that
+    still has the shares could be found to ask. A depositor who has since
+    redeemed reverts on its own balance, which says nothing about the vault
+    (Spark `insufficient-balance`, Purinta underflow, E-2026-11-21-a).
 
     The scan reads seven days of Deposit logs, about 3,000 calls, and
     `a00036` paid it every hour for days while the Flock vault held no idle
@@ -480,9 +493,10 @@ def exit_simulation(vault: str, assets_raw: int, block: int | str,
     good a caller as any the scan could find: a success from them is a
     success, and a revert from them is the vault refusing, not the holder
     lacking shares. So the scan runs only when no known holder succeeds or
-    holds enough. `totals` is the vault's `total_assets` and `total_shares`
-    at `block`, which price a holder's shares; `convertToAssets` reverts on
-    some vaults (Flock Credit Vault, cycle 216)."""
+    holds enough, and it keeps only the depositors that still hold enough.
+    `totals` is the vault's `total_assets` and `total_shares` at `block`,
+    which price a holder's shares; `convertToAssets` reverts on some vaults
+    (Flock Credit Vault, cycle 216)."""
     known = list(dict.fromkeys(h.lower() for h in known if h))
     if known:
         sim = simulate_withdraw(vault, assets_raw, known, block)
@@ -493,7 +507,23 @@ def exit_simulation(vault: str, assets_raw: int, block: int | str,
             sim["note"] = (f"{backed[0]} holds shares worth at least the withdraw, so "
                            "the revert is the vault's, not the holder's")
             return sim
-    return simulate_withdraw(vault, assets_raw, recent_depositors(vault, block), block)
+    found = recent_depositors(vault, block, limit=EXIT_SCAN_DEPOSITORS)
+    backed = _holders_backing(vault, assets_raw, found, block, totals) if found else []
+    if backed:
+        sim = simulate_withdraw(vault, assets_raw, backed[:EXIT_SIM_CALLERS], block)
+        if not sim["ok"]:
+            sim["note"] = (f"{backed[0]} holds shares worth at least the withdraw, so "
+                           "the revert is the vault's, not the holder's")
+        return sim
+    if not found:
+        why = "no recent depositor found to simulate with"
+    elif not (totals or {}).get("total_assets") or not (totals or {}).get("total_shares"):
+        why = "the vault's totals were not read, so no holder's shares could be priced"
+    else:
+        why = (f"none of the {len(found)} largest recent depositors still holds shares "
+               "worth the withdraw")
+    return {"ok": None, "assets": str(assets_raw), "holder": None, "errors": [],
+            "note": f"inconclusive: {why}, so no caller could show whether the vault pays it"}
 
 
 def _holders_backing(vault: str, assets_raw: int, holders: list[str],

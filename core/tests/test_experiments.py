@@ -550,6 +550,23 @@ class TestCatalog(Base):
             experiments.propose("agent_vs_best_mae:uniswap_v3_pool", "days=7",
                                 self.repo.path, now=C)
 
+    def test_graded_rows_per_day_counts_settled_agent_rows_by_settle_time(self):
+        def row(i: int, settled: int, **kw) -> dict:
+            r = {"id": f"f{i:06d}", "forecaster": "agent", "kind": "morpho_market",
+                 "ts": iso(C - 9 * DAY), "entry_ts": C - 9 * DAY, "status": "settled",
+                 "settled_ts": iso(settled)}
+            r.update(kw)
+            return r
+        self.repo.forecasts += [
+            row(0, C - DAY), row(1, C - DAY), row(2, C - 3 * DAY),   # counted: 3 in 4 days
+            row(3, C - DAY, status="void"),                          # a void is not graded
+            row(4, C - DAY, forecaster="trailing_24h"),              # nor a baseline
+            row(5, C - 5 * DAY),                                     # settled before the window
+        ]
+        self.repo.flush()
+        got = experiments.propose("graded_rows_per_day", "days=4", self.repo.path, now=C)
+        self.assertEqual((got["baseline"], got["n"]), (0.75, 3))
+
     def test_full_cycle_seconds_reads_full_hours_only(self):
         for ts, wall in ((C - DAY + 3600, 300.0), (C - DAY + 3700, 200.0),     # 01Z: 500
                          (C - DAY + 13 * 3600, 700.0),                       # 13Z: 700

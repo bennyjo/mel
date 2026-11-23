@@ -200,7 +200,9 @@ def free_liquidity(kind: str, state: dict) -> Decimal | None:
     the state as recorded. For a Morpho market that is total supply minus
     total borrow; for a vault it is the vault's own USDG balance. None when
     the state does not carry the fields, which a caller must treat as
-    unverifiable, not as zero and not as plenty."""
+    unverifiable, not as zero and not as plenty. An inconclusive exit
+    simulation (`ok` None: no holder with the shares was found to ask) is
+    unverifiable too; `unverifiable_why` says which."""
     try:
         if kind == "morpho_market":
             raw = int(state["total_supply_assets"]) - int(state["total_borrow_assets"])
@@ -209,6 +211,8 @@ def free_liquidity(kind: str, state: dict) -> Decimal | None:
             if isinstance(sim, dict) and "ok" in sim:
                 # A simulated withdraw is the truth for a wrapper vault, whose
                 # own balance is zero by design (Arcadia tranches, a00008).
+                if sim["ok"] is None:
+                    return None
                 raw = int(sim["assets"]) if sim["ok"] else 0
             else:
                 raw = int(state["idle_assets"])
@@ -217,6 +221,14 @@ def free_liquidity(kind: str, state: dict) -> Decimal | None:
     except (KeyError, TypeError, ValueError):
         return None
     return Decimal(raw).scaleb(-_cfg()["quote_asset_decimals"])
+
+
+def unverifiable_why(state: dict) -> str:
+    """Why `free_liquidity` returned None for `state`, for messages."""
+    sim = state.get("exit_simulation")
+    if isinstance(sim, dict) and "ok" in sim and sim["ok"] is None:
+        return f"the exit simulation was {sim.get('note') or 'inconclusive'}"
+    return "the state lacks the fields free liquidity is read from"
 
 
 def free_liquidity_amount(sim: object) -> str:
@@ -309,8 +321,8 @@ def cap_violations(existing: list[dict], row: dict, cfg: dict | None = None) -> 
             free = free_liquidity(str(row.get("kind")), row.get("entry_state") or {})
             multiple = _dec(cfg["min_free_liquidity_multiple"])
             if free is None:
-                out.append("entry_state lacks the fields free liquidity is read "
-                           "from, so it cannot be verified and a withdraw cannot "
+                out.append(f"entry_state: {unverifiable_why(row.get('entry_state') or {})}, "
+                           "so free liquidity cannot be verified and a withdraw cannot "
                            "be shown to succeed")
             elif free < size * multiple:
                 sim = (row.get("entry_state") or {}).get("exit_simulation")
