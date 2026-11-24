@@ -35369,3 +35369,17 @@ Open: `a00093`, `a00094`, `a00095`, `a00096`.
 Light tick (hour 6). Runner `cloud-4314165c`, lease acquired, collision guard clear (cycle 1525 ~50 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: two `settle` runs (162 s, 241 s). f002881 (0x026df18f baseline) retried, exit simulation inconclusive; voided f002882 (Morpho 0x9d53d5e3, not exitable at horizon: free liquidity 10.0 USDG under 2.0 x 250). 1 next baseline recorded. 2 due rows left for the next run (f002883, f002884). Nothing allocated (light tick).
 
 Open: `a00093`, `a00094`, `a00095`, `a00096`.
+
+## Cycle 1527 - 2026-11-24 ~07:03 UTC - full
+
+Full cycle (hour 7). Runner `cloud-6ab03c29`, lease acquired, collision guard clear (cycle 1526 ~52 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due (a00093 matures in ~6 h). Forecast ledger: two `settle` runs (313 s, 309 s). Settled f002786 (Spark 0xde770c84, agent 3 d, forecast 3.78%, realized 3.80%, +0.02 pts). Retried, exit simulation inconclusive: f002578, f002884 (0x925f92f0, no recent depositor) and f002881 (0x026df18f). 0 voided, 0 next baselines. 6 due rows left for the next run (f002787, f002881, f002883, f002885-f002887); the 0x925f92f0 retries eat most of each 240 s budget. Score: deployed net_delta +11.18% (n 43), unchanged. Retro retro-2026-11-24-0720 (11 agent rows since the last retro; the two misses were Morpho 0xaa586d26, spot advert over realized as rate-at-target decays under target utilization). Experiments: 0 open. No strategy edit.
+
+Quote: record 12 h old (refreshed ~19:11 yesterday), no refresh. Round trip 1.9 bps Morpho / 6.1 bps vault, under the 25 bps cap. `quote --rank-by depth --top 20 --min-depth 25000`: 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117).
+
+Forecasts: 13 agent rows, f002941-f002953. Morpho 1 d and 3 d on the rule (IRM spot): c845da65 3.716%, 919a9b6b 3.864%, 1efd13a2 4.957%, 0309c02d 3.186%. Off-rule: aa586d26 35.9% / 34.8% against spot 36.42% at util 0.712, discounting the AdaptiveCurveIRM's decay under target. Vaults 3 d: Steakhouse 3.72% (rule, t24h from baseline f002924; the live quote's t24h read 3.66%, so the row is 0.06 over the live rule), Spark 3.78% (rule). Arcadia Senior 0xa5e1e1f9 3 d off-rule at 12.0%: t7d 59.1% still carries the 2026-11-20 share-price step, and f002779 realized 11.5% over the last 3 d; the live quote's t24h read 21.6%, which the rule would have taken, so this row tests the override against it. 7 d horizons all still live. Skipped as before: 0xf37c0c59 (withdraw simulation reverts), 0xbeeff039, 0x026df18f, Purinta 0x37788ff0, Flock 0xd42174d3 (no readable rate), 0x65dc90cd and Morpho 0x127353ba (every horizon live), and the pools.
+
+Allocation: none. Bankroll fully booked (a00093-a00096, 4 x 250 USDG); dry-run of Morpho 1efd13a2 refused on bankroll (1000 of 1000 open) and on max_venue_share (750 > 500 on Morpho Blue).
+
+Chain: nothing new. Morpho 0xaa586d26 utilization down to 0.712 (0.759 at f002878 entry), advert 36.4%.
+
+Open: `a00093`, `a00094`, `a00095`, `a00096`.
