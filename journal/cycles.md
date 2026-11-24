@@ -35433,3 +35433,17 @@ Open: `a00093`, `a00094`, `a00095`, `a00096`.
 Light tick (hour 14). Runner `cloud-6b76e9ea`, lease acquired, collision guard clear (cycle 1533 ~41 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: settled a00093 (Morpho 0x9d53d5e3 c845da65, 7 d held 168.5 h, realized +3.70% vs forecast +3.68%, net +0.174978 USDG). Forecast ledger: one `settle` run (387 s). Settled f002898 (0xa5e1e1f9 agent 1 d, realized +21.15%, err agent -21.34 pts; rule forecast was far under a one-day spike, retro owed at the next full cycle). f002803 (0x0053333f baseline 3 d) retried, exit simulation inconclusive (no recent depositor), still due. 0 voided, 0 next baselines recorded. Score: deployed net_delta +10.93% (n 44). No retro on a light tick (a00093 and f002898 owed to the next full cycle). No strategy edit.
 
 Open: `a00094`, `a00095`, `a00096`.
+
+## Cycle 1535 - 2026-11-24 ~19:03 UTC - full
+
+Full cycle (hour 19). Runner `cloud-004efda4`, lease acquired, collision guard clear (cycle 1534 ~5 h old; hours 15-18 had no tick). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (340 s). f002803 (0x0053333f baseline 3 d) retried, exit simulation inconclusive, still due; 1 next baseline recorded. Score: deployed net_delta +10.93% (n 44), unchanged; agent vs best baseline -3.02 pts overall [-5.28, -0.76]. Retro retro-2026-11-24-1915 (a00093 +0.02 pts, nothing wrong; f002898 -21.34 pts, the rule's t7d fallback on Arcadia Senior's lumpy share price, and a correction: cycle 1534's log read it as an under-forecast, it was an over-forecast). Experiments: 0 open. No strategy edit.
+
+Quote: record ~24 h old, no refresh. Round trip 1.9 bps Morpho / 6.0 bps vault, under the 25 bps cap. `quote --rank-by depth --top 20 --min-depth 25000` (113 s): 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117). Board: Morpho c845da65 3.70%, 919a9b6b 3.86%, 1efd13a2 4.96%, 0309c02d 3.19%, aa586d26 49.3% (util 0.844, 858k), 127353ba 3.69%; Steakhouse 3.75%, Spark 3.73%, Arcadia Senior advert 50.2%, Arcadia Debt 14.6%.
+
+Forecasts: 3 agent rows, the only free horizons with a rule number. f002963 Arcadia Senior 1 d 60.93%: **a slip**, worked from the stale 02:11 baseline (t7d) instead of the live read (t24h 20.52%, t7d 55.47%), so the rule's number was 20.52%. It stands as recorded; the void question is in `journal/proposals.md` for the operator. f002964/f002965 Arcadia Debt 0xf37c0c59 1 d and 3 d 25.49% (live t24h, read first with `trailing_baselines`). Grove, 0x026df18f, Purinta and Flock have no trailing or advert, so the rule gives nothing and nothing was recorded.
+
+Allocation: a00097, Morpho 1efd13a2, 250 USDG, 7 d, gross 4.96% (rule = IRM advert, util 0.9006), forecast net 8.9 bps. Freed by a00093. Bankroll fully booked again (a00094-a00097), so no idle row. Skipped aa586d26 (49% advert on 858k, utilization-driven) and Arcadia (rule's 1 d fallback just overshot).
+
+Chain: nothing new.
+
+Open: `a00094`, `a00095`, `a00096`, `a00097`.

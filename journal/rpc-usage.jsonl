@@ -3206,3 +3206,12 @@
 {"context": "adhoc", "endpoint": "custom", "errors": 0, "http_requests": 10, "min_gap_end": 0.12, "rate_limited": 0, "retries": 0, "rpc_calls": 24, "ts": "2026-11-24T13:22:11Z", "wall_seconds": 3.71}
 {"context": "adhoc", "endpoint": "custom", "errors": 0, "http_requests": 10, "min_gap_end": 0.12, "rate_limited": 0, "retries": 0, "rpc_calls": 24, "ts": "2026-11-24T14:03:46Z", "wall_seconds": 4.91}
 {"context": "adhoc", "endpoint": "custom", "errors": 0, "http_requests": 517, "min_gap_end": 0.12, "rate_limited": 0, "retries": 0, "rpc_calls": 12323, "ts": "2026-11-24T14:11:18Z", "wall_seconds": 386.99}
+{"context": "adhoc", "endpoint": "custom", "errors": 0, "http_requests": 371, "min_gap_end": 0.12, "rate_limited": 0, "retries": 1, "rpc_calls": 8794, "ts": "2026-11-24T19:09:39Z", "wall_seconds": 339.89}
+{"context": "adhoc", "endpoint": "custom", "errors": 0, "http_requests": 6, "min_gap_end": 0.12, "rate_limited": 0, "retries": 0, "rpc_calls": 19, "ts": "2026-11-24T19:10:09Z", "wall_seconds": 2.64}
+{"context": "adhoc", "endpoint": "custom", "errors": 0, "http_requests": 143, "min_gap_end": 0.12, "rate_limited": 0, "retries": 0, "rpc_calls": 3264, "ts": "2026-11-24T19:12:08Z", "wall_seconds": 95.85}
+{"context": "adhoc", "endpoint": "custom", "errors": 0, "http_requests": 248, "min_gap_end": 0.12, "rate_limited": 0, "retries": 0, "rpc_calls": 5737, "ts": "2026-11-24T19:16:48Z", "wall_seconds": 219.85}
+{"context": "adhoc", "endpoint": "custom", "errors": 0, "http_requests": 115, "min_gap_end": 0.12, "rate_limited": 0, "retries": 0, "rpc_calls": 2647, "ts": "2026-11-24T19:19:09Z", "wall_seconds": 115.45}
+{"context": "adhoc", "endpoint": "custom", "errors": 0, "http_requests": 248, "min_gap_end": 0.12, "rate_limited": 0, "retries": 0, "rpc_calls": 5737, "ts": "2026-11-24T19:22:59Z", "wall_seconds": 196.54}
+{"context": "adhoc", "endpoint": "custom", "errors": 0, "http_requests": 6, "min_gap_end": 0.12, "rate_limited": 0, "retries": 0, "rpc_calls": 19, "ts": "2026-11-24T19:23:06Z", "wall_seconds": 2.26}
+{"context": "adhoc", "endpoint": "custom", "errors": 0, "http_requests": 10, "min_gap_end": 0.12, "rate_limited": 0, "retries": 0, "rpc_calls": 24, "ts": "2026-11-24T19:23:12Z", "wall_seconds": 4.8}
+{"context": "adhoc", "endpoint": "custom", "errors": 0, "http_requests": 10, "min_gap_end": 0.12, "rate_limited": 0, "retries": 0, "rpc_calls": 24, "ts": "2026-11-24T19:23:23Z", "wall_seconds": 4.29}

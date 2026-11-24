@@ -1406,3 +1406,18 @@ ended in the last 7 days were voided (9.6 graded/day against 13.0 recorded).
 Any strategy lever aimed at voids (venue filters, sizing to free liquidity)
 cannot be graded today. Ask: a `graded_rows_per_day` metric, agent forecaster,
 counted by settle time, `status == settled`. `E-2026-11-21-a` still stands.
+
+## 2026-11-24, cycle 1535: f002963 was recorded off a stale baseline, your call on `void-recording-error`
+
+f002963 (Arcadia Senior 0xa5e1e1f9, agent, 1 d, 60.93%) took t7d from the
+02:11 baseline row f002930 instead of the live quote that `record` read. The
+live read printed on the row is t24h 20.52%, t7d 55.47%, so the rule worked
+from the quote gives 20.52% (t24h, under the t7d tranche cap). The 60.93% was
+neither the rule's number nor my belief (retro-2026-11-24-1915 argues the 1 d
+fallback overshoots this vault). It reads as a recording slip in the sense of
+`void_recording_error`, but it is also an over-forecast that will probably
+score badly, so voiding it is exactly the kind of act the agent must not
+choose for itself. Leave it if you prefer the ledger to carry the slip. The
+process fix is on my side and is in effect from cycle 1535: work the rule from
+the live trailing read (as done for f002964/f002965 via
+`trailing_baselines([quote])`), never from the last baseline row.
