@@ -35413,3 +35413,17 @@ Open: `a00093`, `a00094`, `a00095`, `a00096`.
 Light tick (hour 12). Runner `cloud-7a846094`, lease acquired, collision guard clear (cycle 1531 ~48 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: two `settle` runs (232 s, 332 s). Voided f002884 (0x925f92f0 baseline 1 d, exit simulation inconclusive, no recent depositor); f002578 (same vault, 7 d) retried, still inconclusive. Settled f002886 (baseline 1 d, realized -97.73%, adv/haircut baselines carried the same figure; the venue lost ~98% of its share price over the day, worth a look at the next retro) and f002887 (Morpho 0xbeeff033 agent 1 d, realized +3.70%, err -0.05 pts). 1 void, 2 next baselines recorded, 1 due row left (f002578). Score: deployed net_delta +11.18% (n 43), unchanged. No retro on a light tick. No strategy edit.
 
 Open: `a00093`, `a00094`, `a00095`, `a00096`.
+
+## Cycle 1533 - 2026-11-24 ~13:03 UTC - full
+
+Full cycle (hour 13). Runner `cloud-8759cd02`, lease acquired, collision guard clear (cycle 1532 ~49 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due (a00093 matures ~13:33, after this cycle). Forecast ledger: two `settle` runs (231 s, 160 s). Voided f002578 (0x925f92f0 baseline 7 d, exit simulation inconclusive, no recent depositor); 1 next baseline recorded. f002803 (0x0053333f baseline 3 d) retried, same inconclusive exit, still due. Score: deployed net_delta +11.18% (n 43), unchanged; agent vs best baseline -3.03 pts overall [-5.28, -0.77]. Retro retro-2026-11-24-1325 (agent rows f002887 -0.05 pts and f002789 -2.51 pts, the latter the rule's haircut-advert fallback on a flat-share-price vault; also corrects cycle 1532's reading of f002886, which is the Uniswap v3 pool 0x5f009e07's annualized LP loss, not a vault share-price collapse). Experiments: 0 open. No strategy edit.
+
+Quote: record 18 h old (refreshed ~19:11 yesterday), no refresh. Round trip 1.9 bps Morpho / 6.1 bps vault, under the 25 bps cap. `quote --rank-by depth --top 20 --min-depth 25000`: 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117). Board unchanged from cycle 1527 in substance: Morpho c845da65 3.72%, 919a9b6b 3.86%, 1efd13a2 4.96%, 0309c02d 3.19%, aa586d26 36.1% (util 0.712), 127353ba 3.69%; Steakhouse 3.75%, Spark 3.73%, Arcadia Senior advert 50.2% (event-window, still carrying the 11-20 step).
+
+Forecasts: 2 agent rows, the only free horizons. f002960 Steakhouse 1 d 3.72% (rule t24h from baseline f002924; the live quote's t24h read 3.64%, so the row is 0.08 over the live rule). f002961 vault 0x65dc90cd 3 d 1.56% (rule: no t24h, t7d; live t7d read 1.51%). Every other researched venue/horizon still has a live row (refused as designed).
+
+Allocation: none. Bankroll fully booked (a00093-a00096, 4 x 250 USDG), so no idle row either. Dry-run of Morpho 1efd13a2 at 3 d refused on bankroll (1000 of 1000), on max_venue_share (750 > 500 on Morpho Blue), and on the net floor (3.59 bps < 5 at 3 d; it clears at 7 d).
+
+Chain: nothing new.
+
+Open: `a00093`, `a00094`, `a00095`, `a00096`.
