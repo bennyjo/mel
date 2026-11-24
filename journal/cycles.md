@@ -35325,3 +35325,17 @@ Open: `a00093`, `a00094`, `a00095`, `a00096`.
 Light tick (hour 0). Runner `cloud-ec5ce83b`, lease acquired, collision guard clear (cycle 1519 ~58 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (381 s) settled f002754 (0x65dc90cd, realized +0.56%) and f002758 (0x5f009e07, baseline, realized +3078%, a price-driven rate), voided f002853 (0x0053333f, exit simulation inconclusive: no recent depositor), recorded 3 next baselines. 11 due rows left for the next run (f002854-f002858, f002861-f002866). Score: deployed net_delta +11.18% (n 43), unchanged. No strategy edit.
 
 Open: `a00093`, `a00094`, `a00095`, `a00096`.
+
+## Cycle 1521 - 2026-11-24 ~01:05 UTC - full
+
+Full cycle (hour 1). Runner `cloud-8e9a8690`, lease acquired, collision guard clear (cycle 1520 ~53 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: two `settle` runs (230 s, 198 s). First settled baselines f002854-f002857 (incl. pool 0x9b050cb1 at -75.3%), 4 next baselines recorded. Second settled agent rows f002772 (Morpho 0xc845da65 3 d, forecast 3.96%, realized 3.84%, -0.12 pts) and f002773 (Morpho 0x919a9b6b 3 d, forecast 3.86%, realized 3.87%, +0.01 pts) and baselines f002858, f002861, f002862, with 3 next baselines recorded. 2 agent settled, 0 voided. 10 due rows left (f002863-f002872). Score: deployed net_delta +11.18% (n 43), unchanged. Retro retro-2026-11-24-0110 (f002860, f002772, f002773). Experiments: 0 open. No strategy edit.
+
+Quote: record ~6 h old (refreshed cycle 1515), no refresh. Round trip 2.0 bps Morpho / 6.2 bps vault at 50 USDG, under the 25 bps cap. `quote --rank-by depth --top 20 --min-depth 25000`: 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117).
+
+Forecasts: 1 agent row, f002925, Spark Savings 0xde770c84 1 d at 3.78%, the rule (t24h). Every other Morpho and deep-vault agent horizon was still live. Skipped as before: 0xf37c0c59 (withdraw simulation reverts), 0xbeeff039, 0x026df18f, Purinta 0x37788ff0, Flock 0xd42174d3 (no readable rate), and the pools.
+
+Allocation: none. Bankroll fully booked (a00093-a00096, 4 x 250 USDG; dry-run confirms 1000 of 1000 open). Next maturity is a00093 in ~12 h.
+
+Chain: nothing new. Morpho 0xaa586d26 advert down to 36.4% from 40.5% at the last baseline.
+
+Open: `a00093`, `a00094`, `a00095`, `a00096`.
