@@ -35453,3 +35453,17 @@ Open: `a00094`, `a00095`, `a00096`, `a00097`.
 Light tick (hour 20). Runner `cloud-64f9ae3f`, lease acquired, collision guard clear (cycle 1535 ~39 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (237 s). Settled f002905 (baseline), f002908 (agent, realized +3.68%, err -0.01 pts) on Morpho 0x9d53d5e3 at 1 d, and f002911 (agent, 0x65dc90cd, realized +0.11%, err -0.01 pts). 0 voided, 1 next baseline recorded. Score: deployed net_delta +10.93% (n 44), unchanged. No retro on a light tick; the three forecast rows are owed to the next full cycle's paragraph. No strategy edit.
 
 Open: `a00094`, `a00095`, `a00096`, `a00097`.
+
+## Cycle 1537 - 2026-11-25 ~01:03 UTC - full
+
+Full cycle (hour 1). Runner `cloud-853dc6ac`, lease acquired, collision guard clear (cycle 1536 ~5 h old; hours 21-00 had no tick). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (272 s). Settled 3 baselines: f002921 (Uniswap v3 0x69bfaf19 1 d, -99.39%), f002922 (Uniswap v3 0x9b050cb1 1 d, -97.64%), f002923 (Morpho 0x9d53d5e3 1 d, +3.18%); 3 next baselines recorded. f002920 (0x0053333f baseline 1 d) retried, exit simulation inconclusive (no recent depositor), still due. 0 voided. Score: deployed net_delta +10.93% (n 44), unchanged; agent vs best baseline -3.01 pts overall [-5.26, -0.76]. Retro retro-2026-11-25-0115 (agent rows f002908 and f002911, both -0.01 pts, nothing to change). Experiments: 0 open. No strategy edit.
+
+Quote: record ~30 h old, no refresh. Round trip 1.9 bps Morpho / 6.0 bps vault, under the 25 bps cap. `quote --rank-by depth --top 20 --min-depth 25000` (92 s): 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117). Board: Morpho c845da65 3.72%, 919a9b6b 3.86%, 1efd13a2 4.96%, 0309c02d 3.19%, aa586d26 29.2% (util 0.640, down from 0.844), 127353ba 3.69%; Steakhouse 3.74%, Spark 3.73%, Arcadia Senior advert 50.2%, Arcadia Debt 14.6%, 0x65dc90cd 3.09%.
+
+Forecasts: 2 agent rows, the only free horizons with a rule number. f002970 Morpho 127353ba 1 d 3.69% (rule = IRM advert; t24h 3.68%). f002971 vault 0x65dc90cd 1 d 1.41% (rule: no t24h, live t7d via `trailing_baselines`). Grove, 0x026df18f, Purinta and Flock still have no trailing or advert, so the rule gives nothing and nothing was recorded.
+
+Allocation: none. Bankroll fully booked (a00094-a00097, 4 x 250 USDG), so no idle row either.
+
+Chain: nothing new.
+
+Open: `a00094`, `a00095`, `a00096`, `a00097`.
