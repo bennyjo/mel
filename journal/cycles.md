@@ -35555,3 +35555,17 @@ Open: `a00094`, `a00095`, `a00096`, `a00097`.
 Light tick (hour 18). Runner `cloud-2cfcf123`, lease acquired, collision guard clear (newest cycle commit 1549 ~1 h old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (228 s, budget hit). Voided f002957 (baseline, 0x925f92f0 1 d, exit simulation inconclusive: no recent depositor found); nothing settled. 1 next baseline recorded. 2 due rows left: f002958 f002960. Score: deployed net_delta +10.93% (n 44), unchanged. No retro on a light tick. No strategy edit.
 
 Open: `a00094`, `a00095`, `a00096`, `a00097`.
+
+## Cycle 1551 - 2026-11-25 ~19:03 UTC - full
+
+Full cycle (hour 19). Runner `cloud-02ffdcdf`, lease acquired, collision guard clear (cycle 1550 ~55 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (141 s, under budget, nothing left due). Settled f002958 (baseline, 0x5f009e07 1 d, -59.98%: a price move, not a rate) and f002960 (agent, Steakhouse 0xbeeff033 1 d, realized +3.72%, err -0.00 pts, beat every baseline). 1 next baseline recorded. Score: deployed net_delta +10.93% (n 44), unchanged; agent vs best baseline -2.98 pts overall [-5.20, -0.76]. Retro retro-2026-11-25-1915 (f002960, nothing missed). Experiments: E-2026-11-25-a open, collecting (0.4/7 d, graded_rows_per_day 13.87 vs baseline 10.14). No strategy edit.
+
+Quote: record ~48 h old, no refresh. Round trip 1.9 bps Morpho / 6.2 bps vault, under the 25 bps cap. `quote --rank-by depth --top 20 --min-depth 25000`: 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117). Board unchanged from cycle 1546: Morpho c845da65 3.73%, 919a9b6b 3.86%, 1efd13a2 4.96%, 0309c02d 3.19%, aa586d26 28.2% (util 0.639), 127353ba 3.68%; Steakhouse 3.73%, Spark 3.73%, Arcadia Senior advert 50.2%, Arcadia Debt 16.2%, 0x65dc90cd 1.28%.
+
+Forecasts: 6 agent rows, all 1 d (the free horizons). f003004 Steakhouse 3.67% (rule t24h, from baseline f002973; the live read at record was 3.68%, 1 bp apart). f003005-f003008 Morpho 0309c02d 3.19%, 1efd13a2 4.96%, 919a9b6b 3.86%, c845da65 3.73%: the rule's IRM spot, utilization at or near target. f003009 Morpho aa586d26 27.60%, off-rule: spot 28.17% at util 0.639, far under target, so the AdaptiveCurveIRM rate-at-target keeps decaying (~4%/day; the advert fell 28.91 to 28.17% since 06:12Z); the number is spot averaged over a day of that decay, the mechanism already on the forecast-rule candidates list.
+
+Allocation: none. Bankroll fully booked (a00094-a00097, 4 x 250 USDG); idle dry-run refused (1000 already open), so no idle row either.
+
+Chain: nothing new.
+
+Open: `a00094`, `a00095`, `a00096`, `a00097`.
