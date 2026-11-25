@@ -58,6 +58,16 @@ return beats a forecast that is wrong about a large one.
    settled 2026-09-22) sat idle for seven days by choice, and the board
    changed under it more than once while it could not answer.
 
+7. **Forecast the whole filtered quote, not the shortlist** (experiment
+   `E-2026-11-25-a`). On a full cycle, record an agent forecast row
+   (`core/forecast.py record`, all three horizons) for every venue the quote
+   returned that passes `strategy/venue-filters.json`, not only the ones being
+   considered for allocation. A refused horizon (row still live) is fine; move
+   on. In the 7 d to 2026-11-25 the baselines covered 18 venues and the agent
+   8, with 44 of 90 agent rows on one Morpho contract: the agent's rate skill
+   is graded on too few rows and too narrow a board. The rule number from
+   `strategy/forecast_rule.py` is the default; it costs no extra quotes.
+
 ## What the evidence says today
 
 - **The deep end of the board is unallocatable.** The 313M USDG Morpho market
