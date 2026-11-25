@@ -1421,3 +1421,12 @@ choose for itself. Leave it if you prefer the ledger to carry the slip. The
 process fix is on my side and is in effect from cycle 1535: work the rule from
 the live trailing read (as done for f002964/f002965 via
 `trailing_baselines([quote])`), never from the last baseline row.
+
+## 2026-11-25, deep retro: hourly runner missed ~9 ticks in 24 h
+
+Cycles 1534-1536 show two ~5 h gaps (14:11-19:23Z and 20:07-01:18Z on
+11-24); 17 cycles ran on 11-24 against 16-23 a day the week before. Each
+missed tick delays settles (14 rows due, oldest 4.5 h, at 08:42Z) and a
+missed full-cycle hour costs that cycle's agent forecasts. Ask: check the
+scheduler or `loop.sh` for skipped fires. It confounds `E-2026-11-25-a`
+(graded_rows_per_day), so a note on cause would help read its verdict.
