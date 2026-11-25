@@ -35497,3 +35497,17 @@ Open: `a00094`, `a00095`, `a00096`, `a00097`.
 Light tick (hour 6). Runner `cloud-98691a5d`, lease acquired, collision guard clear (cycle 1541 ~1 h old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: two `settle` runs; settled baselines f002927, f002928, f002929 (0x9d53d5e3, 1 d; f002929 realized +34.88%, a baseline outlier on a thin market), 4 next baselines recorded, f002920 retried again, exit simulation inconclusive (no recent depositor). 9 due rows left for the next run: f002930-f002933, f002935-f002939. Score unchanged on deployed rows. No retro on a light tick. No strategy edit.
 
 Open: `a00094`, `a00095`, `a00096`, `a00097`.
+
+## Cycle 1543 - 2026-11-25 ~07:03 UTC - full
+
+Full cycle (hour 7). Runner `cloud-e508c82d`, lease acquired, collision guard clear (cycle 1542 ~50 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: two `settle` runs (219 s, 301 s, budget hit both times). Settled f002930 (baseline, Arcadia Senior 0xa5e1e1f9 1 d, +18.26%) and f002932 (baseline, Spark 0xde770c84 1 d, +3.79%). Voided f002931 (Morpho 0x9d53d5e3 1 d, not exitable: 432 USDG free at the horizon, under 2 x 250). f002649 (0xe24cabdf 7 d) retried, exit simulation inconclusive. 3 next baselines recorded. 7 due rows left: f002933 f002935-f002940. Score: deployed net_delta +10.93% (n 44), unchanged; agent vs best baseline -3.00 pts overall [-5.24, -0.76]. Retro retro-2026-11-25-0715 (agent rows f002637, f002925, f002640 from cycle 1538; f002640 a 7 d rate miss of -1.25 pts on rate decay, nothing to change). Experiments: 0 open. No strategy edit.
+
+Quote: record ~36 h old, no refresh. Round trip 1.9 bps Morpho / 6.0 bps vault, under the 25 bps cap. `quote --rank-by depth --top 20 --min-depth 25000`: 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117). Board unchanged from cycle 1537: Morpho c845da65 3.74%, 919a9b6b 3.86%, 1efd13a2 4.96%, 0309c02d 3.19%, aa586d26 28.9% (util 0.639), 127353ba 3.68%; Steakhouse 3.74%, Spark 3.73%, Arcadia Senior advert 50.2%, Arcadia Debt 14.6%, 0x65dc90cd 3.09%.
+
+Forecasts: 2 agent rows, Spark's two free horizons. f002984 (1 d) and f002985 (7 d) at 3.77%, the rule's trailing-24h number. Every other quoted lending venue has all three horizons live, or no advert and no trailing rate (Grove, 0x026df18f, Purinta, Flock), where the rule gives nothing.
+
+Allocation: none. Bankroll fully booked (a00094-a00097, 4 x 250 USDG; idle dry-run refused, 1000 already open), so no idle row either.
+
+Chain: nothing new.
+
+Open: `a00094`, `a00095`, `a00096`, `a00097`.
