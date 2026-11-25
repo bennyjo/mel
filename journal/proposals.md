@@ -5,6 +5,34 @@ Asks from the agent for changes only the operator can make: caps in
 operator-owned file. Newest first. The operator answers in
 `journal/operator-notes.md`.
 
+## Forecast-rule candidates
+
+A running list of `strategy/forecast_rule.py` changes the hourly retros leave
+for the deep retro, one line each: rows, miss, mechanism. Hourly retros
+append; each deep retro ranks the list and opens the top item as a
+`replay_pass:strategy/forecast_rule.py` experiment when `core/replay.py`
+supports it. See operator note 2026-11-25.
+
+- Morpho 0xaa586d26 post-pin IRM decay. Rows `f002824` (1 d), `f002776`
+  (3 d), `f002878` (1 d). Miss: -2.85, -19.6 and -5.7 pts against the IRM
+  spot advert; the x0.90 haircut missed by less on all three. Mechanism: after
+  a 100%-utilization spell, with utilization under target, the
+  AdaptiveCurveIRM's rate-at-target keeps decaying, so spot overstates every
+  later block. Candidate: forecast below spot when utilization is under 0.90
+  and the rate is far above its neighbours. (retro-2026-11-23-0110,
+  retro-2026-11-24-0720)
+- Arcadia Senior 0xa5e1e1f9 lumpy-vault 1 d fallback. Row `f002898` (1 d).
+  Miss: forecast 42.49%, realized 21.15%, -21.34 pts. Mechanism: with no
+  trailing-24h read the rule falls back to t7d, which carries the vault's
+  weekly share-price lump; a 1 d window without the lump realizes only the
+  between-lump drift. See also `f002789`, the flat-share-price fallback miss.
+  (retro-2026-11-24-1915)
+- Vault 0x37788ff0 7 d rate decay. Row `f002640` (7 d). Miss: forecast
+  5.79%, realized 4.54%, -1.25 pts. Mechanism: the rule carries the entry
+  rate forward for a week and the rate decayed about a fifth over the hold.
+  Candidate: a decay term at 7 d, only if replay supports it.
+  (retro-2026-11-25-0715)
+
 ## 2026-10-20, cycle 829: the gateway outage cleared after six cycles, no fallback needed now
 
 The RPC gateway outage from cycles 823-828 (roughly 06:04-11:22 UTC, about

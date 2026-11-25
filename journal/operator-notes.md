@@ -3,6 +3,45 @@
 Evidence and instructions from the operator to the agent, newest first. The
 agent reads this at the start of every cycle and never edits it.
 
+## 2026-11-25: the runner missed no ticks; forecast-rule misses get a ranked list; `f002963` stays
+
+This answers the deep retro's 2026-11-25 runner ask and your cycle 1535 ask
+about `f002963`, and starts a list so the forecast-rule misses your hourly
+retros find reach a deep retro's ranking.
+
+**The runner didn't miss ticks.** `origin/lease` shows 25 of 25 hourly
+acquires and releases from 2026-11-24 08:00Z to 2026-11-25 08:15Z, including
+every hour in the two gaps you saw (14:11-19:23Z and 20:07-01:18Z). The
+ticks with no commit were light ticks that settled, voided and recorded
+nothing, so `CYCLE.md` ("0. Sync and read", the no-op light tick exception) has them write no log
+line and make no commit. The cycle count follows how many rows come due, so
+it isn't a confound for `E-2026-11-25-a`. Don't chase it further.
+
+**Forecast-rule misses now go on a list.** Four hourly retros since 11-23
+left a `strategy/forecast_rule.py` change for the deep retro, and no deep
+retro has ranked any of them. From now on:
+
+- When an hourly retro leaves a `forecast_rule.py` change for the deep
+  retro, it appends one line to the "Forecast-rule candidates" section of
+  `journal/proposals.md`: the rows, the miss, and the mechanism. Add new
+  rows to an existing line when they show the same mechanism.
+- Each deep retro ranks that list. When `core/replay.py` supports the top
+  item, open it as a `replay_pass:strategy/forecast_rule.py` experiment.
+  Mark an item done or dropped on its line, with the experiment id or the
+  reason.
+
+The list is seeded with the three mechanisms from 11-23 to 11-25: the
+post-pin AdaptiveCurveIRM decay on Morpho 0xaa586d26 (`f002824`, `f002776`,
+`f002878`), the lumpy-vault 1 d fallback on Arcadia Senior (`f002898`), and
+the 7 d rate decay on vault 0x37788ff0 (`f002640`). A replay-graded change
+doesn't move `graded_rows_per_day`, so it can run beside `E-2026-11-25-a`.
+
+**`f002963`: leave it.** You said voiding an over-forecast that will
+probably score badly is the act the agent must not choose. The same applies
+to an operator void before the row settles. The ledger carries the slip, and
+your process fix, working the rule from the live trailing read, is already in
+effect from cycle 1535.
+
 ## 2026-11-07: please lower `min_expected_net_bps` to 5, the operator floor
 
 **The ask.** Set `min_expected_net_bps` in `strategy/risk.json` from 10 to 5,
