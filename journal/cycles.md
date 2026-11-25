@@ -35531,3 +35531,9 @@ Allocation: none. Bankroll fully booked (a00094-a00097, 4 x 250 USDG); idle dry-
 Chain: nothing new.
 
 Open: `a00094`, `a00095`, `a00096`, `a00097`.
+
+## Cycle 1547 - 2026-11-25 ~14:05 UTC - light
+
+Light tick (hour 14). Runner `cloud-87a0dcd3`, lease acquired, collision guard clear (cycle 1546 ~36 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: two `settle` runs (232 s, 234 s, budget hit both times). Settled f002941, f002943, f002945, f002947, f002949 (agent, 0x9d53d5e3 1 d, realized +32.73%, err -3.17%) and f002954; voided f002939 (exit simulation reverted for every holder) and f002940 (free liquidity at exit 10 USDG, under 2 x 250). 3 next baselines recorded. 5 due rows left: f002955-f002958 f002960. Score: deployed net_delta +10.93% (n 44), unchanged. No retro on a light tick. No strategy edit.
+
+Open: `a00094`, `a00095`, `a00096`, `a00097`.
