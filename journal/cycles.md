@@ -35517,3 +35517,17 @@ Open: `a00094`, `a00095`, `a00096`, `a00097`.
 Light tick (hour 10). Runner `cloud-2a40a002`, lease acquired, collision guard clear (cycle 1544 ~48 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: two `settle` runs (334 s, 311 s, budget hit both times), no rows settled or voided in either; f002649 and f002653 retried, exit simulation inconclusive (no recent depositor). 13 due rows left for the next run: f002933 f002935-f002941 f002943 f002945 f002947 f002949 f002954. Score: deployed net_delta +10.93% (n 44), unchanged. No retro on a light tick. No strategy edit.
 
 Open: `a00094`, `a00095`, `a00096`, `a00097`.
+
+## Cycle 1546 - 2026-11-25 ~13:05 UTC - full
+
+Full cycle (hour 13). Runner `cloud-300dbb06`, lease acquired, collision guard clear (cycle 1545 ~3 h old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: three `settle` runs (239 s, 307 s, 320 s, budget hit each time). Settled f002933 (baseline, 0x37788ff0 1 d, +3.81%), f002935 (baseline, uniswap 0x52e65b17 1 d, -98.05%) and f002936 (baseline, uniswap 0xa9188730 1 d, -97.73%): pool rows, price moves, not rates. Voided f002649 (baseline, 0xe24cabdf 7 d) and f002653 (agent, 0xbeeff039 7 d), both exit simulations inconclusive past the void window; f002937 (Morpho 0x9d53d5e3 1 d, 211 USDG free at exit, under 2 x 250); f002938 (Flock 0xd42174d3 1 d, inconclusive). 8 next baselines recorded. 13 due rows left: f002939-f002941 f002943 f002945 f002947 f002949 f002954-f002958 f002960. Score: deployed net_delta +10.93% (n 44), unchanged; agent vs best baseline -3.00 pts overall [-5.24, -0.76]. No retro: no allocation and no agent forecast row settled since retro-2026-11-25-0715 (f002653 voided, not settled). Experiments: E-2026-11-25-a open, collecting. No strategy edit.
+
+Quote: record ~42 h old, no refresh. Round trip 1.9 bps Morpho / 5.9 bps vault at 50 USDG, under the 25 bps cap. `quote --rank-by depth --top 20 --min-depth 25000`: 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117). Board unchanged from cycle 1543: Morpho c845da65 3.73%, 919a9b6b 3.86%, 1efd13a2 4.96%, 0309c02d 3.19%, aa586d26 28.1% (util 0.634), 127353ba 3.68%; Steakhouse 3.74%, Spark 3.73%, Arcadia Senior advert 50.2%, Arcadia Debt 16.2%, 0x65dc90cd 3.09%.
+
+Forecasts (E-2026-11-25-a, whole filtered quote): 3 agent rows, f002994-f002996 on 0x37788ff0 at 3.78% / 3.73% / 3.65% (1 / 3 / 7 d). The rule gives nothing there (no advert, no trailing rate in the quote); the number is the venue's own settled 1 d series (3.98, 3.96, 3.88, 3.81%) with its ~0.05 pts/day decline carried forward, as the note says. Every other quoted lending venue has all horizons live, or no rule input and no recent settled rate (0xbeeff039, 0x026df18f, Flock 0xd42174d3), so nothing recorded there.
+
+Allocation: none. Bankroll fully booked (a00094-a00097, 4 x 250 USDG); idle dry-run refused (1000 already open), so no idle row either.
+
+Chain: nothing new.
+
+Open: `a00094`, `a00095`, `a00096`, `a00097`.

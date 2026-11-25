@@ -3239,3 +3239,10 @@
 {"context": "adhoc", "endpoint": "custom", "errors": 0, "http_requests": 515, "min_gap_end": 0.12, "rate_limited": 0, "retries": 0, "rpc_calls": 12299, "ts": "2026-11-25T09:15:47Z", "wall_seconds": 313.23}
 {"context": "adhoc", "endpoint": "custom", "errors": 0, "http_requests": 516, "min_gap_end": 0.12, "rate_limited": 0, "retries": 1, "rpc_calls": 12299, "ts": "2026-11-25T10:09:52Z", "wall_seconds": 334.0}
 {"context": "adhoc", "endpoint": "custom", "errors": 0, "http_requests": 515, "min_gap_end": 0.12, "rate_limited": 0, "retries": 0, "rpc_calls": 12299, "ts": "2026-11-25T10:16:07Z", "wall_seconds": 310.96}
+{"context": "adhoc", "endpoint": "custom", "errors": 0, "http_requests": 372, "min_gap_end": 0.12, "rate_limited": 0, "retries": 0, "rpc_calls": 8796, "ts": "2026-11-25T13:09:30Z", "wall_seconds": 238.58}
+{"context": "adhoc", "endpoint": "custom", "errors": 0, "http_requests": 503, "min_gap_end": 0.12, "rate_limited": 0, "retries": 0, "rpc_calls": 11883, "ts": "2026-11-25T13:15:41Z", "wall_seconds": 307.37}
+{"context": "adhoc", "endpoint": "custom", "errors": 0, "http_requests": 506, "min_gap_end": 0.12, "rate_limited": 0, "retries": 0, "rpc_calls": 11523, "ts": "2026-11-25T13:22:05Z", "wall_seconds": 319.9}
+{"context": "adhoc", "endpoint": "custom", "errors": 0, "http_requests": 6, "min_gap_end": 0.12, "rate_limited": 0, "retries": 0, "rpc_calls": 19, "ts": "2026-11-25T13:22:14Z", "wall_seconds": 2.43}
+{"context": "adhoc", "endpoint": "custom", "errors": 0, "http_requests": 143, "min_gap_end": 0.12, "rate_limited": 0, "retries": 0, "rpc_calls": 3264, "ts": "2026-11-25T13:24:03Z", "wall_seconds": 82.41}
+{"context": "adhoc", "endpoint": "custom", "errors": 0, "http_requests": 245, "min_gap_end": 0.12, "rate_limited": 0, "retries": 0, "rpc_calls": 5733, "ts": "2026-11-25T13:27:31Z", "wall_seconds": 150.35}
+{"context": "adhoc", "endpoint": "custom", "errors": 0, "http_requests": 8, "min_gap_end": 0.12, "rate_limited": 0, "retries": 0, "rpc_calls": 21, "ts": "2026-11-25T13:27:37Z", "wall_seconds": 2.98}
