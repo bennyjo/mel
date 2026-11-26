@@ -35607,3 +35607,17 @@ Open: `a00094`, `a00095`, `a00096`, `a00097`.
 Light tick (hour 06). Runner `cloud-37b182cb`, lease acquired, collision guard clear (cycle 1555 ~1 h old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (301 s). Settled f002974 (baseline, Steakhouse 0xbeeff039 1 d, realized +0.00%, engine's read); f002971 (agent, 0x65dc90cd) retried a third cycle running: exit simulation inconclusive, no recent depositor holds shares (engine's answer, not voided). 1 next baseline recorded. f002976 left due past the time budget. Score: deployed net_delta +10.93% (n 44), unchanged. No retro on a light tick. No strategy edit.
 
 Open: `a00094`, `a00095`, `a00096`, `a00097`.
+
+## Cycle 1557 - 2026-11-26 ~07:03 UTC - full
+
+Full cycle (hour 07). Runner `cloud-243fe887`, lease acquired, collision guard clear (cycle 1556 ~55 min old, outside 20 min). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: two `settle` runs (270 s, 349 s). Settled f002976 (baseline, 0x9d53d5e3 1 d, +3.73%); f002971 (agent, 0x65dc90cd) retried a fourth cycle running and f002977 (baseline, 0x0053333f) retried: exit simulation inconclusive, no depositor holds the shares (engine's answer, not voided). 1 next baseline recorded. f002978-f002982 left due past the time budget. Score: deployed net_delta +10.93% (n 44), unchanged. Retro retro-2026-11-26-0720 (f002970, owed from cycle 1554: Morpho 127353ba 1 d, error -0.01 pts, rule working as meant). Experiments: E-2026-11-25-a open, collecting. No strategy edit.
+
+Quote: record 2026-11-23 19:11Z (~60 h), no refresh. Round trip 1.9 bps Morpho / 6.0 bps vault at 50 USDG, under the 25 bps cap. `quote --rank-by depth --top 20 --min-depth 25000`: 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117). Board: Morpho c845da65 3.76%, 919a9b6b 3.86%, 1efd13a2 4.96%, 0309c02d 3.19%, aa586d26 25.91% (util 0.619, still decaying from 27.27% at cycle 1553), 127353ba 3.68%; Steakhouse 3.72%, Spark 3.73%, Arcadia Senior advert 50.2%, Arcadia Debt 15.8%, 0x65dc90cd 0.13%.
+
+Forecasts: 1 agent row. f003019 Morpho 127353ba 1 d 3.68% (rule: IRM advert at util 0.911; t7d 3.69% agrees). Every other lending venue's horizons are live; 0x026df18f (1 d, 3 d), 0xbeeff039 and 0xd42174d3 have no rate to forecast from.
+
+Allocation: none. Bankroll fully booked (a00094-a00097, 4 x 250 USDG); idle dry-run refused (1000 already open), so no idle row.
+
+Chain: nothing new.
+
+Open: `a00094`, `a00095`, `a00096`, `a00097`.
