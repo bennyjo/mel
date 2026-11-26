@@ -35575,3 +35575,17 @@ Open: `a00094`, `a00095`, `a00096`, `a00097`.
 Light tick (hour 20). Runner `cloud-c9daa37f`, lease acquired, collision guard clear (cycle 1551 ~43 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: two `settle` runs (318 s, 88 s). Settled f002963 (agent, 0xa5e1e1f9 1 d, realized +399.85%, err +338.92 pts; the over-forecast left in place per the operator's 11-25 note) and f002966 (baseline, 0x9d53d5e3 1 d, realized +3.68%); voided f002964 (baseline, 0xf37c0c59: simulated withdraw of 500 USDG reverted for every holder tried). 1 next baseline recorded. Nothing left due. Score: deployed net_delta +10.93% (n 44), unchanged. No retro on a light tick (f002963 owed to the next full cycle). No strategy edit.
 
 Open: `a00094`, `a00095`, `a00096`, `a00097`.
+
+## Cycle 1553 - 2026-11-26 ~01:03 UTC - full
+
+Full cycle (hour 01). Runner `cloud-5e42451b`, lease acquired, collision guard clear (cycle 1552 ~5 h old; the ticks between were no-op light ticks). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: nothing due (0 of 116 open), nothing settled or voided. Score: deployed net_delta +10.93% (n 44), unchanged. Retro retro-2026-11-26-0110 (f002963, owed from cycle 1552: the Arcadia Senior weekly lump landed inside the 1 d window, +338.92 pts; added to the existing Arcadia candidate line in `journal/proposals.md`). Experiments: E-2026-11-25-a open, collecting. No strategy edit.
+
+Quote: record 2026-11-23 19:11Z (~54 h), no refresh. Round trip 1.9 bps Morpho / 6.1 bps vault, under the 25 bps cap. `quote --rank-by depth --top 20 --min-depth 25000` (114 s): 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117). Board unchanged in shape: Morpho c845da65 3.71%, 919a9b6b 3.86%, 1efd13a2 4.96%, 0309c02d 3.19%, aa586d26 27.27% (util 0.632, still decaying from 28.17% at cycle 1551), 127353ba 3.68%; Steakhouse 3.73%, Spark 3.73%, Arcadia Senior advert 50.2%, Arcadia Debt 15.8%, 0x65dc90cd 0.13%.
+
+Forecasts: 2 agent rows, both 1 d (the only free lending horizons with a rate). f003011 Arcadia Senior 21.00%, off-rule (rule t7d, live read 86.97%): the weekly lump just landed in f002963's window, so the next day should be between-lump drift, as f002898's no-lump day realized 21.15%. f003012 Arcadia Debt 17.29% (rule t7d from the 11-25 14:08Z baseline; the live t7d at record was 16.13%, 1.2 pts lower, so the number was worked from a stale read, the slip cycle 1535 warned about). Every other lending venue's horizons are live; Grove, Flock and 0x026df18f have no rate to forecast from.
+
+Allocation: none. Bankroll fully booked (a00094-a00097, 4 x 250 USDG); idle dry-run refused (1000 already open), so no idle row.
+
+Chain: nothing new.
+
+Open: `a00094`, `a00095`, `a00096`, `a00097`.

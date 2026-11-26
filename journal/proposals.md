@@ -26,7 +26,12 @@ supports it. See operator note 2026-11-25.
   trailing-24h read the rule falls back to t7d, which carries the vault's
   weekly share-price lump; a 1 d window without the lump realizes only the
   between-lump drift. See also `f002789`, the flat-share-price fallback miss.
-  (retro-2026-11-24-1915)
+  (retro-2026-11-24-1915) Same mechanism, other sign: `f002963` (1 d),
+  forecast 60.93% from t7d, realized 399.85%, +338.92 pts, because the
+  weekly lump (share price +0.457%) landed inside the day. The 1 d window
+  either holds the lump or not, so a t7d point forecast misses on both
+  sides; candidate: forecast the between-lump drift at 1 d unless the lump
+  is due, or skip 1 d rows on this vault. (retro-2026-11-26-0110)
 - Vault 0x37788ff0 7 d rate decay. Row `f002640` (7 d). Miss: forecast
   5.79%, realized 4.54%, -1.25 pts. Mechanism: the rule carries the entry
   rate forward for a week and the rate decayed about a fifth over the hold.
