@@ -35651,3 +35651,17 @@ Open: `a00094`, `a00095`, `a00096`, `a00097`.
 Light tick (hour 12). Runner `cloud-8cfedad9`, lease acquired, collision guard clear (cycle 1561 ~1 h old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (347 s). Settled f002889 (baseline, 0x9b050cb1 3 d, realized -64.84%), f002890 (baseline, 0x9d53d5e3 3 d, +3.18%), f002891 (baseline, 0x9d53d5e3 3 d, +4.94%); f002977 (baseline, 0x0053333f) retried again: exit simulation inconclusive, no recent depositor (engine's answer, not voided). 4 next baselines recorded. f002981-f002984 left due past the time budget. Score unchanged. No retro on a light tick. No strategy edit.
 
 Open: `a00094`, `a00095`, `a00096`, `a00097`.
+
+## Cycle 1563 - 2026-11-26 ~13:03 UTC - full
+
+Full cycle (hour 13). Runner `cloud-bea2ff3a`, lease acquired, collision guard clear (cycle 1562 ~53 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: two `settle` runs (268 s, 255 s). Settled f002893 (baseline, 0x9d53d5e3 3 d, +3.87%), f002981 (baseline, Arcadia Senior 0xa5e1e1f9 1 d, +272.89% against advert +50%: a lump in the tranche's share price), f002894 (baseline, 0x9d53d5e3 3 d, +30.81%), f002895 (baseline, 0x9d53d5e3 3 d, +3.72%), f002896 (baseline, 0xa5e1e1f9 3 d, +91.81%). Voided by the engine: f002892 and f002982 (baseline, 0x9d53d5e3, a market with 453 USDG free at exit, under 2 x 250). 7 next baselines recorded. f002983, f002984 (agent, Spark 1 d) and f002986 left due past the time budget; f002983/f002984 have been left four runs running because Spark sorts last, not because they fail. Score: deployed net_delta +10.93% (n 44), unchanged. No retro: no allocation and no agent forecast row settled since retro-2026-11-26-0720. Experiments: E-2026-11-25-a open, collecting. No strategy edit.
+
+Quote: record 2026-11-23 19:11Z (~66 h, under the three-day refresh line; the next full cycle should refresh). Round trip 1.9 bps Morpho / 6.1 bps vault, under the 25 bps cap. `quote --rank-by depth --top 20 --min-depth 25000`: 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117). Board: Morpho c845da65 3.77%, 919a9b6b 3.86%, 1efd13a2 4.96%, 0309c02d 3.19%, aa586d26 25.54% (util 0.618, still drifting down from 25.91% at cycle 1557), 127353ba 3.70%; Steakhouse 3.72%, Spark 3.73%, Arcadia Senior advert 47.2%, Arcadia Debt 15.8% (blocked), 0x65dc90cd 0.13%.
+
+Forecasts: 1 agent row. f003035 vault 0x65dc90cd 1 d 0.124% (rule: no trailing 24 h, trailing 7 d 0.124% read live; 97% of the vault's assets idle). Every other filtered lending venue's horizons are live; 0x026df18f (1 d, 3 d) and 0xbeeff039 have no rate to forecast from, Flock and Arcadia Debt are blocked.
+
+Allocation: none. Bankroll fully booked (a00094-a00097, 4 x 250 USDG); idle dry-run refused (1000 already open), so no idle row.
+
+Chain: nothing new.
+
+Open: `a00094`, `a00095`, `a00096`, `a00097`.
