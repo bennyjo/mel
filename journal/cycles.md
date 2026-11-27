@@ -35788,4 +35788,6 @@ Open: `a00094`, `a00095`, `a00096`, `a00097`.
 
 ## Cycle 1581 - 2026-11-27 ~09:05 UTC - light
 
-Light tick (hour 9). Runner `cloud-5461f6d4`, lease acquired, collision guard clear. Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (139 s), 4 settled (f003013, f003014, f003017 baselines; f003019 agent 1 d, realized 3.67
+Light tick (hour 9). Runner `cloud-5461f6d4`, lease acquired, collision guard clear. Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (139 s), 4 settled (f003013, f003014, f003017 baselines; f003019 agent 1 d, realized 3.67%, err -0.01%), 0 voided, 3 baselines recorded. Retro owed to the next full cycle.
+
+Open: `a00094`, `a00095`, `a00096`, `a00097`.
