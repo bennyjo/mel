@@ -35829,3 +35829,17 @@ Open: `a00094`, `a00095`, `a00096`, `a00097`.
 Light tick (hour 18). Runner `cloud-dfc54670`, lease acquired, collision guard clear (cycle 1585 ~4.7 h old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: two `settle` runs (416 s, then one more); f003028 (baseline, 0x9d53d5e3, 1 d) voided: free liquidity at exit 254.3 USDG, under 2.0 x 250. f003027, f003035 and f002961 (vaults 0x0053333f and 0x65dc90cd, exit simulation inconclusive, no depositor) left for retry. 6 due baseline rows (f003031 f003037 f003039 f003041 f003043 f003045) left for the next run past the time budget. 2 baselines recorded. Score: deployed net_delta +10.93% (n 44), unchanged. Retro owed to the next full cycle.
 
 Open: `a00094`, `a00095`, `a00096`, `a00097`.
+
+## Cycle 1587 - 2026-11-27 ~19:05 UTC - full
+
+Full cycle (hour 19). Runner `cloud-de4849d0`, lease acquired, collision guard clear (newest origin commit an `operator:` commit, cycle 1586 ~1 h old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one budgeted `settle` run (331 s) again spent its budget on the three inconclusive vault retries (f002961, f003035 on 0x65dc90cd: no recent depositor still holds enough shares; f002962 on 0x0053333f: no recent depositor) and left the same 6 rows as cycle 1586, so I settled those one at a time with `settle --id`: 4 settled (all baseline, 1 d: f003031 Arcadia Senior +8.53%, f003037 Spark +3.79%, f003039 uniswap 0x52e65b17 -90.05%, f003041 uniswap 0xa9188730 -87.91%), 2 voided (f003043 Morpho 0x9d53d5e3, free liquidity at exit 11.49 USDG, under 2.0 x 250; f003045 Arcadia Debt, simulated 500 USDG withdraw reverted for every holder), 6 baselines recorded from the exit quotes. No agent row and no allocation settled since retro-2026-11-27-1310, so no retro. Score: deployed net_delta +10.93% (n 44), unchanged. Experiments: E-2026-11-25-a open, collecting. No strategy edit.
+
+Quote: record 2026-11-26 19:10Z (fresh). Round trip 1.9 bps Morpho / 6.0 bps vault, under the 25 bps cap. `quote --rank-by depth --top 20 --min-depth 25000`: 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117). Board: Morpho c845da65 3.79%, 919a9b6b 3.86%, 1efd13a2 4.96%, 0309c02d 3.19%, aa586d26 23.97% (down from 24.31% at cycle 1585, util 0.618), 127353ba 3.68%; Steakhouse 3.68%, Spark 3.73%, Arcadia Senior advert 10.70% (52.9% at cycle 1585; idle assets 0), Arcadia Debt 15.43%.
+
+Forecasts: 0 agent rows. Every horizon on the six Morpho markets, Steakhouse, Spark, Purinta and 0x65dc90cd still has a live agent row. Free horizons only on Arcadia Senior (1 d, 3 d) and Arcadia Debt (1 d, 7 d), skipped for the reasons cycle 1585 gave: Senior has no trailing-24h read, so the rule falls back to t7d 42.5% on the lumpy-vault mechanism already on the candidates list, and it holds 0 idle assets; Debt's 1 d row f003045 just voided (withdraw reverted for every holder), so its exit is not provable. Grove x Steakhouse, 0x026df18f and Flock have no event rate, so the rule returns nothing.
+
+Allocation: none. Bankroll fully booked (a00094-a00097, 4 x 250 USDG); a00094 matures in about 1 d.
+
+Chain: Arcadia Senior's advertised rate fell from 52.9% to 10.7% in six hours as its event window rolled (now 7 events over 3.0 days), and its idle assets read 0. The budgeted forecast settle keeps spending its 240 s on the same three inconclusive vault retries before reaching other due rows; `settle --id` per row clears them.
+
+Open: `a00094`, `a00095`, `a00096`, `a00097`.
