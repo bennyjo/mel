@@ -550,22 +550,45 @@ class TestCatalog(Base):
             experiments.propose("agent_vs_best_mae:uniswap_v3_pool", "days=7",
                                 self.repo.path, now=C)
 
-    def test_graded_rows_per_day_counts_settled_agent_rows_by_settle_time(self):
-        def row(i: int, settled: int, **kw) -> dict:
-            r = {"id": f"f{i:06d}", "forecaster": "agent", "kind": "morpho_market",
-                 "ts": iso(C - 9 * DAY), "entry_ts": C - 9 * DAY, "status": "settled",
-                 "settled_ts": iso(settled)}
-            r.update(kw)
-            return r
+    def graded_row(self, entry: int, settled: int, **kw) -> dict:
+        r = {"id": f"f{len(self.repo.forecasts):06d}", "forecaster": "agent",
+             "kind": "morpho_market", "ts": iso(entry), "entry_ts": entry,
+             "status": "settled", "settled_ts": iso(settled)}
+        r.update(kw)
+        return r
+
+    def test_graded_rows_per_day_counts_rows_that_began_and_settled_in_the_window(self):
+        row = self.graded_row
         self.repo.forecasts += [
-            row(0, C - DAY), row(1, C - DAY), row(2, C - 3 * DAY),   # counted: 3 in 4 days
-            row(3, C - DAY, status="void"),                          # a void is not graded
-            row(4, C - DAY, forecaster="trailing_24h"),              # nor a baseline
-            row(5, C - 5 * DAY),                                     # settled before the window
+            row(C - 3 * DAY, C - DAY), row(C - 2 * DAY, C - DAY),    # counted: 3 in 4 days
+            row(C - 4 * DAY, C - 3 * DAY),
+            row(C - 3 * DAY, C - DAY, status="void"),                # a void is not graded
+            row(C - 3 * DAY, C - DAY, forecaster="trailing_24h"),    # nor a baseline
+            row(C - 9 * DAY, C - DAY),                               # began before the window
+            row(C - 6 * DAY, C - 5 * DAY),                           # settled before it
         ]
         self.repo.flush()
         got = experiments.propose("graded_rows_per_day", "days=4", self.repo.path, now=C)
         self.assertEqual((got["baseline"], got["n"]), (0.75, 3))
+
+    def test_graded_rows_per_day_after_the_commit_skips_rows_recorded_before_it(self):
+        row = self.graded_row
+        self.repo.forecasts += [row(C - 3 * DAY, C - DAY), row(C - 2 * DAY, C - DAY)]
+        sha = self.repo.experiment()
+        self.repo.flush()
+        baseline = experiments.propose("graded_rows_per_day", "days=4", self.repo.path,
+                                       sha, now=C)["baseline"]
+        self.assertEqual(baseline, 0.5)
+        self.repo.forecasts += [
+            row(C + 3600, C + DAY), row(C + 7200, C + 2 * DAY),      # counted: 2 in 4 days
+            row(C - DAY, C + DAY), row(C - 3600, C + DAY),           # recorded before the commit
+            row(C + 3 * DAY, C + 5 * DAY),                           # settles after the window
+        ]
+        self.repo.flush()
+        self.repo.ledger([opened("E-2026-11-17-a", sha, metric="graded_rows_per_day",
+                                 baseline=baseline, keep_if="> 1", rollback_if="< 0.25")])
+        r = experiments.grade(self.repo.path, now=C + 5 * DAY)[0]
+        self.assertEqual((r["verdict"], r["value"], r["n"]), ("INCONCLUSIVE", 0.5, 2), r)
 
     def test_full_cycle_seconds_reads_full_hours_only(self):
         for ts, wall in ((C - DAY + 3600, 300.0), (C - DAY + 3700, 200.0),     # 01Z: 500

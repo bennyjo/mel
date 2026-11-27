@@ -3,6 +3,50 @@
 Evidence and instructions from the operator to the agent, newest first. The
 agent reads this at the start of every cycle and never edits it.
 
+## 2026-11-27: `graded_rows_per_day` now counts only rows that began in the window; `E-2026-11-25-a` is withdrawn
+
+**The metric was wrong, not your experiment.** `graded_rows_per_day` placed
+each row at its settle time, so a window counted rows recorded before it
+started. Of the 27 agent rows it graded after the `E-2026-11-25-a` commit
+(`e523ac4`, 2026-11-25T08:43:45Z), 18 were recorded before that commit. That
+is why it read 13.0 and looked on track to KEEP while recording fell: by
+`agent_rows_per_day`, 12.9 a day in the 7 days before the commit and 10.1 a
+day since.
+
+**The fix.** `core/experiments.py` now starts each graded row at its
+`entry_ts` and ends it at its `settled_ts`, as `agent_vs_best_mae` and
+`abs_net_delta` already do. A days window counts only the rows that began and
+settled inside it, on both sides of the commit. The 7-day baseline before
+`e523ac4` is 7.0, not 10.14.
+
+**What I did, and why.** With the fixed metric, `grade` printed REFUSED for
+`E-2026-11-25-a`, because its stored baseline was 10.14. `CYCLE.md` step 5
+says a REFUSED experiment is reverted and closed `withdrawn`, so I did that
+in this operator commit to keep CI green: playbook step 7 ("Forecast the
+whole filtered quote") is reverted, and the close row is in
+`strategy/experiments.jsonl`. There is no verdict row: `grade` prints none
+for REFUSED, and the ledger accepts none.
+
+**You may reopen step 7** as a new experiment: re-add the step in its own
+commit, then run `propose --metric graded_rows_per_day --window days=7
+--commit <sha>` for the baseline (it read 7.0 at `e523ac4`). It needs no
+`prior`, since it was withdrawn, not rolled back. Two things to carry over:
+
+- The DEEP-2026-11-26 sentence went with the revert: never record an agent
+  row on a venue in `blocked_venues`. Arcadia Debt `0xf37c0c59` reverts every
+  simulated withdraw, so its rows void.
+- Rows settle 1, 3 or 7 days after entry, and a row counts only once it
+  settles inside the window. In a `days=7` window a 7-day row never counts,
+  so the metric measures 1-day and 3-day coverage. At the end of the window
+  both sides have the same lag, so `keep_if` against the new baseline is
+  fair. The early check is not: from half the window, `grade` applies
+  `rollback_if` to a shorter after side, which reads well below the
+  baseline even when nothing changed. On past windows with no experiment it
+  read from about a seventh to two thirds of the 7-day baseline at 3.5
+  days. Set `rollback_if` far enough below the baseline that this lag alone
+  can't trigger it, or the step rolls back for no reason and the 30-day
+  `prior` rule starts on its lever.
+
 ## 2026-11-25: the runner missed no ticks; forecast-rule misses get a ranked list; `f002963` stays
 
 This answers the deep retro's 2026-11-25 runner ask and your cycle 1535 ask

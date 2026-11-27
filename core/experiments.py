@@ -554,13 +554,17 @@ def _per_day(items: list[Item], j: Journals, param: str | None, ctx: Context) ->
 # graded_rows_per_day ----------------------------------------------------------
 
 def _graded_rows_items(j: Journals, param: str | None) -> list[Item]:
-    """Agent rows that settled, placed at their settle time: a void is the
-    gap between this and agent_rows_per_day, and it is known only then."""
+    """Agent rows that settled, from entry to settle time, so a window counts
+    only the rows that began and settled inside it: a row recorded before the
+    experiment commit grades the old strategy, not the change. A void is the
+    gap between this and agent_rows_per_day, and it is known only at settle."""
     out = []
     for r in j.forecasts:
-        ts = _ts(r, "settled_ts")
-        if r.get("forecaster") == "agent" and r.get("status") == "settled" and ts is not None:
-            out.append(Item(ts, ts, r))
+        if r.get("forecaster") != "agent" or r.get("status") != "settled":
+            continue
+        start, end = _ts(r, "entry_ts"), _ts(r, "settled_ts")
+        if start is not None and end is not None:
+            out.append(Item(start, end, r))
     return out
 
 
@@ -698,8 +702,8 @@ CATALOG: dict[str, Metric] = {
     "agent_rows_per_day": Metric(
         "agent forecast rows recorded per day", ("days",), _agent_rows_items, _per_day),
     "graded_rows_per_day": Metric(
-        "agent forecast rows settled (not void) per day, by settle time", ("days",),
-        _graded_rows_items, _per_day),
+        "agent forecast rows that began and settled (not void) inside the window, per day",
+        ("days",), _graded_rows_items, _per_day),
     "agent_vs_best_mae": Metric(
         "mean |agent error| - |best baseline error| on settled agent rows, "
         "negative is the agent closer", ("days", "rows"), _agent_items, _vs_best,
