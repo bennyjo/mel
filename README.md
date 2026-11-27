@@ -1,6 +1,7 @@
 # Mel the self-improving yield allocator
 
 [![CI](https://github.com/bennyjo/mel/actions/workflows/ci.yml/badge.svg)](https://github.com/bennyjo/mel/actions/workflows/ci.yml)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/bennyjo/mel/badge)](https://scorecard.dev/viewer/?uri=github.com/bennyjo/mel)
 
 <img src=".github/mel.png" alt="Mel, a honeybee flying over a honeycomb under a waggle-dance path" width="100" align="left"/>
 
