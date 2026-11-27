@@ -35809,3 +35809,17 @@ Open: `a00094`, `a00095`, `a00096`, `a00097`.
 Light tick (hour 12). Runner `cloud-ed5e9340`, lease acquired, collision guard clear. Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (66 s), 1 settled (f003023 baseline, 0x9d53d5e3, 1 d, realized 23.64%), 0 voided, 1 baseline recorded. Score: deployed net_delta +10.93% (n 44), unchanged. Retro owed to the next full cycle.
 
 Open: `a00094`, `a00095`, `a00096`, `a00097`.
+
+## Cycle 1585 - 2026-11-27 ~13:05 UTC - full
+
+Full cycle (hour 13). Runner `cloud-d2db5e08`, lease acquired, collision guard clear (cycle 1584 ~58 min old). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (172 s), 0 settled, 0 voided; f003027 (baseline, vault 0x0053333f) left for retry, exit simulation inconclusive with no depositor. Score: deployed net_delta +10.93% (n 44), unchanged; agent vs best baseline -3.15 pts overall [-5.32, -0.99], n 739. Retro: retro-2026-11-27-1310 for the eleven agent rows the light ticks 1580-1584 settled; the two big misses (Arcadia Senior f002953/f003011, Morpho aa586d26 f002950/f003009) are known mechanisms and their rows were added to the existing lines of the forecast-rule candidates list in `journal/proposals.md`. Experiments: E-2026-11-25-a open, collecting. No strategy edit.
+
+Quote: record 2026-11-26 19:10Z (fresh). Round trip 1.9 bps Morpho / 6.2 bps vault, under the 25 bps cap. `quote --rank-by depth --top 20 --min-depth 25000`: 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117). Board: Morpho c845da65 3.78%, 919a9b6b 3.86%, 1efd13a2 4.96%, 0309c02d 3.19%, aa586d26 24.31% (down from 25.51% at cycle 1579, util 0.617), 127353ba 3.68%; Steakhouse 3.69%, Spark 3.73%, Arcadia Senior advert 52.9%, Arcadia Debt 15.5%.
+
+Forecasts: 9 agent rows. Rule's number: f003084-f003087 Morpho c845da65 / 919a9b6b / 1efd13a2 / 0309c02d at 3 d (spot advert), f003088 127353ba 1 d 3.68%, f003091 Steakhouse 3 d 3.50% (t24h), f003092 Spark 3 d 3.79% (t7d; live t24h came back 3.80%). Off the rule, with the state named: f003089 / f003090 Morpho aa586d26 1 d 21.9% and 3 d 19.9% against spot 24.31%, because utilization sits at 0.62 under target and the IRM's rate-at-target is still decaying (five settled rows realized 0.80-0.90x spot). Skipped: Arcadia Senior 1 d / 3 d (lumpy-vault mechanism on the candidates list; no live trailing read before recording) and Arcadia Debt 1 d / 7 d (its last 1 d row f003012 was voided: exit not provable).
+
+Allocation: none. Bankroll fully booked (a00094-a00097, 4 x 250 USDG); idle dry-run refused (1000 already open), so no idle row.
+
+Chain: nothing new.
+
+Open: `a00094`, `a00095`, `a00096`, `a00097`.

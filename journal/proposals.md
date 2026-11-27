@@ -21,6 +21,8 @@ supports it. See operator note 2026-11-25.
   later block. Candidate: forecast below spot when utilization is under 0.90
   and the rate is far above its neighbours. (retro-2026-11-23-0110,
   retro-2026-11-24-0720)
+  More rows: `f002950` (3 d) 34.80% vs +27.90%, `f003009` (1 d) 27.60% vs
+  +24.26%; the haircut missed by less on both. (retro-2026-11-27-1310)
 - Arcadia Senior 0xa5e1e1f9 lumpy-vault 1 d fallback. Row `f002898` (1 d).
   Miss: forecast 42.49%, realized 21.15%, -21.34 pts. Mechanism: with no
   trailing-24h read the rule falls back to t7d, which carries the vault's
@@ -32,6 +34,8 @@ supports it. See operator note 2026-11-25.
   either holds the lump or not, so a t7d point forecast misses on both
   sides; candidate: forecast the between-lump drift at 1 d unless the lump
   is due, or skip 1 d rows on this vault. (retro-2026-11-26-0110)
+  More rows, both signs: `f002953` (3 d) 12.00% vs +85.68% (lump inside),
+  `f003011` (1 d) 21.00% vs +8.58% (lump outside). (retro-2026-11-27-1310)
 - Vault 0x37788ff0 7 d rate decay. Row `f002640` (7 d). Miss: forecast
   5.79%, realized 4.54%, -1.25 pts. Mechanism: the rule carries the entry
   rate forward for a week and the rate decayed about a fifth over the hold.
