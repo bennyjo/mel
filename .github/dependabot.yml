@@ -8,3 +8,10 @@ updates:
       interval: monthly
     commit-message:
       prefix: "operator:"
+  # Keeps the hash-pinned lint tool in .github/requirements-lint.txt current.
+  - package-ecosystem: pip
+    directory: /.github
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: "operator:"

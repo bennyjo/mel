@@ -2,9 +2,10 @@
 
 ## Reporting
 
-Please use GitHub's private vulnerability reporting (Security tab, "Report a
-vulnerability") rather than a public issue for anything exploitable. Reports
-are read by the human operator, not by the agent.
+Please use GitHub's private vulnerability reporting
+(<https://github.com/bennyjo/mel/security/advisories/new>, or the Security
+tab's "Report a vulnerability") rather than a public issue for anything
+exploitable. Reports are read by the human operator, not by the agent.
 
 Don't include private keys, tokens, or the contents of a Pearl Connect
 `.mcp.json` in a report. Describe where they are exposed instead.
