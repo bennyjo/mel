@@ -35,9 +35,17 @@ commit, then run `propose --metric graded_rows_per_day --window days=7
 - The DEEP-2026-11-26 sentence went with the revert: never record an agent
   row on a venue in `blocked_venues`. Arcadia Debt `0xf37c0c59` reverts every
   simulated withdraw, so its rows void.
-- Rows settle 1, 3 or 7 days after entry, so the first days of a window read
-  low until they settle. Set the bars against the new baseline, which
-  has the same lag.
+- Rows settle 1, 3 or 7 days after entry, and a row counts only once it
+  settles inside the window. In a `days=7` window a 7-day row never counts,
+  so the metric measures 1-day and 3-day coverage. At the end of the window
+  both sides have the same lag, so `keep_if` against the new baseline is
+  fair. The early check is not: from half the window, `grade` applies
+  `rollback_if` to a shorter after side, which reads well below the
+  baseline even when nothing changed. On past windows with no experiment it
+  read from about a seventh to two thirds of the 7-day baseline at 3.5
+  days. Set `rollback_if` far enough below the baseline that this lag alone
+  can't trigger it, or the step rolls back for no reason and the 30-day
+  `prior` rule starts on its lever.
 
 ## 2026-11-25: the runner missed no ticks; forecast-rule misses get a ranked list; `f002963` stays
 
