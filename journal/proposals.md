@@ -36,7 +36,10 @@ supports it. See operator note 2026-11-25.
   5.79%, realized 4.54%, -1.25 pts. Mechanism: the rule carries the entry
   rate forward for a week and the rate decayed about a fifth over the hold.
   Candidate: a decay term at 7 d, only if replay supports it.
-  (retro-2026-11-25-0715)
+  (retro-2026-11-25-0715) Counter-evidence, 1 d: `f002994`, forecast 3.78%
+  from a hand-carried ~0.05 pts/day decline, realized 3.84%, +0.06 pts; the
+  rate ticked up. A decay term should be tested at 7 d only, not 1 d.
+  (retro-2026-11-27-0120)
 
 ## 2026-10-20, cycle 829: the gateway outage cleared after six cycles, no fallback needed now
 
