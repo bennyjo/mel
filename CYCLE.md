@@ -99,12 +99,13 @@ Then read:
   settled, voided and recorded nothing and left the working tree unchanged
   (`git status --porcelain` prints nothing, ignoring `journal/rpc-usage.jsonl`)
   is a no-op tick. It writes no log line. If `journal/rpc-usage.jsonl`
-  changed, commit only that file as `rpc usage: no-op light tick` (not a
-  `cycle N:` commit, so it uses no cycle number) and push it to `main` the
-  way step 8 does, including its reattach and verify; otherwise make no
-  commit. Release the runner lease (`python3 core/lease.py release`) and
-  stop. Say in your final message that the tick was a no-op. Full and
-  triggered cycles always log and commit.
+  changed, commit only that file as `cycle no-op: rpc usage line` (no
+  cycle number, so the next cycle doesn't reuse one, and the `cycle ` prefix
+  keeps CI from running on it) and push it to `main` the way step 8 does,
+  including its reattach and verify; otherwise make no commit. Release the
+  runner lease (`python3 core/lease.py release`) and stop. Say in your
+  final message that the tick was a no-op. Full and triggered cycles always
+  log and commit.
 
   Push only to `main`, on every kind of cycle. A cloud session may start on
   a `claude/...` branch, and its stop hook may ask you to commit and push
