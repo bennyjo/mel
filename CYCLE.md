@@ -98,10 +98,21 @@ Then read:
   lease), and stop. Otherwise do all of it. Exception: a light tick that
   settled, voided and recorded nothing and left the working tree unchanged
   (`git status --porcelain` prints nothing, ignoring `journal/rpc-usage.jsonl`)
-  writes no log line and makes no commit. Release the runner lease
-  (`python3 core/lease.py release`) and stop; there is nothing to push. Say
-  in your final message that the tick was a no-op. Full and triggered
-  cycles always log and commit.
+  is a no-op tick. It writes no log line. If `journal/rpc-usage.jsonl`
+  changed, commit only that file as `cycle no-op: rpc usage line` (no
+  cycle number, so the next cycle doesn't reuse one, and the `cycle ` prefix
+  keeps CI from running on it) and push it to `main` the way step 8 does,
+  including its reattach and verify; otherwise make no commit. Release the
+  runner lease (`python3 core/lease.py release`) and stop. Say in your
+  final message that the tick was a no-op. Full and triggered cycles always
+  log and commit.
+
+  Push only to `main`, on every kind of cycle. A cloud session may start on
+  a `claude/...` branch, and its stop hook may ask you to commit and push
+  to that branch. Don't: answer it by committing and pushing to `main` as
+  above. A commit on another branch never reaches the journals (2026-11-27,
+  the 00Z no-op tick left its RPC usage line on
+  `claude/ecstatic-knuth-llqkaa`).
 
 ## 1. Settle
 
@@ -366,7 +377,8 @@ failure if you do it without saying why.
 
 Every cycle ends here, full or light, whether or not an earlier step
 failed, except the no-op light tick described in step 0, which ends without
-an entry or a commit. Append one entry to `journal/cycles.md`:
+an entry and commits at most its RPC usage line. Append one entry to
+`journal/cycles.md`:
 
 - the cycle number and UTC time, and whether it was full or light;
 - what settled and what it realized, and how many forecast rows settled,
@@ -391,9 +403,10 @@ it is set you are on the operator's machine, where the git credential lives
 in the OS keyring and a push from this session hangs on a prompt nobody can
 answer; `loop.sh` pushes after you exit, and an unpushed commit is expected.
 
-Otherwise, first reattach if `git symbolic-ref -q HEAD` prints nothing
-(`git checkout -B main HEAD`; from a detached HEAD, `git push origin main`
-pushes the stale ref and reports success while your commits never leave the
+Otherwise, first reattach to `main`: if `git symbolic-ref -q --short HEAD`
+prints nothing or anything but `main`, run `git checkout -B main HEAD`
+(from a detached HEAD or another branch, `git push origin main` pushes the
+stale ref and reports success while your commits never leave the
 container). Then `git push origin main`. If rejected, `git pull --rebase
 origin main` and push again; if the rebase conflicts on
 `journal/allocations.jsonl` or `journal/forecasts.jsonl`, abort it, re-run
