@@ -35785,3 +35785,7 @@ Open: `a00094`, `a00095`, `a00096`, `a00097`.
 Light tick (hour 8). Runner `cloud-a702a02d`, lease acquired, collision guard clear (cycle 1579 ~40 min old but not a lone collision: lease was free). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: two `settle` runs (322 s, then a short one). 10 forecast rows settled (all agent, mostly 3 d vault/Morpho rows within 0.1% of realized; the outlier is 0x9d53d5e3 at +27.90% / +24.26% realized vs a 3-7% over-forecast), 1 voided by the engine, 0 baselines recorded. 4 due rows left. Light ticks never retro, so the next full cycle owes the retro for these rows.
 
 Open: `a00094`, `a00095`, `a00096`, `a00097`.
+
+## Cycle 1581 - 2026-11-27 ~09:05 UTC - light
+
+Light tick (hour 9). Runner `cloud-5461f6d4`, lease acquired, collision guard clear. Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: one `settle` run (139 s), 4 settled (f003013, f003014, f003017 baselines; f003019 agent 1 d, realized 3.67
