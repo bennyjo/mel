@@ -43,10 +43,10 @@ jobs:
       || contains(toJSON(github.event.commits.*.message), '"operator:')
       || contains(github.event.commits.*.committer.email, 'noreply@github.com')
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
-      - uses: actions/setup-python@v7
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: "3.12"
       - name: Config, caps, ledger and Python sources are sane
@@ -63,7 +63,7 @@ jobs:
       - name: Lint, bug-class rules only (syntax errors, undefined names)
         if: ${{ !cancelled() }}
         run: |
-          pip install --quiet ruff
+          pip install --quiet --require-hashes -r .github/requirements-lint.txt
           ruff check --select E9,F core strategy
 
       # Main only. A pull request's commits are checked when they reach main.
