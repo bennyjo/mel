@@ -35779,3 +35779,9 @@ Allocation: none. Bankroll fully booked (a00094-a00097, 4 x 250 USDG); idle dry-
 Chain: nothing new.
 
 Open: `a00094`, `a00095`, `a00096`, `a00097`.
+
+## Cycle 1580 - 2026-11-27 ~08:05 UTC - light
+
+Light tick (hour 8). Runner `cloud-a702a02d`, lease acquired, collision guard clear (cycle 1579 ~40 min old but not a lone collision: lease was free). Shallow clone unshallowed and reset onto `main`. Position ledger: nothing due. Forecast ledger: two `settle` runs (322 s, then a short one). 10 forecast rows settled (all agent, mostly 3 d vault/Morpho rows within 0.1% of realized; the outlier is 0x9d53d5e3 at +27.90% / +24.26% realized vs a 3-7% over-forecast), 1 voided by the engine, 0 baselines recorded. 4 due rows left. Light ticks never retro, so the next full cycle owes the retro for these rows.
+
+Open: `a00094`, `a00095`, `a00096`, `a00097`.
