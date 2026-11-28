@@ -35937,3 +35937,9 @@ Open: `a00094`, `a00095`, `a00096`, `a00097`.
 Light tick (hour 11). Runner `cloud-d91db66d`, lease acquired, newest main commit (cycle 1599, 10:07) over 20 min old. Shallow clone unshallowed and reset onto `main` (session started on a `claude/` branch). Position ledger: nothing due. Forecast ledger: 14 due; the budgeted run (228 s, 8,663 RPC calls) voided f002795 (agent, 0x9d53d5e3, 7 d: free liquidity at exit 289.72 USDG under 2.0 x 250), recorded 1 baseline, settled 0; f002790 and f003065 (0x65dc90cd) retried again on an inconclusive exit simulation; 11 rows left past the budget (f003063 f003067 f003069 f003070 f003077 f003072 f003073 f003074 f003081 f003080 f003082). Score: net_delta +5.34% overall (n 90, unchanged). No retro owed (no position row settled).
 
 Open: `a00094`, `a00095`, `a00096`, `a00097`.
+
+## Cycle 1601 - 2026-11-28 ~12:05 UTC - light
+
+Light tick (hour 12). Runner `cloud-90b4798d`, lease acquired, newest main commit (cycle 1600, 11:07) over 20 min old. Shallow clone unshallowed and reset onto `main` (session started on a `claude/` branch). Position ledger: nothing due. Forecast ledger: 18 due; the budgeted run (245 s, 8,642 RPC calls) voided f003065 (baseline, 0x65dc90cd, inconclusive exit simulation: none of the 4 largest recent depositors holds shares worth the withdraw), retried f002790 (agent, same vault, same reason), recorded 1 baseline, settled 0; 17 rows left past the budget (f002796 f003074 f003081 f002797 f003083 f002798 f003072 f003073 f002799 f002800 f003070 f003077 f003063 f003067 f003069 f003080 f003082). Score: net_delta +5.34% overall (n 90, unchanged). No retro owed (no position row settled).
+
+Open: `a00094`, `a00095`, `a00096`, `a00097`.
