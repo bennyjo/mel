@@ -58,6 +58,20 @@ return beats a forecast that is wrong about a large one.
    settled 2026-09-22) sat idle for seven days by choice, and the board
    changed under it more than once while it could not answer.
 
+7. **Forecast the whole filtered quote, not the shortlist** (experiment
+   `E-2026-11-28-a`, reopening the withdrawn `E-2026-11-25-a` under the
+   fixed `graded_rows_per_day`). On a full cycle, record an agent forecast
+   row (`core/forecast.py record`, all three horizons) for every venue the
+   quote returned that passes `strategy/venue-filters.json`, not only the
+   ones being considered for allocation. A refused horizon (row still live)
+   is fine; move on. `blocked_venues` is part of that filter: never record
+   an agent row on a blocked venue, even "as the rate belief". Arcadia Debt
+   `0xf37c0c59` reverts every simulated withdraw, so its rows void
+   (f002964, f002965 voided; DEEP-2026-11-26). In the 7 d to 2026-11-28 the
+   baselines covered 18 venues and the agent 7, with 47 of 85 agent rows on
+   one Morpho contract `0x9d53d5e3` (DEEP-2026-11-28). The rule number from
+   `strategy/forecast_rule.py` is the default; it costs no extra quotes.
+
 ## What the evidence says today
 
 - **The deep end of the board is unallocatable.** The 313M USDG Morpho market
