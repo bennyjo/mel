@@ -35943,3 +35943,17 @@ Open: `a00094`, `a00095`, `a00096`, `a00097`.
 Light tick (hour 12). Runner `cloud-90b4798d`, lease acquired, newest main commit (cycle 1600, 11:07) over 20 min old. Shallow clone unshallowed and reset onto `main` (session started on a `claude/` branch). Position ledger: nothing due. Forecast ledger: 18 due; the budgeted run (245 s, 8,642 RPC calls) voided f003065 (baseline, 0x65dc90cd, inconclusive exit simulation: none of the 4 largest recent depositors holds shares worth the withdraw), retried f002790 (agent, same vault, same reason), recorded 1 baseline, settled 0; 17 rows left past the budget (f002796 f003074 f003081 f002797 f003083 f002798 f003072 f003073 f002799 f002800 f003070 f003077 f003063 f003067 f003069 f003080 f003082). Score: net_delta +5.34% overall (n 90, unchanged). No retro owed (no position row settled).
 
 Open: `a00094`, `a00095`, `a00096`, `a00097`.
+
+## Cycle 1602 - 2026-11-28 ~13:05 UTC - full
+
+Full cycle (hour 13). Runner `cloud-66038624`, lease acquired, newest main commit (cycle 1601, 12:08) over 20 min old. Shallow clone unshallowed and reset onto `main` (session started on a `claude/` branch). Position ledger: nothing due. Forecast ledger: 19 due; the budgeted run (253 s, 8,664 RPC calls) settled 3 (f002796 baseline 7 d, f003074 agent 1 d, f003081 baseline 1 d, all Morpho 0x9d53d5e3, realized +3.86-3.87%, f003074 err -0.01%), recorded 2 baselines, 0 voided; f002790 (agent, 0x65dc90cd) retried again on an inconclusive exit simulation; 15 rows left past the budget. Score: net_delta +5.34% overall (n 90, unchanged), forecast beaten 80/90. No retro owed (no position row settled since retro-2026-11-28-0110). Experiments: E-2026-11-28-a open, COLLECTING (0.2/7 days); no strategy edit.
+
+Quote: record 2026-11-26 19:10Z (fresh). Round trip 0.4 bps Morpho, 1.2 bps vault at 250 USDG, under the 25 bps cap. `quote --rank-by depth --top 20 --min-depth 25000`: 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117). Board: Morpho c845da65 3.79%, 919a9b6b 3.86%, 1efd13a2 4.96%, 0309c02d 3.19%, aa586d26 22.14% (util 0.604, down from 0.618), 127353ba 3.68%; Steakhouse 3.65%, Spark 3.73%, Arcadia Senior advert 10.70%, Arcadia Debt 15.43% (blocked).
+
+Forecasts (playbook step 7, whole filtered quote): 3 agent rows at 1 d, the rule's live Morpho advert: f003122 0309c02d 3.19%, f003123 1efd13a2 4.96%, f003124 919a9b6b 3.86%. Every other free horizon skipped: Arcadia Senior 1 d / 3 d for cycle 1585's reasons (no t24h, rule falls to t7d 42.5%, lumpy-vault mechanism); Purinta 0x37788ff0 1 d, Grove x Steakhouse 0xbeeff039 and 0x026df18f all horizons: no advertised or trailing rate, rule returns None (require_advertised_rate); uniswap_v3 pools: rule has no pool branch; Flock and Arcadia Debt blocked.
+
+Allocation: none. Bankroll fully booked (a00094-a00097, 4 x 250 USDG); a00094 matures in about 6 h.
+
+Chain: nothing new beyond cycle 1587's notes.
+
+Open: `a00094`, `a00095`, `a00096`, `a00097`.
