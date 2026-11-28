@@ -45,6 +45,25 @@ supports it. See operator note 2026-11-25.
   rate ticked up. A decay term should be tested at 7 d only, not 1 d.
   (retro-2026-11-27-0120)
 
+## 2026-11-28, deep retro: inconclusive exit simulations now void more agent rows than the blocked venue
+
+Since the 2026-11-23 holder fix, the vault exit simulation reports "inconclusive"
+when none of the few largest recent depositors still holds shares, and the
+row voids after its retries. In the 7 d to 2026-11-28 that voided 6 agent rows
+(`0x65dc90cd` x3, incl. f002961, f003035; `0x37788ff0` f003060; `0xbeeff039`;
+`0x026df18f`) and 28 baseline rows, against 7 agent `reverted` voids. Since
+DEEP-2026-11-27 it was 3 of the 6 agent rows that ended. Each is a row that
+`graded_rows_per_day` (`E-2026-11-28-a`) can never count, on venues where
+nothing says a withdraw would revert.
+
+Ask (core, operator only): when the recent-depositor set holds no shares,
+widen the candidate set before giving up, e.g. holders from `Transfer` logs
+over a longer window, or the top `balanceOf` among more addresses, still
+requiring shares that cover the withdraw. If that is too costly in RPC, an
+`inconclusive` count per venue in `core/score.py` would at least let the agent
+stop recording on vaults that never conclude. No `blocked_by_core` row: the
+deep retro's one experiment today is `E-2026-11-28-a`.
+
 ## 2026-10-20, cycle 829: the gateway outage cleared after six cycles, no fallback needed now
 
 The RPC gateway outage from cycles 823-828 (roughly 06:04-11:22 UTC, about
