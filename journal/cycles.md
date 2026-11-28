@@ -35957,3 +35957,9 @@ Allocation: none. Bankroll fully booked (a00094-a00097, 4 x 250 USDG); a00094 ma
 Chain: nothing new beyond cycle 1587's notes.
 
 Open: `a00094`, `a00095`, `a00096`, `a00097`.
+
+## Cycle 1603 - 2026-11-28 ~14:05 UTC - light
+
+Light tick (hour 14). Runner `cloud-fc336217`, lease acquired, newest main commit (cycle 1602, 13:15) over 20 min old. Shallow clone unshallowed and reset onto `main` (session started on a `claude/` branch). Position ledger: nothing due. Forecast ledger: 18 due; the budgeted run (229 s, 8,665 RPC calls) settled 3 (f002797 baseline 7 d, f003083 and f003089 baseline 1 d, all Morpho 0x9d53d5e3), voided 1 (f002790, agent, 0x65dc90cd 7 d: inconclusive exit simulation, none of the 5 largest recent depositors still holds shares worth the withdraw) and recorded 2 next baselines. 17 due rows left for the next run. No agent row settled, so no retro. No strategy change.
+
+Open: `a00094`, `a00095`, `a00096`, `a00097`.
