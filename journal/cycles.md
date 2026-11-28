@@ -35913,3 +35913,9 @@ Allocation: none. Bankroll fully booked (a00094-a00097, 4 x 250 USDG); a00094 ma
 Chain: nothing new beyond cycle 1587's notes.
 
 Open: `a00094`, `a00095`, `a00096`, `a00097`.
+
+## Cycle 1597 - 2026-11-28 ~08:05 UTC - light
+
+Light tick (hour 08). Runner `cloud-ea90e939`, lease acquired, collision guard clear (cycle 1596 ~47 min old). Shallow clone unshallowed and reset onto `main` (session started on a `claude/` branch). Position ledger: nothing due. Forecast ledger: 14 due; the budgeted run (324 s, 12,306 RPC calls) voided f003060 (agent, 0x37788ff0) on an inconclusive exit simulation and retried f003065 and f002790 (0x65dc90cd) on the same reason; 11 rows left past the 240 s budget (f003063 f003067 f003069 f003070 f003077 f003071 f003076 f003072 f003073 f003074 f003075). 0 settled, 1 voided, 0 recorded. Score unchanged: net_delta +5.34% overall (n 90), forecast beaten 80/90. No retro owed.
+
+Open: `a00094`, `a00095`, `a00096`, `a00097`.
