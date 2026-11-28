@@ -35963,3 +35963,9 @@ Open: `a00094`, `a00095`, `a00096`, `a00097`.
 Light tick (hour 14). Runner `cloud-fc336217`, lease acquired, newest main commit (cycle 1602, 13:15) over 20 min old. Shallow clone unshallowed and reset onto `main` (session started on a `claude/` branch). Position ledger: nothing due. Forecast ledger: 18 due; the budgeted run (229 s, 8,665 RPC calls) settled 3 (f002797 baseline 7 d, f003083 and f003089 baseline 1 d, all Morpho 0x9d53d5e3), voided 1 (f002790, agent, 0x65dc90cd 7 d: inconclusive exit simulation, none of the 5 largest recent depositors still holds shares worth the withdraw) and recorded 2 next baselines. 17 due rows left for the next run. No agent row settled, so no retro. No strategy change.
 
 Open: `a00094`, `a00095`, `a00096`, `a00097`.
+
+## Cycle 1604 - 2026-11-28 ~15:05 UTC - light
+
+Light tick (hour 15). Runner `cloud-0290f3f9`, lease acquired, newest main commit (cycle 1603, 14:08) over 20 min old. Shallow clone unshallowed and reset onto `main` (session started on a `claude/` branch). Position ledger: nothing due. Forecast ledger: 22 due; the budgeted run (204 s, 8,087 RPC calls) settled 4 (f002798 baseline 7 d, f003072 baseline 1 d, f003073 agent 1 d err -0.01%, f002799 baseline 7 d, Morpho 0x9d53d5e3 and 0xa5e1e1f9), voided 0, recorded 3 next baselines. 18 due rows left for the next run. Score: net_delta +5.34% overall (n 90, unchanged). No position row settled, so no retro. No strategy change.
+
+Open: `a00094`, `a00095`, `a00096`, `a00097`.
