@@ -35861,3 +35861,17 @@ Open: `a00094`, `a00095`, `a00096`, `a00097`.
 Light tick (hour 22). Runner `cloud-c6734ef9`, lease acquired, collision guard clear (cycle 1589 ~54 min old). Shallow clone unshallowed and reset onto `main` (cloud session started on a `claude/` branch). Position ledger: nothing due. Forecast ledger: 5 due; skipped the budgeted run and settled by `--id`: f003051 voided (baseline, 1 d, 0x9d53d5e3: free liquidity at exit 10.0 USDG, under 2.0 x 250), 1 baseline recorded from its exit quote. f002962 (0x0053333f) and f003048 (0xd42174d3) stayed open: exit simulation inconclusive, no recent depositor found. f002961 and f003035 (0x65dc90cd) are the same inconclusive vault retry and were not retried. Score unchanged in kind. No retro (no allocation or agent row settled).
 
 Open: `a00094`, `a00095`, `a00096`, `a00097`.
+
+## Cycle 1591 - 2026-11-28 ~01:05 UTC - full
+
+Full cycle (hour 01). Runner `cloud-90163c8a`, lease acquired, collision guard clear (newest origin commit a 00:12Z no-op RPC line; cycle 1590 ~3 h old). Shallow clone unshallowed and reset onto `main` (session started on a `claude/` branch). Position ledger: nothing due. Forecast ledger: 5 due; skipped the budgeted run and tried f003053 (baseline, 1 d, vault 0x026df18f) by `--id`: left for retry, exit simulation inconclusive (none of the 7 largest recent depositors holds shares worth the withdraw). f002961, f003035 (0x65dc90cd), f002962 (0x0053333f) and f003048 (Flock 0xd42174d3) not retried, same inconclusive exit as cycles 1587-1590. 0 settled, 0 voided. Score: deployed net_delta +10.93% (n 44), unchanged. Retro: retro-2026-11-28-0110 covers f003047 (Spark 1 d, agent err +0.03 pts, no miss). Experiments: none open (E-2026-11-25-a withdrawn by the operator); reopening playbook step 7 is the deep retro's call, not this cycle's. No strategy edit.
+
+Quote: record 2026-11-26 19:10Z (fresh). Round trip 5.9 bps vault, under the 25 bps cap. `quote --rank-by depth --top 20 --min-depth 25000`: 0 baselines recorded, 57 already live, 1 skipped (uniswap_v2 0x8803c117). Board unchanged from cycle 1587: Morpho c845da65 3.77%, 919a9b6b 3.86%, 1efd13a2 4.96%, 0309c02d 3.19%, aa586d26 23.69% (util 0.618), 127353ba 3.68%; Steakhouse 3.67%, Spark 3.73%, Arcadia Senior advert 10.70%, Arcadia Debt 15.43%.
+
+Forecasts: 1 agent row, f003103 Spark 0xde770c84 1 d at 3.80% (the rule's t7d fallback from the last baseline read; the live quote now shows a t24h of 3.79%, so the rule on the live read would have said 3.79%). Every other horizon on the six Morpho markets, Steakhouse, Purinta and 0x65dc90cd still has a live agent row. Arcadia Senior 1 d / 3 d skipped again for cycle 1585's reasons (no t24h, rule falls back to t7d 42.5% on the lumpy-vault mechanism, 0 idle assets); Arcadia Debt is in `blocked_venues`. Grove x Steakhouse, 0x026df18f and Flock have no event rate.
+
+Allocation: none. Bankroll fully booked (a00094-a00097, 4 x 250 USDG); a00094 matures in about 18 h.
+
+Chain: nothing new beyond cycle 1587's notes.
+
+Open: `a00094`, `a00095`, `a00096`, `a00097`.
