@@ -35899,3 +35899,17 @@ Open: `a00094`, `a00095`, `a00096`, `a00097`.
 Light tick (hour 06). Runner `cloud-3c98ddbf`, lease acquired, collision guard clear (cycle 1594 ~45 min old). Shallow clone unshallowed and reset onto `main` (session started on a `claude/` branch). Position ledger: nothing due. Forecast ledger: 3 due; the budgeted run retried f003060 (agent, 0x37788ff0) and f003063 (baseline, 0x925f92f0), both left open on inconclusive exit simulations (no recent depositor holds shares worth the withdraw / none found); f003065 (0x65dc90cd) left past the 240 s budget for the next run. 0 settled, 0 voided, 0 recorded. Score unchanged: net_delta +5.34% overall, forecast beaten in 80/90.
 
 Open: `a00094`, `a00095`, `a00096`, `a00097`.
+
+## Cycle 1596 - 2026-11-28 ~07:05 UTC - full
+
+Full cycle (hour 07). Runner `cloud-0ac82d82`, lease acquired, collision guard clear (cycle 1595 ~53 min old). Shallow clone unshallowed and reset onto `main` (session started on a `claude/` branch). Position ledger: nothing due. Forecast ledger: 3 due; the budgeted run retried f003060 (agent, 0x37788ff0; 2 recent depositors) and f003063 (baseline, 0x925f92f0; no recent depositor), both left open on inconclusive exit simulations; f003065 (0x65dc90cd) left past the 240 s budget (run took 309 s, 12,300 RPC calls). 0 settled, 0 voided. Score unchanged: net_delta +5.34% overall (n 90), forecast beaten 80/90, idle beaten 44/90; forecast skill still "too few to say". No retro owed (nothing settled since retro-2026-11-28-0110). Experiments: 0 open. No strategy edit.
+
+Quote: record 2026-11-26 19:10Z (fresh). Round trip 5.9 bps vault, 1.9 bps Morpho, under the 25 bps cap. `quote --rank-by depth --top 20 --min-depth 25000`: 1 baseline recorded, 56 already live, 1 skipped (uniswap_v2 0x8803c117). Board unchanged from cycle 1591: Morpho c845da65 3.78%, 919a9b6b 3.86%, 1efd13a2 4.96%, 0309c02d 3.19%, aa586d26 23.38% (util 0.618), 127353ba 3.68%; Steakhouse 3.66%, Spark 3.73%, Arcadia Senior advert 10.70%, Arcadia Debt 15.43%.
+
+Forecasts: 2 agent rows, f003109 / f003110 on vault 0x65dc90cd 1 d / 3 d at 0.107% (rule: no t24h, t7d from baseline f003066; the live read shows t7d 0.14%, so the rule on the live read would have said 0.14%; 97% of the vault's assets sit idle). Every other free horizon still has a live agent row except Arcadia Senior 1 d / 3 d, skipped again for cycle 1585's reasons (no t24h, rule falls back to t7d 42.5% on the lumpy-vault mechanism, 0 idle assets). Arcadia Debt is in `blocked_venues`.
+
+Allocation: none. Bankroll fully booked (a00094-a00097, 4 x 250 USDG); a00094 matures in about 12 h.
+
+Chain: nothing new beyond cycle 1587's notes.
+
+Open: `a00094`, `a00095`, `a00096`, `a00097`.
